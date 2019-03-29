@@ -13,5 +13,54 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="main">
+      <UniqueIdentifier>{4947a7e1-4773-42c2-9ef4-d2b7fd3343b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameBaseMaker">
+      <UniqueIdentifier>{970deac1-0eab-4aa7-8512-5421af74efc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Singleton">
+      <UniqueIdentifier>{2a5b70e1-7980-4b76-aa8b-6d338f1d488f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DeviceManager">
+      <UniqueIdentifier>{e8a9279c-74dd-4eac-9b2e-b88a361c903e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{bf3bce45-14b2-40e5-8613-5b8c6cbed519}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Window\RectSize">
+      <UniqueIdentifier>{ef9d7d0e-2c71-4413-a87c-212fdf0339e7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main\main.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="Singleton\Singleton.cpp">
+      <Filter>Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceManger\DeviceManger.cpp">
+      <Filter>DeviceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Wnd\Wnd.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main\main.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton\Singleton.h">
+      <Filter>Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceManger\DeviceManger.h">
+      <Filter>DeviceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Wnd\Wnd.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Wnd\Data\RectSize.h">
+      <Filter>Window\RectSize</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
