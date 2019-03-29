@@ -34,3 +34,4 @@
 *.opendb
 *.db-wal
 *.db-shm
+*.ipch
