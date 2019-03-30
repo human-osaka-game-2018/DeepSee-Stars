@@ -3,71 +3,86 @@
 
 #include <windows.h>
 
-class Wnd
+namespace window
 {
-public:
-	Wnd(const HINSTANCE hInst, const TCHAR* pAppName);	//WinMainからHINSTANCEを取得 Crate()を呼ぶ
-	~Wnd() {};
-
-	static void Create(const HINSTANCE hInst, const TCHAR* pAppName);
-
-	/**
-	* @brief ウィンドウハンドルを取得する
-	* @return ウィンドウハンドル
-	*/
-	inline static const HWND GetHWND() 
+	/// <summary>
+	/// ウィンドウクラス
+	/// </summary>
+	class Wnd
 	{
-		return m_hWnd;
-	}
+	public:
+		Wnd() {};
+		~Wnd() {};
 
-	/**
-	* @brief WinMessageの構造体を取得する
-	* @return WinMessageの構造体
-	*/
-	inline static MSG GetMSG() 
-	{
-		return m_msg;
-	}
+		/// <summary>
+		/// ウィンドウを生成する
+		/// </summary>
+		/// <param name="hInst">hInstance</param>
+		/// <param name="pAppName">アプリ名</param>
+		static void Create(const HINSTANCE hInst, const TCHAR* pAppName);
 
-	/**
-	* @brief ウィンドウのサイズを取得する
-	* @return ウィンドウのサイズ
-	*/
-	inline static RectSize GetWndSize() 
-	{
-		return WND_SIZE;
-	}
+		/// <summary>
+		/// ウィンドウハンドルを取得する
+		/// </summary>
+		/// <returns>ウィンドウハンドル</returns>
+		inline static const HWND GetHWND()
+		{
+			return m_hWnd;
+		}
 
-	/**
-	* @brief ウィンドウを終了するメッセージが投げられたか
-	* @return 投げられていたらTRUE
-	*/
-	inline static bool IsPostedQuitMessage() 
-	{
-		if (m_msg.message == WM_QUIT) return TRUE;
+		/// <summary>
+		/// WinMessageの構造体を取得する
+		/// </summary>
+		/// <returns>WinMessageの構造体</returns>
+		inline static MSG GetMSG()
+		{
+			return m_msg;
+		}
 
-		return FALSE;
-	}
+		/// <summary>
+		/// ウィンドウのサイズを取得する
+		/// </summary>
+		/// <returns>ウィンドウのサイズ</returns>
+		inline static RectSize GetWndSize()
+		{
+			return WND_SIZE;
+		}
 
-	/**
-	* @brief WinMessageが何かあるか
-	* @return あればTRUE
-	*/
-	static bool ExistsWinMSG();
+		/// <summary>
+		/// ウィンドウを終了するメッセージが投げられたか
+		/// </summary>
+		/// <returns>投げられていたらTRUE</returns>
+		inline static bool IsPostedQuitMessage()
+		{
+			if (m_msg.message == WM_QUIT) return TRUE;
 
-	/**
-	* @brief クライアント領域をm_WND_SIZEと同じにする
-	*/
-	static void ResizeWnd();
+			return FALSE;
+		}
 
-private:
-	static LRESULT CALLBACK WndProc(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM lParam);    //ウィンドウを生成するときにProcの関数ポインタが必要なのでstatic
-																							//IDX3D経由でDX3DのメソッドToggleWndMode()を呼ぶ
-	static HWND m_hWnd;
+		/// <summary>
+		/// WinMessageが何かあるか
+		/// </summary>
+		/// <returns>あればTRUE</returns>
+		static bool ExistsWinMSG();
 
-	static MSG m_msg;
+		/// <summary>
+		/// クライアント領域をm_WND_SIZEと同じにする
+		/// </summary>
+		static void ResizeWnd();
 
-	static const RectSize WND_SIZE;
-};
+	private:
+		/// <summary>
+		/// ウィンドウを生成するときにProcの関数ポインタが必要なのでstatic
+		/// IDX3D経由でDX3DのメソッドToggleWndMode()を呼ぶ
+		/// </summary>
+		static LRESULT CALLBACK WndProc(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM lParam);    
+																								
+		static HWND m_hWnd;
+
+		static MSG m_msg;
+
+		static const RectSize WND_SIZE;
+	};
+}
 
 #endif // !WND_H
