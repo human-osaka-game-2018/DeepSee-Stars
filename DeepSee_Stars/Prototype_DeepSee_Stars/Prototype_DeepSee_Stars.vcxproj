@@ -124,12 +124,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DeviceManger\DeviceInitializer\DeviceInitializer.cpp" />
     <ClCompile Include="DeviceManger\DeviceManger.cpp" />
     <ClCompile Include="main\main.cpp" />
     <ClCompile Include="Singleton\Singleton.cpp" />
     <ClCompile Include="Wnd\Wnd.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DeviceManger\DeviceInitializer\DeviceInitializer.h" />
     <ClInclude Include="DeviceManger\DeviceManger.h" />
     <ClInclude Include="main\main.h" />
     <ClInclude Include="Singleton\Singleton.h" />

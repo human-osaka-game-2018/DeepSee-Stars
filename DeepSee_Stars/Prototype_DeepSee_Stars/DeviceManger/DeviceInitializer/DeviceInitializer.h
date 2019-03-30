@@ -1,0 +1,4 @@
+﻿#ifndef DEVICE_INITIALIZER_H_
+#define DEVICE_INITIALIZER_H_
+
+#endif // !DEVICE_INITIALIZER_H_1

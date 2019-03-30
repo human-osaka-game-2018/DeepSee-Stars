@@ -31,6 +31,9 @@
     <Filter Include="Window\RectSize">
       <UniqueIdentifier>{ef9d7d0e-2c71-4413-a87c-212fdf0339e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DeviceManager\DeviceInitializer">
+      <UniqueIdentifier>{55db66c9-0f59-4973-b73c-73e365e738a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main\main.cpp">
@@ -44,6 +47,9 @@
     </ClCompile>
     <ClCompile Include="Wnd\Wnd.cpp">
       <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceManger\DeviceInitializer\DeviceInitializer.cpp">
+      <Filter>DeviceManager\DeviceInitializer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +67,9 @@
     </ClInclude>
     <ClInclude Include="Wnd\Data\RectSize.h">
       <Filter>Window\RectSize</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceManger\DeviceInitializer\DeviceInitializer.h">
+      <Filter>DeviceManager\DeviceInitializer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -35,3 +35,5 @@
 *.db-wal
 *.db-shm
 *.ipch
+*.tlog
+*.idb
