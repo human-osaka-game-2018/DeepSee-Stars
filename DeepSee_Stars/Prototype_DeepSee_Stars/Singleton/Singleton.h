@@ -24,7 +24,6 @@ namespace singleton
 		}
 
 	};
-
 }
 
 #endif // !SINGLETON_H_
