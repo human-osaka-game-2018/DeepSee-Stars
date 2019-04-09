@@ -2,7 +2,7 @@
 
 namespace device
 {
-	void PresentParam::InitD3DPP(D3DPRESENT_PARAMETERS* pD3DPP)
+	void PresentParam::InitPresentParam(D3DPRESENT_PARAMETERS* pD3DPP)
 	{
 		ZeroMemory(pD3DPP, sizeof(D3DPRESENT_PARAMETERS));
 
