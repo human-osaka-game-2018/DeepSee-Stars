@@ -92,7 +92,11 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)class\Singleton;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>DIRECTINPUT_VERSION=0x0800;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>d3dx9d.lib;d3d9.lib;dinput8.lib;dxguid.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -117,23 +121,31 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)class\Singleton;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>DIRECTINPUT_VERSION=0x0800;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>d3dx9d.lib;d3d9.lib;dinput8.lib;dxguid.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DeviceManger\DeviceInitializer\DeviceInitializer.cpp" />
-    <ClCompile Include="DeviceManger\DeviceManger.cpp" />
+    <ClCompile Include="Device\DirectXDevices\DirectXDevices.cpp" />
+    <ClCompile Include="Device\DirectXDevice\DirectXDevice.cpp" />
+    <ClCompile Include="Device\DirectXGraphicDevice\DirectXGraphicDevice.cpp" />
+    <ClCompile Include="Device\DirectXGraphicDevice\PresentParam\PresentParam.cpp" />
+    <ClCompile Include="Device\DirectXInputDevice\DirectXInputDevice.cpp" />
     <ClCompile Include="main\main.cpp" />
     <ClCompile Include="Singleton\Singleton.cpp" />
     <ClCompile Include="Wnd\Wnd.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DeviceManger\DeviceInitializer\DeviceInitializer.h" />
-    <ClInclude Include="DeviceManger\DeviceManger.h" />
-    <ClInclude Include="main\main.h" />
+    <ClInclude Include="Device\DirectXDevices\DeviceFactory\DeviceFactory.h" />
+    <ClInclude Include="Device\DirectXDevices\DirectXDevices.h" />
+    <ClInclude Include="Device\DirectXDevice\DirectXDevice.h" />
+    <ClInclude Include="Device\DirectXGraphicDevice\DirectXGraphicDevice.h" />
+    <ClInclude Include="Device\DirectXGraphicDevice\PresentParam\PresentParam.h" />
+    <ClInclude Include="Device\DirectXInputDevice\DirectXInputDevice.h" />
     <ClInclude Include="Singleton\Singleton.h" />
     <ClInclude Include="Wnd\Data\RectSize.h" />
     <ClInclude Include="Wnd\Wnd.h" />

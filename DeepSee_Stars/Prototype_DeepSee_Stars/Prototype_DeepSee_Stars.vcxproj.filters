@@ -22,17 +22,32 @@
     <Filter Include="Singleton">
       <UniqueIdentifier>{2a5b70e1-7980-4b76-aa8b-6d338f1d488f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DeviceManager">
-      <UniqueIdentifier>{e8a9279c-74dd-4eac-9b2e-b88a361c903e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Window">
       <UniqueIdentifier>{bf3bce45-14b2-40e5-8613-5b8c6cbed519}</UniqueIdentifier>
     </Filter>
     <Filter Include="Window\RectSize">
       <UniqueIdentifier>{ef9d7d0e-2c71-4413-a87c-212fdf0339e7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DeviceManager\DeviceInitializer">
-      <UniqueIdentifier>{55db66c9-0f59-4973-b73c-73e365e738a2}</UniqueIdentifier>
+    <Filter Include="Device">
+      <UniqueIdentifier>{e8a9279c-74dd-4eac-9b2e-b88a361c903e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Device\DirectXDevices">
+      <UniqueIdentifier>{3b518004-646a-4878-b0b4-22b62e891e4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Device\DirectXDevices\Factory">
+      <UniqueIdentifier>{885bf926-36ec-453b-9947-615be30228b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Device\DirectXGraphicDevice">
+      <UniqueIdentifier>{6b220d8b-a39b-4ca7-930e-003f4bf2c736}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Device\DirectXGraphicDevice\PresentParam">
+      <UniqueIdentifier>{9beb4ae6-1dbf-48df-9e50-e0f9495fb9b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Device\DirectXDevice">
+      <UniqueIdentifier>{c9146656-fed2-45d9-9174-f5a9a8de7abd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Device\DirectXInputDevice">
+      <UniqueIdentifier>{fdd5b5d7-6693-4b1b-a689-0a1b7b212c3c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -42,25 +57,28 @@
     <ClCompile Include="Singleton\Singleton.cpp">
       <Filter>Singleton</Filter>
     </ClCompile>
-    <ClCompile Include="DeviceManger\DeviceManger.cpp">
-      <Filter>DeviceManager</Filter>
-    </ClCompile>
     <ClCompile Include="Wnd\Wnd.cpp">
       <Filter>Window</Filter>
     </ClCompile>
-    <ClCompile Include="DeviceManger\DeviceInitializer\DeviceInitializer.cpp">
-      <Filter>DeviceManager\DeviceInitializer</Filter>
+    <ClCompile Include="Device\DirectXDevices\DirectXDevices.cpp">
+      <Filter>Device\DirectXDevices</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\DirectXGraphicDevice\DirectXGraphicDevice.cpp">
+      <Filter>Device\DirectXGraphicDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\DirectXGraphicDevice\PresentParam\PresentParam.cpp">
+      <Filter>Device\DirectXGraphicDevice\PresentParam</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\DirectXDevice\DirectXDevice.cpp">
+      <Filter>Device\DirectXDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="Device\DirectXInputDevice\DirectXInputDevice.cpp">
+      <Filter>Device\DirectXInputDevice</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="main\main.h">
-      <Filter>main</Filter>
-    </ClInclude>
     <ClInclude Include="Singleton\Singleton.h">
       <Filter>Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="DeviceManger\DeviceManger.h">
-      <Filter>DeviceManager</Filter>
     </ClInclude>
     <ClInclude Include="Wnd\Wnd.h">
       <Filter>Window</Filter>
@@ -68,8 +86,23 @@
     <ClInclude Include="Wnd\Data\RectSize.h">
       <Filter>Window\RectSize</Filter>
     </ClInclude>
-    <ClInclude Include="DeviceManger\DeviceInitializer\DeviceInitializer.h">
-      <Filter>DeviceManager\DeviceInitializer</Filter>
+    <ClInclude Include="Device\DirectXDevices\DirectXDevices.h">
+      <Filter>Device\DirectXDevices</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DirectXDevices\DeviceFactory\DeviceFactory.h">
+      <Filter>Device\DirectXDevices\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DirectXGraphicDevice\DirectXGraphicDevice.h">
+      <Filter>Device\DirectXGraphicDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DirectXGraphicDevice\PresentParam\PresentParam.h">
+      <Filter>Device\DirectXGraphicDevice\PresentParam</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DirectXDevice\DirectXDevice.h">
+      <Filter>Device\DirectXDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="Device\DirectXInputDevice\DirectXInputDevice.h">
+      <Filter>Device\DirectXInputDevice</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
