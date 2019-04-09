@@ -1,8 +1,8 @@
-﻿#include "D3DPP.h"
+﻿#include "PresentParam.h"
 
 namespace device
 {
-	void D3DPP::InitD3DPP(D3DPRESENT_PARAMETERS* pD3DPP)
+	void PresentParam::InitD3DPP(D3DPRESENT_PARAMETERS* pD3DPP)
 	{
 		ZeroMemory(pD3DPP, sizeof(D3DPRESENT_PARAMETERS));
 

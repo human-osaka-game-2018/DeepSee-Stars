@@ -1,20 +1,20 @@
-﻿#ifndef D3DPP_H_
-#define D3DPP_H_
+﻿#ifndef PRESENT_PARAM_H_
+#define PRESENT_PARAM_H_
 
-#include <d3dx9.h>
+#include <windows.h>
 
-#include "../../Wnd/Data/RectSize.h"
+#include "../../../Wnd/Data/RectSize.h"
 
 namespace device
 {
 	/// <summary>
 	/// バックバッファ関係クラス
 	/// </summary>
-	class D3DPP
+	class PresentParam
 	{
 	public:
-		D3DPP(HWND hWnd, RectSize wndSize) :WND_SIZE(wndSize), hWND(hWnd) {};	
-		~D3DPP() {};
+		PresentParam(HWND hWnd, RectSize wndSize) :WND_SIZE(wndSize), hWND(hWnd) {};
+		~PresentParam() {};
 
 		/// <summary>
 		/// 現在のウィンドウモードのD3DPRESENT_PARAMETERSを返す
@@ -22,10 +22,10 @@ namespace device
 		/// <returns>現在のウィンドウモードのD3DPRESENT_PARAMETERS </returns>
 		inline D3DPRESENT_PARAMETERS GetD3DPRESENT_PARAMETERS()
 		{
-			D3DPRESENT_PARAMETERS D3DPP;
-			InitD3DPP(&D3DPP);
+			D3DPRESENT_PARAMETERS PresentParam;
+			InitD3DPP(&PresentParam);
 
-			return D3DPP;
+			return PresentParam;
 		}
 
 		/// <summary>
@@ -36,10 +36,10 @@ namespace device
 		{
 			m_isWindow = !m_isWindow;
 
-			D3DPRESENT_PARAMETERS D3DPP;
-			InitD3DPP(&D3DPP);
+			D3DPRESENT_PARAMETERS PresentParam;
+			InitD3DPP(&PresentParam);
 
-			return D3DPP;
+			return PresentParam;
 		}
 
 	private:
@@ -49,7 +49,7 @@ namespace device
 		/// <param name="pD3DPP">初期化したいD3DPRESENT_PARAMETERS型のポインタ</param>
 		void InitD3DPP(D3DPRESENT_PARAMETERS* pD3DPP);
 
-		const HWND hWND = nullptr;
+		const HWND hWND;
 
 		const RectSize WND_SIZE;
 
@@ -57,4 +57,4 @@ namespace device
 	};
 }
 
-#endif // !D3DPP_H_
+#endif // !PRESENT_PARAM_H_
