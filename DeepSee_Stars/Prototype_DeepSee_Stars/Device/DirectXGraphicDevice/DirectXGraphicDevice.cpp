@@ -4,11 +4,11 @@ namespace device
 {
 	void DirectXGraphicDevice::Create(DirectXDevice* pDirectXDevice)
 	{
-		m_pD3Dpp = new D3DPP(window::Wnd::GetHWND(), window::Wnd::GetWndSize());
+		m_pPresentParam = new PresentParam(window::Wnd::GetHWND(), window::Wnd::GetWndSize());
 
 		HWND hWnd = window::Wnd::GetHWND();
 		LPDIRECT3D9 DXDevice = pDirectXDevice->GetDXDevice();
-		D3DPRESENT_PARAMETERS presentParameters = m_pD3Dpp->GetD3DPRESENT_PARAMETERS();
+		D3DPRESENT_PARAMETERS presentParameters = m_pPresentParam->GetD3DPRESENT_PARAMETERS();
 
 		if (SUCCEEDED(DXDevice->CreateDevice(	//描画をハードウェアに依存させる 軽い
 			D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL,
