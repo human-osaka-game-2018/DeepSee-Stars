@@ -3,6 +3,8 @@
 
 #include <windows.h>
 
+#include "Data/RectSize.h"
+
 namespace window
 {
 	/// <summary>
@@ -11,9 +13,6 @@ namespace window
 	class Wnd
 	{
 	public:
-		Wnd() {};
-		~Wnd() {};
-
 		/// <summary>
 		/// ウィンドウを生成する
 		/// </summary>
@@ -25,7 +24,7 @@ namespace window
 		/// ウィンドウハンドルを取得する
 		/// </summary>
 		/// <returns>ウィンドウハンドル</returns>
-		inline static const HWND GetHWND()
+		static inline const HWND GetHWND()
 		{
 			return m_hWnd;
 		}
@@ -34,7 +33,7 @@ namespace window
 		/// WinMessageの構造体を取得する
 		/// </summary>
 		/// <returns>WinMessageの構造体</returns>
-		inline static MSG GetMSG()
+		static inline MSG GetMSG()
 		{
 			return m_msg;
 		}
@@ -43,7 +42,7 @@ namespace window
 		/// ウィンドウのサイズを取得する
 		/// </summary>
 		/// <returns>ウィンドウのサイズ</returns>
-		inline static RectSize GetWndSize()
+		static inline RectSize GetWndSize()
 		{
 			return WND_SIZE;
 		}
@@ -52,7 +51,7 @@ namespace window
 		/// ウィンドウを終了するメッセージが投げられたか
 		/// </summary>
 		/// <returns>投げられていたらTRUE</returns>
-		inline static bool IsPostedQuitMessage()
+		static inline bool IsPostedQuitMessage()
 		{
 			if (m_msg.message == WM_QUIT) return TRUE;
 
@@ -71,6 +70,9 @@ namespace window
 		static void ResizeWnd();
 
 	private:
+		Wnd() {}
+		~Wnd() {}
+
 		/// <summary>
 		/// ウィンドウを生成するときにProcの関数ポインタが必要なのでstatic
 		/// IDX3D経由でDX3DのメソッドToggleWndMode()を呼ぶ

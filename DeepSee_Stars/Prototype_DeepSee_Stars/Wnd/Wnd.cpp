@@ -8,6 +8,8 @@ namespace window
 {
 	HWND Wnd::m_hWnd = nullptr;
 
+	MSG Wnd::m_msg;
+
 	const RectSize Wnd::WND_SIZE = { 1280,720 };
 
 	bool Wnd::ExistsWinMSG()
