@@ -23,7 +23,7 @@ namespace device
 		inline D3DPRESENT_PARAMETERS GetD3DPRESENT_PARAMETERS()
 		{
 			D3DPRESENT_PARAMETERS PresentParam;
-			InitD3DPP(&PresentParam);
+			InitPresentParam(&PresentParam);
 
 			return PresentParam;
 		}
@@ -37,7 +37,7 @@ namespace device
 			m_isWindow = !m_isWindow;
 
 			D3DPRESENT_PARAMETERS PresentParam;
-			InitD3DPP(&PresentParam);
+			InitPresentParam(&PresentParam);
 
 			return PresentParam;
 		}
@@ -47,7 +47,7 @@ namespace device
 		/// D3DPRESENT_PARAMETERSを初期化する
 		/// </summary>
 		/// <param name="pD3DPP">初期化したいD3DPRESENT_PARAMETERS型のポインタ</param>
-		void InitD3DPP(D3DPRESENT_PARAMETERS* pD3DPP);
+		void InitPresentParam(D3DPRESENT_PARAMETERS* pPresentParam);
 
 		const HWND hWND;
 
