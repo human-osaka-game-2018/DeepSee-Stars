@@ -7,7 +7,7 @@
 #include "../../Wnd/Wnd.h"
 
 #include "../DirectXDevice/DirectXDevice.h"
-#include "D3DPP/D3DPP.h"
+#include "PresentParam/PresentParam.h"
 
 namespace device
 {
@@ -25,8 +25,8 @@ namespace device
 		~DirectXGraphicDevice()
 		{
 			m_pDXGraphicDevice->Release();
-			delete m_pD3Dpp;
-			m_pD3Dpp = nullptr;
+			delete m_pPresentParam;
+			m_pPresentParam = nullptr;
 		}
 
 		/// <summary>
@@ -42,9 +42,9 @@ namespace device
 		/// バックバッファ関係クラスのゲッター
 		/// </summary>
 		/// <returns>バックバッファ関係クラスのポインタ</returns>
-		inline D3DPP* GetD3DPP() const
+		inline PresentParam* GetPresentParam() const
 		{
-			return m_pD3Dpp;
+			return m_pPresentParam;
 		}
 
 	private:
@@ -56,7 +56,7 @@ namespace device
 
 		LPDIRECT3DDEVICE9 m_pDXGraphicDevice = nullptr;
 
-		D3DPP* m_pD3Dpp = nullptr;
+		PresentParam* m_pPresentParam = nullptr;
 	};
 }
 
