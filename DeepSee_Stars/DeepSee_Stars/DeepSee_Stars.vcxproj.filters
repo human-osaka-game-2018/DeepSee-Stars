@@ -13,5 +13,105 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ソース ファイル\GameScene">
+      <UniqueIdentifier>{934b0b1a-c733-40df-87b0-f3d4f38e0024}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GameScene\Object">
+      <UniqueIdentifier>{e082ed55-b136-4006-873c-5f0908d9db6f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GameScene\Object\BackGround.cpp">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene\Object\Player.cpp">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene\Object\Stage.cpp">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene\Object\StageScroll.cpp">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="CollsionManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectX.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultScene.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene\GameScene.cpp">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameScene\Object\BackGround.h">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene\Object\Player.h">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene\Object\Stage.h">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene\Object\StageScroll.h">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CollsionManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomVertex.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectionID.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectX.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultScene.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene\GameScene.h">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
