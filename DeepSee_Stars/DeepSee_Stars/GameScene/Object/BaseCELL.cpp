@@ -1,21 +1,21 @@
-﻿#include "BaseCELL.h"
+﻿#include "BaseCell.h"
 
-BaseCELL::BaseCELL()
+BaseCell::BaseCell()
 {
 
 }
 
-BaseCELL::~BaseCELL()
+BaseCell::~BaseCell()
 {
 
 }
 
-void BaseCELL::Update()
+void BaseCell::Update()
 {
 
 }
 
-void BaseCELL::Render(float stageScrollX, float stageScrollY)
+void BaseCell::Render(float stageScrollX, float stageScrollY)
 {
 
 }

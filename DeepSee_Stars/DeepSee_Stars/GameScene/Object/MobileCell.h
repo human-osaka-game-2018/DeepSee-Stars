@@ -1,19 +1,18 @@
-﻿#include "BaseCELL.h"
+﻿#include "BaseCell.h"
 #include "DirectX.h"
 #include "CustomVertex.h"
 #include <vector>
 
-#ifndef MOVECELL_H
-#define MOVECELL_H
+#ifndef MOBILECELL_H
+#define MOBILECELL_H
 
-class MoveCELL : public BaseCELL
+class MobileCell : public BaseCell
 {
 public:
-	MoveCELL(int colunm, int row, int type);
-	~MoveCELL();
+	MobileCell(int colunm, int row, int type);
+	~MobileCell();
 	void Update();
 	void Render(float stageScrollX, float stageScrollY);
-
 
 private:
 	DirectX * m_pDirectX;
@@ -22,6 +21,7 @@ private:
 	int m_CELLType;
 	CustomVertex m_PositionOnStage[4];
 	const float m_CELLSize = 64.f;
+
 };
 
-#endif // MOVECELL_H
+#endif // MOBILECELL_H

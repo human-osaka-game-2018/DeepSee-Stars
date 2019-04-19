@@ -1,7 +1,7 @@
-﻿#include "MoveCELL.h"
+﻿#include "MobileCell.h"
 
 
-MoveCELL::MoveCELL(int colunm, int row, int type) : m_Colunm(colunm), m_Row(row), m_CELLType(type)
+MobileCell::MobileCell(int colunm, int row, int type) : m_Colunm(colunm), m_Row(row), m_CELLType(type)
 {
 	m_pDirectX = DirectX::GetInstance();
 	m_pDirectX->InitVertex(m_PositionOnStage);
@@ -10,17 +10,17 @@ MoveCELL::MoveCELL(int colunm, int row, int type) : m_Colunm(colunm), m_Row(row)
 	m_pDirectX->InitSquareCustomVertex(m_PositionOnStage, centerPosX, centerPosY, m_CELLSize);
 }
 
-MoveCELL::~MoveCELL()
+MobileCell::~MobileCell()
 {
 
 }
 
-void MoveCELL::Update()
+void MobileCell::Update()
 {
 
 }
 
-void MoveCELL::Render(float stageScrollX, float stageScrollY)
+void MobileCell::Render(float stageScrollX, float stageScrollY)
 {
 	float top = m_CELLSize * m_Colunm + stageScrollY;
 	float left = m_CELLSize * m_Row + stageScrollX;

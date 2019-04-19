@@ -1,7 +1,7 @@
-﻿#include "StationaryCELL.h"
+﻿#include "StationaryCell.h"
 
 
-StationaryCELL::StationaryCELL(int colunm, int row,int type) : m_Colunm(colunm),m_Row(row), m_CELLType(type)
+StationaryCell::StationaryCell(int colunm, int row,int type) : m_Colunm(colunm),m_Row(row), m_CellType(type)
 {
 	m_pDirectX = DirectX::GetInstance();
 	m_pDirectX->InitVertex(m_PositionOnStage);
@@ -10,17 +10,17 @@ StationaryCELL::StationaryCELL(int colunm, int row,int type) : m_Colunm(colunm),
 	m_pDirectX->InitSquareCustomVertex(m_PositionOnStage, centerPosX, centerPosY, m_CELLSize);
 }
 
-StationaryCELL::~StationaryCELL()
+StationaryCell::~StationaryCell()
 {
 
 }
 
-void StationaryCELL::Update()
+void StationaryCell::Update()
 {
 
 }
 
-void StationaryCELL::Render(float stageScrollX, float stageScrollY)
+void StationaryCell::Render(float stageScrollX, float stageScrollY)
 {	
 	float top = m_CELLSize * m_Colunm + stageScrollY;
 	float left = m_CELLSize * m_Row + stageScrollX;
@@ -31,7 +31,7 @@ void StationaryCELL::Render(float stageScrollX, float stageScrollY)
 		m_PositionOnStage[i].y = ((i == 0 || i == 1) ? top : top + m_CELLSize);
 	}
 
-	switch (m_CELLType)
+	switch (m_CellType)
 	{
 	case ROCK:
 		m_pDirectX->DrawTexture("GAME_BLOCK_TEX", m_PositionOnStage);

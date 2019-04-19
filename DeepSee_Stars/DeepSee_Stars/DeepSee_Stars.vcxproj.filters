@@ -63,13 +63,13 @@
     <ClCompile Include="GameScene\GameScene.cpp">
       <Filter>ソース ファイル\GameScene</Filter>
     </ClCompile>
-    <ClCompile Include="GameScene\Object\BaseCELL.cpp">
+    <ClCompile Include="GameScene\Object\StationaryCell.cpp">
       <Filter>ソース ファイル\GameScene\Object</Filter>
     </ClCompile>
-    <ClCompile Include="GameScene\Object\MoveCELL.cpp">
+    <ClCompile Include="GameScene\Object\BaseCell.cpp">
       <Filter>ソース ファイル\GameScene\Object</Filter>
     </ClCompile>
-    <ClCompile Include="GameScene\Object\StationaryCELL.cpp">
+    <ClCompile Include="GameScene\Object\MobileCell.cpp">
       <Filter>ソース ファイル\GameScene\Object</Filter>
     </ClCompile>
   </ItemGroup>
@@ -122,13 +122,13 @@
     <ClInclude Include="GameScene\GameScene.h">
       <Filter>ソース ファイル\GameScene</Filter>
     </ClInclude>
-    <ClInclude Include="StationaryCELL.h">
+    <ClInclude Include="GameScene\Object\StationaryCell.h">
       <Filter>ソース ファイル\GameScene\Object</Filter>
     </ClInclude>
-    <ClInclude Include="MoveCELL.h">
+    <ClInclude Include="GameScene\Object\BaseCell.h">
       <Filter>ソース ファイル\GameScene\Object</Filter>
     </ClInclude>
-    <ClInclude Include="BaseCELL.h">
+    <ClInclude Include="GameScene\Object\MobileCell.h">
       <Filter>ソース ファイル\GameScene\Object</Filter>
     </ClInclude>
   </ItemGroup>

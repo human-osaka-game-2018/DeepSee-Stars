@@ -1,8 +1,8 @@
 ﻿#include "Object.h"
 #include <vector>
 #include "StageScroll.h"
-#include "MoveCELL.h"
-#include "StationaryCELL.h"
+#include "MobileCell.h"
+#include "StationaryCell.h"
 
 #ifndef STAGE_H
 #define STAGE_H
@@ -19,9 +19,6 @@ public:
 	void LoadStageDate(const char* fileName);
 	void BlockCreate();
 
-	std::vector<MoveCELL*> m_MoveCELLData;
-	std::vector<StationaryCELL*> m_StationaryCELLData;
-
 private:
 	DirectX * m_pDirectX;
 	CollsionManager * m_pCollsionManager;
@@ -30,6 +27,9 @@ private:
 	int m_Colunm;
 	float m_StageScrollX;
 	float m_StageScrollY;
+	std::vector<MobileCell*> m_MobileCellData;
+	std::vector<StationaryCell*> m_StationaryCellData;
 	std::vector< std::vector<int> > m_StageData;
+
 };
 #endif // STAGE_H

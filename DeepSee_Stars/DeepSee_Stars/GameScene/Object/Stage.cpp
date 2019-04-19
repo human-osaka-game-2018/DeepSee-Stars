@@ -20,7 +20,14 @@ Stage::Stage()
 
 Stage::~Stage()
 {
-
+	for (auto& stationaryCell : m_StationaryCellData)
+	{
+		delete stationaryCell;
+	}
+	for (auto& mobileCELL : m_MobileCellData)
+	{
+		delete mobileCELL;
+	}
 }
 
 void Stage::Init()
@@ -38,15 +45,14 @@ void Stage::Update()
 
 void Stage::Render()
 {
-	for (auto& stationaryCELL : m_StationaryCELLData)
+	for (auto& stationaryCell : m_StationaryCellData)
 	{
-		stationaryCELL->Render(m_StageScrollX, m_StageScrollY);
+		stationaryCell->Render(m_StageScrollX, m_StageScrollY);
 	}
-	for (auto& moveCELL : m_MoveCELLData)
+	for (auto& mobileCELL : m_MobileCellData)
 	{
-		moveCELL->Render(m_StageScrollX, m_StageScrollY);
+		mobileCELL->Render(m_StageScrollX, m_StageScrollY);
 	}
-	
 }
 
 void Stage::BlockCreate()
@@ -61,7 +67,7 @@ void Stage::BlockCreate()
 			switch (typeSelected)
 			{
 			case ROCK:
-				m_StationaryCELLData.push_back(new StationaryCELL(culunm, row, ROCK));
+				m_StationaryCellData.push_back(new StationaryCell(culunm, row, ROCK));
 				break;
 			}		
 		}

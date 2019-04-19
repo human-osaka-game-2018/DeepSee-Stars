@@ -7,15 +7,15 @@ enum Type
 	ROCK,
 };
 
-class BaseCELL
+class BaseCell
 {
 public:
-	BaseCELL();
-	virtual ~BaseCELL();
+	BaseCell();
+	virtual ~BaseCell();
 	virtual void Update() = 0;
 	virtual void Render(float stageScrollX, float stageScrollY) = 0;
-private:
 
+private:
 	
 };
 #endif // BASECELL_H
