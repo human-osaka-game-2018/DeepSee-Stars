@@ -1,59 +1,95 @@
-﻿#include "Object.h"
-#include "CustomVertex.h"
-#include "Stage.h"
-#include"DirectionID.h"
-#include"StageScroll.h"
-
-#ifndef PLAYER_H
+﻿#ifndef PLAYER_H
 #define PLAYER_H
 
-class Player : public Object
+#include "Object.h"
+#include "CustomVertex.h"
+#include"DirectionID.h"
+
+
+struct DIRECTION
+{
+	bool IsLeft;
+	bool IsRight;
+	bool IsUp;
+	bool IsDown;
+};
+
+struct ACTION
+{
+	bool IsHide;
+	bool IsAutotomy;
+	bool IsAvatar;
+};
+
+class Player
 {
 public:
 	Player();
 	~Player();
 	void Init();
 	void Update();
-	void Render();
+	void Render(D3DXVECTOR2 drawArea);
 	void GameOverandClearConfirmation();
 
+	CustomVertex* GetPlayer()
+	{
+		return m_Player;
+	}
 
+	D3DXVECTOR2 GetCenterPos()
+	{
+		return m_CenterPos;
+	}
+	void SetCenterPos(D3DXVECTOR2 centerPos)
+	{
+		m_CenterPos = centerPos;
+	}
+
+	void SetCanMoveDirection(DIRECTION canMove)
+	{
+		m_CanMoveDirection = canMove;
+	}
+
+	void SetCanAction(ACTION canAction)
+	{
+		m_CanAction = canAction;
+	}
+
+	bool GetIsHideState()
+	{
+		return m_IsHideState;
+	}
 private:
-	DirectX* m_pDirectX;
-	CollsionManager* m_pCollsionManager;
-	StageScroll* m_pStageScroll;
-	CustomVertex m_Player[4];
-	int m_Colunm;
-	int m_Row;
+	DirectX * m_pDirectX;
 	const float m_TextureSizeX = 64.f;
 	const float m_TextureSizeY = 128.f;
 	const float m_SquaresSize = 64.f;
 
-	//////////////////////////移動関係////////////////////
-	//移動
-	void Movement();
-	//向きの状態を確認
-	void DirectionStatusCheck();
-	//向いている方向には動けるか確認
-	bool CanMoveInputDirection();
-	//RowとColumnを移動させる
-	void RowandColunmMove(int direction);
-	//キャラの動き
-	void Motion();
-	//方向状態の動き
-	void DirectionStatusMotion();
+
+	CustomVertex m_Player[4];
+	CustomVertex m_Avatar[4];
+	CustomVertex m_Autotomy[4];
+	DIRECTION m_CanMoveDirection;
+	ACTION m_CanAction;
+	bool m_OnAvatar;
+	bool m_OnAutotomy;
+	D3DXVECTOR2 m_AutotomyCenterPos;
+
+	D3DXVECTOR2 m_CenterPos;
+	D3DXVECTOR2 m_CenterPosBuf;
+	D3DXVECTOR2 m_PrevPlayerCenterPos;
+	int m_Direction;
 	//方向の入力できるか？
 	bool m_CanDirectionInput;
-	//方向の入力信号除去時間
-	int m_DirectionInputSignalRejectionTime;
-	//方向の入力信号除去時間の最大値
-	int m_DirectionInputSignalRejectionMaxTime;
-	//左足と右足の切替
-	bool m_JudgmentofFootWalk;
-	//方向状態
-	int m_Direction;
-	////////////////////////////////////////////////////
+	bool m_IsHideState;
 
+	void Movement();
+	void Action();
+	void Hide();
+	void Autotomy();
+	void Avatar();
+	void DirectionStatusCheck();
+	void DirectionStatusMotion();
 	void tuOperation(int direction);
 	void tvOperation(int direction);
 };

@@ -7,15 +7,13 @@ GameScene::GameScene()
 	m_pCollsionManager = CollsionManager::GetInstance();
 	m_pSceneManager = new SceneManager();
 	m_pObjectManager = new ObjectManager();
-	m_pStage = new Stage();
-	m_pPlayer = new Player();
+	m_pWorld = new World();
 	m_pBackGround = new BackGround();
 
 	LoadResources();
 
 	m_pObjectManager->m_Object.push_back(m_pBackGround);
-	m_pObjectManager->m_Object.push_back(m_pStage);
-	m_pObjectManager->m_Object.push_back(m_pPlayer);
+	m_pObjectManager->m_Object.push_back(m_pWorld);
 
 }
 
@@ -23,8 +21,7 @@ GameScene::~GameScene()
 {
 	delete m_pSceneManager;
 	delete m_pObjectManager;
-	delete m_pStage;
-	delete m_pPlayer;
+	delete m_pWorld;
 	delete m_pBackGround;
 	m_pCollsionManager->DeleteInstence();
 }

@@ -5,8 +5,7 @@
 #include "DirectX.h"
 #include "SceneManager.h"
 #include "ObjectManager.h"
-#include "Stage.h"
-#include "Player.h"
+#include "World.h"
 #include "BackGround.h"
 
 
@@ -22,12 +21,11 @@ public:
 	void LoadResources();
 
 private:
-	DirectX* m_pDirectX;
+	DirectX * m_pDirectX;
 	CollsionManager * m_pCollsionManager;
 	SceneManager* m_pSceneManager;
 	ObjectManager* m_pObjectManager;
-	Stage* m_pStage;
-	Player* m_pPlayer;
+	World* m_pWorld;
 	BackGround* m_pBackGround;
 };
 #endif // GAMESCENE_H

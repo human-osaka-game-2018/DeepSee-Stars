@@ -1,34 +1,31 @@
-﻿#include "Object.h"
-#include <vector>
-#include "StageScroll.h"
-#include "MobileCell.h"
-#include "StationaryCell.h"
-
-#ifndef STAGE_H
+﻿#ifndef STAGE_H
 #define STAGE_H
 
+#include <vector>
+#include "CustomVertex.h"
+#include "BlockCell.h"
+#include "Object.h"
 
-class Stage : public Object
-{
+
+class Stage{
 public:
 	Stage();
 	~Stage();
 	void Init();
 	void Update();
-	void Render();
+	void Render(D3DXVECTOR2 drawArea);
 	void LoadStageDate(const char* fileName);
 	void BlockCreate();
 
+
+	std::vector<D3DXVECTOR2> m_StagiesPos;
+	std::vector<BlockCell*> m_BlockCellPos;
 private:
 	DirectX * m_pDirectX;
-	CollsionManager * m_pCollsionManager;
-	StageScroll* m_pStageScroll;
 	int m_Row;
 	int m_Colunm;
-	float m_StageScrollX;
-	float m_StageScrollY;
-	std::vector<MobileCell*> m_MobileCellData;
-	std::vector<StationaryCell*> m_StationaryCellData;
+	CustomVertex m_BlockPos[4];
+
 	std::vector< std::vector<int> > m_StageData;
 
 };

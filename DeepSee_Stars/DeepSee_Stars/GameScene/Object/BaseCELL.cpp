@@ -15,7 +15,7 @@ void BaseCell::Update()
 
 }
 
-void BaseCell::Render(float stageScrollX, float stageScrollY)
+void BaseCell::Render(D3DXVECTOR2 drawArea)
 {
 
 }

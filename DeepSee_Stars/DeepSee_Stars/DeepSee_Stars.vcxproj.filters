@@ -21,18 +21,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GameScene\Object\BackGround.cpp">
-      <Filter>ソース ファイル\GameScene\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="GameScene\Object\Player.cpp">
-      <Filter>ソース ファイル\GameScene\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="GameScene\Object\Stage.cpp">
-      <Filter>ソース ファイル\GameScene\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="GameScene\Object\StageScroll.cpp">
-      <Filter>ソース ファイル\GameScene\Object</Filter>
-    </ClCompile>
     <ClCompile Include="CollsionManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -48,9 +36,6 @@
     <ClCompile Include="ProjectManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ResultScene.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -63,29 +48,44 @@
     <ClCompile Include="GameScene\GameScene.cpp">
       <Filter>ソース ファイル\GameScene</Filter>
     </ClCompile>
-    <ClCompile Include="GameScene\Object\StationaryCell.cpp">
+    <ClCompile Include="GameScene\Object\World.cpp">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene\Object\AutotomyAction.cpp">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene\Object\AvatarAction.cpp">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene\Object\BackGround.cpp">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene\Object\BaseAction.cpp">
       <Filter>ソース ファイル\GameScene\Object</Filter>
     </ClCompile>
     <ClCompile Include="GameScene\Object\BaseCell.cpp">
       <Filter>ソース ファイル\GameScene\Object</Filter>
     </ClCompile>
-    <ClCompile Include="GameScene\Object\MobileCell.cpp">
+    <ClCompile Include="GameScene\Object\BlockCell.cpp">
       <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene\Object\Camera.cpp">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene\Object\HideAction.cpp">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene\Object\Player.cpp">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene\Object\Stage.cpp">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultScene.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameScene\Object\BackGround.h">
-      <Filter>ソース ファイル\GameScene\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="GameScene\Object\Player.h">
-      <Filter>ソース ファイル\GameScene\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="GameScene\Object\Stage.h">
-      <Filter>ソース ファイル\GameScene\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="GameScene\Object\StageScroll.h">
-      <Filter>ソース ファイル\GameScene\Object</Filter>
-    </ClInclude>
     <ClInclude Include="CollsionManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -122,13 +122,37 @@
     <ClInclude Include="GameScene\GameScene.h">
       <Filter>ソース ファイル\GameScene</Filter>
     </ClInclude>
-    <ClInclude Include="GameScene\Object\StationaryCell.h">
+    <ClInclude Include="GameScene\Object\Stage.h">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene\Object\World.h">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene\Object\AutotomyAction.h">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene\Object\AvatarAction.h">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene\Object\BackGround.h">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene\Object\BaseAction.h">
       <Filter>ソース ファイル\GameScene\Object</Filter>
     </ClInclude>
     <ClInclude Include="GameScene\Object\BaseCell.h">
       <Filter>ソース ファイル\GameScene\Object</Filter>
     </ClInclude>
-    <ClInclude Include="GameScene\Object\MobileCell.h">
+    <ClInclude Include="GameScene\Object\BlockCell.h">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene\Object\Camera.h">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene\Object\HideAction.h">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene\Object\Player.h">
       <Filter>ソース ファイル\GameScene\Object</Filter>
     </ClInclude>
   </ItemGroup>

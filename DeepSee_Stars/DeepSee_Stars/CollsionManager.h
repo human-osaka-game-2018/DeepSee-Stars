@@ -29,7 +29,7 @@ public:
 private:
 	CollsionManager();
 	~CollsionManager();
-
+	bool CollisionJudgment(int playerDestinationsColunm,int playerDestinationsRow);
 	std::vector< std::vector<int>> m_StageData;
 	Position m_PlayerPos;
 

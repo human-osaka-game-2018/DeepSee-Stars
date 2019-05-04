@@ -40,8 +40,8 @@ void CollsionManager::StageInit(const int colunmSize, const int rowSize, const s
 
 bool CollsionManager::Update(int direction)
 {
-	int playerPositionRowMove = *m_PlayerPos.Row;
-	int playerPositionColunmMove = *m_PlayerPos.Colunm;
+	int playerDestinationsRow = *m_PlayerPos.Row;
+	int playerDestinationsColunm = *m_PlayerPos.Colunm;
 	int valueAddRow = 0;
 	int valueAddColunm = 0;
 	switch (direction)
@@ -59,15 +59,16 @@ bool CollsionManager::Update(int direction)
 		valueAddColunm = 1;
 		break;
 	}
-	playerPositionRowMove += valueAddRow;
-	playerPositionColunmMove += valueAddColunm;
-	if (m_StageData[playerPositionColunmMove][playerPositionRowMove] > 100)
-	{
-		return false;
-	}
-	if (m_StageData[playerPositionColunmMove][playerPositionRowMove] != 0)
-	{
-		return true;
-	}
+	playerDestinationsRow += valueAddRow;
+	playerDestinationsColunm += valueAddColunm;
+
+	return CollisionJudgment(playerDestinationsColunm,playerDestinationsRow);
+}
+
+bool CollsionManager::CollisionJudgment(int playerDestinationsColunm, int playerDestinationsRow)
+{
+	int stageDataContent = m_StageData[playerDestinationsColunm][playerDestinationsRow];
+	if (stageDataContent > 100) return false;
+	if (stageDataContent != 0) return true;
 	return false;
 }

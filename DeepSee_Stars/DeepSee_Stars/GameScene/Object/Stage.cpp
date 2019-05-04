@@ -12,46 +12,31 @@ using std::stringstream;
 Stage::Stage()
 {
 	m_pDirectX = DirectX::GetInstance();
-	m_pCollsionManager = CollsionManager::GetInstance();
-	m_pStageScroll = StageScroll::GetInstance();
 	Init();
-	m_pStageScroll->SetStageScroll(&m_StageScrollY,&m_StageScrollX);
 }
 
 Stage::~Stage()
 {
-	for (auto& stationaryCell : m_StationaryCellData)
-	{
-		delete stationaryCell;
-	}
-	for (auto& mobileCELL : m_MobileCellData)
-	{
-		delete mobileCELL;
-	}
+
 }
 
 void Stage::Init()
 {
 	LoadStageDate("csv/Stage1.csv");
 	BlockCreate();
-	m_StageScrollY = 0.f;
-	m_StageScrollX = 0.f;
+	m_pDirectX->InitVertex(m_BlockPos);
 }
 
 void Stage::Update()
 {
-	
+
 }
 
-void Stage::Render()
+void Stage::Render(D3DXVECTOR2 drawArea)
 {
-	for (auto& stationaryCell : m_StationaryCellData)
+	for (auto& blockCellData : m_BlockCellPos)
 	{
-		stationaryCell->Render(m_StageScrollX, m_StageScrollY);
-	}
-	for (auto& mobileCELL : m_MobileCellData)
-	{
-		mobileCELL->Render(m_StageScrollX, m_StageScrollY);
+		blockCellData->Render(drawArea);
 	}
 }
 
@@ -64,12 +49,19 @@ void Stage::BlockCreate()
 			if (m_StageData[culunm][row] == 0)	continue;
 
 			int typeSelected = m_StageData[culunm][row];
+			float blockCenterPosY = (culunm * BLOCKSIZE) + BLOCKSIZE / 2;
+			float blockCenterPosX = (row * BLOCKSIZE) + BLOCKSIZE / 2;
+			D3DXVECTOR2 buf = { blockCenterPosX,blockCenterPosY };
+			m_StagiesPos.push_back(buf);
 			switch (typeSelected)
 			{
 			case ROCK:
-				m_StationaryCellData.push_back(new StationaryCell(culunm, row, ROCK));
+				m_BlockCellPos.push_back(new BlockCell(buf, ROCK));
 				break;
-			}		
+			case HIDEBLOCK:
+				m_BlockCellPos.push_back(new BlockCell(buf, HIDEBLOCK));
+				break;
+			}
 		}
 	}
 }
@@ -80,7 +72,7 @@ void Stage::LoadStageDate(const char* fileName)
 	ifstream ifs(fileName);
 	string str;
 
-	static int colunm = 0;
+	int colunm = 0;
 	while (getline(ifs, str))
 	{
 		replace(str.begin(), str.end(), ',', ' ');
@@ -105,6 +97,4 @@ void Stage::LoadStageDate(const char* fileName)
 		}
 		colunm++;
 	}
-	m_pCollsionManager->StageInit(m_Colunm, m_Row, m_StageData);
-	m_pStageScroll->StageInit(m_Colunm, m_Row, m_StageData);
 }

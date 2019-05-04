@@ -4,12 +4,7 @@
 Player::Player()
 {
 	m_pDirectX = DirectX::GetInstance();
-	m_pCollsionManager = CollsionManager::GetInstance();
-	m_pStageScroll = StageScroll::GetInstance();
 	Init();
-
-	m_pCollsionManager->SetPlayerPos(&m_Colunm, &m_Row);
-	m_pStageScroll->SetPlayerPos(&m_Colunm, &m_Row);
 }
 
 Player::~Player()
@@ -19,27 +14,23 @@ Player::~Player()
 
 void Player::Init()
 {
-	m_pDirectX->InitVertex(m_Player);
-	m_pDirectX->InitRectangleCustomVertex(m_Player,96,128, m_TextureSizeX, m_TextureSizeY);
-
 	m_CanDirectionInput = true;
-	m_DirectionInputSignalRejectionTime = 0;
-	m_DirectionInputSignalRejectionMaxTime = 20;
-	m_Direction = STAYING;
-	m_JudgmentofFootWalk = true;
+	m_IsHideState = false;
+	m_OnAvatar = false;
+	m_OnAutotomy = false;
 
-	float centerStandingPositionRow = (m_TextureSizeX + (m_SquaresSize / 2)) / 2;
-	float centerStandingPositionColunm = (m_TextureSizeY / 2) + (m_SquaresSize /2);
+	m_pDirectX->InitVertex(m_Player);
+	m_pDirectX->InitRectangleCustomVertex(m_Player, 928, 512, m_TextureSizeX, m_TextureSizeY);
 
-	m_Row = static_cast<int>((m_Player[0].x + centerStandingPositionRow)) / static_cast<int>(m_SquaresSize);
-	m_Colunm = static_cast<int>((m_Player[0].y + centerStandingPositionColunm)) / static_cast<int>(m_SquaresSize);
-	 
+	m_CenterPos.x = m_Player[0].x + m_SquaresSize / 2;
+	m_CenterPos.y = m_Player[0].y + m_SquaresSize + m_SquaresSize / 2;
+
 	for (int i = 0;i < 4;i++)
 	{
 		if (i == 0 || i == 3) m_Player[i].tu = static_cast<float>(0.0833) * 1;
 		if (i == 1 || i == 2) m_Player[i].tu = static_cast<float>(0.0833) * 2;
-		if (i == 0 || i == 1) m_Player[i].tv =  static_cast<float>(0.128) * 2;
-		if (i == 2 || i == 3) m_Player[i].tv =  static_cast<float>(0.128) * 3;
+		if (i == 0 || i == 1) m_Player[i].tv = static_cast<float>(0.128) * 2;
+		if (i == 2 || i == 3) m_Player[i].tv = static_cast<float>(0.128) * 3;
 	}
 }
 
@@ -49,83 +40,182 @@ void Player::Update()
 	GameOverandClearConfirmation();
 }
 
-void Player::Render()
+void Player::Render(D3DXVECTOR2 drawArea)
 {
-	m_pDirectX->DrawTexture("GAME_PLAYER_TEX", m_Player);
+	m_CenterPosBuf = m_CenterPos + drawArea;
+	CustomVertex vertexBuf[4];
+	m_pDirectX->InitRectangleCustomVertex(vertexBuf, m_CenterPosBuf.x, m_CenterPosBuf.y - 32, m_TextureSizeX, m_TextureSizeY);
+	for (int i = 0;i<4;++i)
+	{
+		vertexBuf[i].tu = m_Player[i].tu;
+		vertexBuf[i].tv = m_Player[i].tv;
+	}
+	m_pDirectX->DrawTexture("GAME_PLAYER_TEX", vertexBuf);
+	if (m_OnAutotomy)
+	{
+		D3DXVECTOR2 centerPosbBuf = m_AutotomyCenterPos + drawArea;
+		m_pDirectX->InitSquareCustomVertex(m_Autotomy, centerPosbBuf.x, centerPosbBuf.y, m_SquaresSize);
+		m_pDirectX->DrawTexture("GAME_PLAYER_TEX", m_Autotomy);
+	}
+	//if (m_OnAvatar)
+	//{
+	//	m_pDirectX->DrawTexture("GAME_PLAYER_TEX", m_Avatar);
+	//}
 }
 
-bool Player::CanMoveInputDirection()
+void Player::Movement()
 {
-	if (m_pCollsionManager->Update(m_Direction))
+	if (m_CanDirectionInput)
 	{
-		return false;
+		DirectionStatusCheck();
 	}
-	return true;
+	Action();
+	if (!m_IsHideState)
+	{
+		DirectionStatusMotion();
+	}
+}
+
+void Player::Action()
+{
+	if (m_CanAction.IsHide)
+	{
+		Hide();
+	}
+	if (m_CanAction.IsAutotomy)
+	{
+		Autotomy();
+	}
+	if (m_CanAction.IsAvatar)
+	{
+		Avatar();
+	}
+}
+
+void Player::Hide()
+{
+	if (m_pDirectX->IsKeyPressed(DIK_Z))
+	{
+		m_CenterPos.y = m_CenterPos.y - 64.f;
+		m_IsHideState = true;
+		m_Direction = STAYING;
+	}
+	else
+	{
+		if (!m_IsHideState)return;
+		m_IsHideState = false;
+		m_CanDirectionInput = true;
+	}
+}
+
+void Player::Autotomy()
+{
+	if (m_pDirectX->IsKeyPressed(DIK_X))
+	{
+		if (!m_OnAutotomy)
+		{
+			m_OnAutotomy = true;
+			m_AutotomyCenterPos = m_CenterPos;
+		}
+	}
+}
+
+void Player::Avatar()
+{
+	//if (m_pDirectX->IsKeyPressed(DIK_C))
+	//{
+	//	m_pDirectX->InitRectangleCustomVertex(m_Avatar, m_CenterPosbBuf.x - 64.f, m_CenterPosbBuf.y - 32, m_TextureSizeX, m_TextureSizeY);
+	//	for (int i = 0;i<4;++i)
+	//	{
+	//		m_Avatar[i].tu = m_Player[i].tu;
+	//		m_Avatar[i].tv = m_Player[i].tv;
+	//	}
+	//	m_OnAvatar = true;
+	//}
 }
 
 void Player::DirectionStatusCheck()
 {
 	if (m_pDirectX->IsKeyPressed(DIK_LEFT))
 	{
-		m_Direction = LEFT;
-		return;
+		if (m_CanMoveDirection.IsLeft)
+		{
+			m_Direction = LEFT;
+			m_CanDirectionInput = false;
+			return;
+		}
 	}
 	if (m_pDirectX->IsKeyPressed(DIK_RIGHT))
 	{
-		m_Direction = RIGHT;
-		return;
+		if (m_CanMoveDirection.IsRight)
+		{
+			m_Direction = RIGHT;
+			m_CanDirectionInput = false;
+			return;
+		}
 	}
 	if (m_pDirectX->IsKeyPressed(DIK_UP))
 	{
-		m_Direction = UP;
-		return;
+		if (m_CanMoveDirection.IsUp)
+		{
+			m_Direction = UP;
+			m_CanDirectionInput = false;
+			return;
+		}
 	}
 	if (m_pDirectX->IsKeyPressed(DIK_DOWN))
 	{
-		m_Direction = DOWN;
-		return;
+		if (m_CanMoveDirection.IsDown)
+		{
+			m_Direction = DOWN;
+			m_CanDirectionInput = false;
+			return;
+		}
 	}
 	m_Direction = STAYING;
 }
 
-
-void Player::RowandColunmMove(int direction)
+void Player::DirectionStatusMotion()
 {
-	switch (direction)
+	if (m_Direction == STAYING) return;
+
+	static float variationValue = 0.f;
+	switch (m_Direction)
 	{
 	case LEFT:
-		m_Row -= 1;
+		for (int i = 0;i < 4;i++)
+		{
+			m_Player[i].x -= 4.f;
+		}
+		tvOperation(LEFT);
 		break;
 	case RIGHT:
-		m_Row += 1;
+		for (int i = 0;i < 4;i++)
+		{
+			m_Player[i].x += 4.f;
+		}
+		tvOperation(RIGHT);
 		break;
 	case UP:
-		m_Colunm -= 1;
+		for (int i = 0;i < 4;i++)
+		{
+			m_Player[i].y -= 4.f;
+		}
+		tvOperation(UP);
 		break;
 	case DOWN:
-		m_Colunm += 1;
+		for (int i = 0;i < 4;i++)
+		{
+			m_Player[i].y += 4.f;
+		}
+		tvOperation(DOWN);
 		break;
 	}
-}
-
-void Player::Motion()
-{
-	m_DirectionInputSignalRejectionTime++;
-
-	DirectionStatusMotion();
-
-	if (m_JudgmentofFootWalk)
+	variationValue += 4.f;
+	if (variationValue == m_SquaresSize)
 	{
-		tuOperation(RIGHT);
-	}
-	if (!m_JudgmentofFootWalk)
-	{
-		tuOperation(LEFT);
-	}
-	if (m_DirectionInputSignalRejectionTime == m_DirectionInputSignalRejectionMaxTime)
-	{
-		tuOperation(STAYING);
-		m_JudgmentofFootWalk = !m_JudgmentofFootWalk;
+		variationValue = 0.f;
+		m_CanDirectionInput = true;
 	}
 }
 
@@ -151,45 +241,8 @@ void Player::tuOperation(int direction)
 	}
 	for (int i = 0;i < 4;i++)
 	{
-		if(i == 0 || i == 3) m_Player[i].tu = tuAverage * leftSideMultiplier;
-		if(i == 1 || i == 2) m_Player[i].tu = tuAverage * rightSideMultiplier;
-	}
-}
-
-void Player::DirectionStatusMotion()
-{
-	int divideMoveSpeed = m_DirectionInputSignalRejectionMaxTime;
-
-	switch (m_Direction)
-	{
-	case LEFT:
-		for(int i = 0;i < 4;i++)
-		{ 
-			m_Player[i].x -= m_SquaresSize / divideMoveSpeed;
-		}
-		tvOperation(LEFT);
-		break;
-	case RIGHT:
-		for (int i = 0;i < 4;i++)
-		{
-			m_Player[i].x += m_SquaresSize / divideMoveSpeed;
-		}
-		tvOperation(RIGHT);
-		break;
-	case UP:
-		for (int i = 0;i < 4;i++)
-		{
-			m_Player[i].y -= m_SquaresSize / divideMoveSpeed;
-		}
-		tvOperation(UP);
-		break;
-	case DOWN:
-		for (int i = 0;i < 4;i++)
-		{
-			m_Player[i].y += m_SquaresSize / divideMoveSpeed;
-		}
-		tvOperation(DOWN);
-		break;
+		if (i == 0 || i == 3) m_Player[i].tu = tuAverage * leftSideMultiplier;
+		if (i == 1 || i == 2) m_Player[i].tu = tuAverage * rightSideMultiplier;
 	}
 }
 
@@ -224,38 +277,6 @@ void Player::tvOperation(int direction)
 		if (i == 2 || i == 3) m_Player[i].tv = tvAverage * downSideMultiplier;
 	}
 }
-
-void Player::Movement()
-{
-	if (m_CanDirectionInput)
-	{
-		if (m_pStageScroll->GetCanDirectionInput())
-		{
-			DirectionStatusCheck();
-			if (m_Direction == STAYING) return;
-			if (CanMoveInputDirection())
-			{
-				RowandColunmMove(m_Direction);
-				m_CanDirectionInput = false;
-			}
-		}
-	}
-
-	if (!m_CanDirectionInput)
-	{
-		Motion();
-		m_pStageScroll->Operation(&m_Direction, m_Player ,&m_DirectionInputSignalRejectionMaxTime);
-		if (m_DirectionInputSignalRejectionTime == m_DirectionInputSignalRejectionMaxTime)
-		{
-			m_CanDirectionInput = true;
-			m_DirectionInputSignalRejectionTime = 0;
-
-			RowandColunmMove(m_pStageScroll->GetPreviousScroll());
-		}
-		m_pStageScroll->SetPreviousScroll(STAYING);
-	}	
-}
-
 
 void Player::GameOverandClearConfirmation()
 {
