@@ -111,12 +111,6 @@
     <ClCompile Include="GameBaseMaker\GameBaseMaker.cpp">
       <Filter>GameBaseMaker</Filter>
     </ClCompile>
-    <ClCompile Include="GameBaseMaker\Graphics\Graphics.cpp">
-      <Filter>GameBaseMaker\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="GameBaseMaker\Input\Input.cpp">
-      <Filter>GameBaseMaker\Input</Filter>
-    </ClCompile>
     <ClCompile Include="GameBaseMaker\Graphics\Renderer\Renderer.cpp">
       <Filter>GameBaseMaker\Graphics\Renderer</Filter>
     </ClCompile>

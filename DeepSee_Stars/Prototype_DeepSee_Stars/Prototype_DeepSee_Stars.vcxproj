@@ -138,13 +138,11 @@
     <ClCompile Include="GameBaseMaker\Color\Color.cpp" />
     <ClCompile Include="GameBaseMaker\GameBaseMaker.cpp" />
     <ClCompile Include="GameBaseMaker\Graphics\ColorBlender\ColorBlender.cpp" />
-    <ClCompile Include="GameBaseMaker\Graphics\Graphics.cpp" />
     <ClCompile Include="GameBaseMaker\Graphics\Renderer\Renderer.cpp" />
     <ClCompile Include="GameBaseMaker\Graphics\Textures\Textures.cpp" />
     <ClCompile Include="GameBaseMaker\Graphics\Textures\Texture\Texture.cpp" />
     <ClCompile Include="GameBaseMaker\Input\DirectXInput\Keyboard.cpp" />
     <ClCompile Include="GameBaseMaker\Input\DirectXInput\Mouse.cpp" />
-    <ClCompile Include="GameBaseMaker\Input\Input.cpp" />
     <ClCompile Include="GameBaseMaker\TextureUV\TextureUV.cpp" />
     <ClCompile Include="GameBaseMaker\Vertices\CustomVertices.cpp" />
     <ClCompile Include="GameBaseMaker\Vertices\Vertices.cpp" />
