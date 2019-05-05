@@ -16,9 +16,6 @@
     <Filter Include="main">
       <UniqueIdentifier>{4947a7e1-4773-42c2-9ef4-d2b7fd3343b6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameBaseMaker">
-      <UniqueIdentifier>{970deac1-0eab-4aa7-8512-5421af74efc6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Singleton">
       <UniqueIdentifier>{2a5b70e1-7980-4b76-aa8b-6d338f1d488f}</UniqueIdentifier>
     </Filter>
@@ -49,6 +46,42 @@
     <Filter Include="Device\DirectXInputDevice">
       <UniqueIdentifier>{fdd5b5d7-6693-4b1b-a689-0a1b7b212c3c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameBaseMaker">
+      <UniqueIdentifier>{76d67de9-b48b-4399-8bca-80455c56611c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameBaseMaker\Graphics">
+      <UniqueIdentifier>{d4e018e3-d4b5-4847-a0dc-e168eb2c896d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameBaseMaker\Graphics\Renderer">
+      <UniqueIdentifier>{8dfa9d5d-53a1-446a-aeb0-eac2cced7b9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameBaseMaker\Graphics\Textures">
+      <UniqueIdentifier>{6587849d-b109-46d7-b36b-2d5977e7b651}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameBaseMaker\Graphics\Textures\Texture">
+      <UniqueIdentifier>{e1a1b808-fdef-499b-a51e-10d95ec2b9ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameBaseMaker\Input">
+      <UniqueIdentifier>{fa4e13dd-3f5c-4b90-b4cb-9890c0cf1d7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameBaseMaker\Input\InputDevice">
+      <UniqueIdentifier>{92b2de85-d7c9-465a-a192-5182af6056b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameBaseMaker\Input\DirectXInput">
+      <UniqueIdentifier>{7ccb97a6-fbd7-4c85-9812-40c073d6da4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameBaseMaker\Vertices">
+      <UniqueIdentifier>{7ce3ca68-88f8-454a-a862-2f6babe742bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameBaseMaker\Color">
+      <UniqueIdentifier>{5c2d0b6f-875a-4490-950c-2d87e1d3a2bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameBaseMaker\TextureUV">
+      <UniqueIdentifier>{7bbe2096-8f21-4958-99ac-fd64cf1cf1ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameBaseMaker\Graphics\ColorBlender">
+      <UniqueIdentifier>{b991feaa-1691-4a7e-9e4e-f8a43402aea8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main\main.cpp">
@@ -74,6 +107,45 @@
     </ClCompile>
     <ClCompile Include="Device\DirectXInputDevice\DirectXInputDevice.cpp">
       <Filter>Device\DirectXInputDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="GameBaseMaker\GameBaseMaker.cpp">
+      <Filter>GameBaseMaker</Filter>
+    </ClCompile>
+    <ClCompile Include="GameBaseMaker\Graphics\Graphics.cpp">
+      <Filter>GameBaseMaker\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="GameBaseMaker\Input\Input.cpp">
+      <Filter>GameBaseMaker\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="GameBaseMaker\Graphics\Renderer\Renderer.cpp">
+      <Filter>GameBaseMaker\Graphics\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="GameBaseMaker\Graphics\Textures\Textures.cpp">
+      <Filter>GameBaseMaker\Graphics\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="GameBaseMaker\Graphics\Textures\Texture\Texture.cpp">
+      <Filter>GameBaseMaker\Graphics\Textures\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="GameBaseMaker\Input\DirectXInput\Keyboard.cpp">
+      <Filter>GameBaseMaker\Input\DirectXInput</Filter>
+    </ClCompile>
+    <ClCompile Include="GameBaseMaker\Input\DirectXInput\Mouse.cpp">
+      <Filter>GameBaseMaker\Input\DirectXInput</Filter>
+    </ClCompile>
+    <ClCompile Include="GameBaseMaker\Vertices\CustomVertices.cpp">
+      <Filter>GameBaseMaker\Vertices</Filter>
+    </ClCompile>
+    <ClCompile Include="GameBaseMaker\Color\Color.cpp">
+      <Filter>GameBaseMaker\Color</Filter>
+    </ClCompile>
+    <ClCompile Include="GameBaseMaker\TextureUV\TextureUV.cpp">
+      <Filter>GameBaseMaker\TextureUV</Filter>
+    </ClCompile>
+    <ClCompile Include="GameBaseMaker\Vertices\Vertices.cpp">
+      <Filter>GameBaseMaker\Vertices</Filter>
+    </ClCompile>
+    <ClCompile Include="GameBaseMaker\Graphics\ColorBlender\ColorBlender.cpp">
+      <Filter>GameBaseMaker\Graphics\ColorBlender</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +175,48 @@
     </ClInclude>
     <ClInclude Include="Device\DirectXInputDevice\DirectXInputDevice.h">
       <Filter>Device\DirectXInputDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBaseMaker\GameBaseMaker.h">
+      <Filter>GameBaseMaker</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBaseMaker\Graphics\Graphics.h">
+      <Filter>GameBaseMaker\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBaseMaker\Input\Input.h">
+      <Filter>GameBaseMaker\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBaseMaker\Graphics\Renderer\Renderer.h">
+      <Filter>GameBaseMaker\Graphics\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBaseMaker\Graphics\Textures\Textures.h">
+      <Filter>GameBaseMaker\Graphics\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBaseMaker\Graphics\Textures\Texture\Texture.h">
+      <Filter>GameBaseMaker\Graphics\Textures\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBaseMaker\Input\InputDevice\InputDevice.h">
+      <Filter>GameBaseMaker\Input\InputDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBaseMaker\Input\DirectXInput\Keyboard.h">
+      <Filter>GameBaseMaker\Input\DirectXInput</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBaseMaker\Input\DirectXInput\Mouse.h">
+      <Filter>GameBaseMaker\Input\DirectXInput</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBaseMaker\Vertices\CustomVertices.h">
+      <Filter>GameBaseMaker\Vertices</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBaseMaker\Color\Color.h">
+      <Filter>GameBaseMaker\Color</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBaseMaker\TextureUV\TextureUV.h">
+      <Filter>GameBaseMaker\TextureUV</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBaseMaker\Vertices\Vertices.h">
+      <Filter>GameBaseMaker\Vertices</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBaseMaker\Graphics\ColorBlender\ColorBlender.h">
+      <Filter>GameBaseMaker\Graphics\ColorBlender</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
