@@ -1,5 +1,7 @@
 ﻿#include "SceneManager.h"
 
+#include "Scene/TitleScene/TitleScene.h"
+
 namespace deepseestars
 {
 	void SceneManager::Factory()
@@ -12,6 +14,8 @@ namespace deepseestars
 		{
 		case SCENE_ID::TITLE:
 			delete m_pScene;
+
+			m_pScene = new TitleScene();
 
 			break;
 

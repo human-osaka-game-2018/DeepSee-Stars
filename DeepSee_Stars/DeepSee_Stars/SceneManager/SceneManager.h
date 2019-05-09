@@ -23,7 +23,7 @@ namespace deepseestars
 
 		enum SCENE_ID
 		{
-			TITLE,
+			TITLE = 1 ,
 			GAME,
 			RESULT
 		};
