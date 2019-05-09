@@ -99,7 +99,7 @@ namespace gamebasemaker
 
 		const RectSize m_displaySize;
 	
-		D3DXVECTOR3 m_pos = { 0.f,0.f,0.f };
+		D3DXVECTOR3 m_pos = { m_displaySize.m_x / 2.f,m_displaySize.m_y / 2.f,0.f };
 		D3DXVECTOR2 m_scale = { m_displaySize.m_x / 2.f,m_displaySize.m_y / 2.f };
 		D3DXVECTOR3 m_degree = { 0.f,0.f,0.f };
 		
