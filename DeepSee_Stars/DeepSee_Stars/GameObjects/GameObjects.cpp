@@ -31,6 +31,10 @@ namespace deepseestars
 		for (auto* object : m_gameObjects)
 		{
 			object->Release();
+			delete object;
 		}
+
+		m_gameObjects.clear();
+		m_gameObjects.shrink_to_fit();
 	}
 }
