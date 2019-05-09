@@ -17,7 +17,10 @@ namespace deepseestars
 			Init();
 		}
 
-		~TitleBackGround() {}
+		~TitleBackGround()
+		{
+			Release();
+		}
 
 		void Init() 
 		{
