@@ -6,6 +6,7 @@
 namespace deepseestars
 {
 	using gamebasemaker::GameBaseMaker;
+	using gamebasemaker::Vertices;
 
 	/// <summary>
 	/// ゲームのオブジェクト基底クラス
@@ -36,8 +37,9 @@ namespace deepseestars
 		/// </summary>
 		virtual void Release() = 0;
 
-	private:
-		GameBaseMaker& rGameBaseMaker = GameBaseMaker::GetInstance();
+	protected:
+		GameBaseMaker& m_rGameBaseMaker = GameBaseMaker::GetInstance();
+		Vertices m_vertices;
 	};
 }
 
