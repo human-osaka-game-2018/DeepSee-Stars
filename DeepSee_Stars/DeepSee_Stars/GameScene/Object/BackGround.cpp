@@ -24,5 +24,5 @@ void BackGround::Update()
 
 void BackGround::Render()
 {
-	m_pDirectX->DrawTexture("GAME_BG_TEX", m_BG);
+	//m_pDirectX->DrawTexture("GAME_BG_TEX", m_BG);
 }

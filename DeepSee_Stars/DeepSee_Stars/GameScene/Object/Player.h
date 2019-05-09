@@ -4,7 +4,8 @@
 #include "Object.h"
 #include "CustomVertex.h"
 #include"DirectionID.h"
-
+#include "AutotomyAction.h"
+#include "AvatarAction.h"
 
 struct DIRECTION
 {
@@ -61,19 +62,22 @@ public:
 	}
 private:
 	DirectX * m_pDirectX;
-	const float m_TextureSizeX = 64.f;
-	const float m_TextureSizeY = 128.f;
-	const float m_SquaresSize = 64.f;
+	std::vector<BaseAction*> m_pAction;
 
-
+	const float m_TextureSizeX = 100.f;
+	const float m_TextureSizeY = 100.f;
+	const float m_SquaresSize = 100.f;
+	const float m_MoveSpeed = 10.f;
+	D3DXVECTOR2 m_DrawArea;
 	CustomVertex m_Player[4];
+
+	int m_Life;
+	CustomVertex m_LifeUI[4];
+
 	CustomVertex m_Avatar[4];
-	CustomVertex m_Autotomy[4];
 	DIRECTION m_CanMoveDirection;
 	ACTION m_CanAction;
-	bool m_OnAvatar;
 	bool m_OnAutotomy;
-	D3DXVECTOR2 m_AutotomyCenterPos;
 
 	D3DXVECTOR2 m_CenterPos;
 	D3DXVECTOR2 m_CenterPosBuf;

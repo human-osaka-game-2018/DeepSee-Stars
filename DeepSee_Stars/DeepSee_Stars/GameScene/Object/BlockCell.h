@@ -6,13 +6,14 @@
 
 enum TYPE
 {
-	NONE,
-	ROCK,
+	FLOOR,
+	WHITEBLOCK,
+	BLACKBLOCK,
 	HIDEBLOCK,
 };
 
 
-const float BLOCKSIZE = 64.f;
+const float BLOCKSIZE = 100.f;
 
 class BlockCell : public BaseCell
 {

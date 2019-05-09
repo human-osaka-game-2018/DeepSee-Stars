@@ -18,7 +18,6 @@ public:
 	void BlockCreate();
 
 
-	std::vector<D3DXVECTOR2> m_StagiesPos;
 	std::vector<BlockCell*> m_BlockCellPos;
 private:
 	DirectX * m_pDirectX;

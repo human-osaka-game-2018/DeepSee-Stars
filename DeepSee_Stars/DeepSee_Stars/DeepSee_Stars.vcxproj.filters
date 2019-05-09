@@ -51,16 +51,7 @@
     <ClCompile Include="GameScene\Object\World.cpp">
       <Filter>ソース ファイル\GameScene\Object</Filter>
     </ClCompile>
-    <ClCompile Include="GameScene\Object\AutotomyAction.cpp">
-      <Filter>ソース ファイル\GameScene\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="GameScene\Object\AvatarAction.cpp">
-      <Filter>ソース ファイル\GameScene\Object</Filter>
-    </ClCompile>
     <ClCompile Include="GameScene\Object\BackGround.cpp">
-      <Filter>ソース ファイル\GameScene\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="GameScene\Object\BaseAction.cpp">
       <Filter>ソース ファイル\GameScene\Object</Filter>
     </ClCompile>
     <ClCompile Include="GameScene\Object\BaseCell.cpp">
@@ -72,9 +63,6 @@
     <ClCompile Include="GameScene\Object\Camera.cpp">
       <Filter>ソース ファイル\GameScene\Object</Filter>
     </ClCompile>
-    <ClCompile Include="GameScene\Object\HideAction.cpp">
-      <Filter>ソース ファイル\GameScene\Object</Filter>
-    </ClCompile>
     <ClCompile Include="GameScene\Object\Player.cpp">
       <Filter>ソース ファイル\GameScene\Object</Filter>
     </ClCompile>
@@ -83,6 +71,15 @@
     </ClCompile>
     <ClCompile Include="ResultScene.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseAction.cpp">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="AutotomyAction.cpp">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="AvatarAction.cpp">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -128,16 +125,7 @@
     <ClInclude Include="GameScene\Object\World.h">
       <Filter>ソース ファイル\GameScene\Object</Filter>
     </ClInclude>
-    <ClInclude Include="GameScene\Object\AutotomyAction.h">
-      <Filter>ソース ファイル\GameScene\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="GameScene\Object\AvatarAction.h">
-      <Filter>ソース ファイル\GameScene\Object</Filter>
-    </ClInclude>
     <ClInclude Include="GameScene\Object\BackGround.h">
-      <Filter>ソース ファイル\GameScene\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="GameScene\Object\BaseAction.h">
       <Filter>ソース ファイル\GameScene\Object</Filter>
     </ClInclude>
     <ClInclude Include="GameScene\Object\BaseCell.h">
@@ -149,10 +137,16 @@
     <ClInclude Include="GameScene\Object\Camera.h">
       <Filter>ソース ファイル\GameScene\Object</Filter>
     </ClInclude>
-    <ClInclude Include="GameScene\Object\HideAction.h">
+    <ClInclude Include="GameScene\Object\Player.h">
       <Filter>ソース ファイル\GameScene\Object</Filter>
     </ClInclude>
-    <ClInclude Include="GameScene\Object\Player.h">
+    <ClInclude Include="BaseAction.h">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="AutotomyAction.h">
+      <Filter>ソース ファイル\GameScene\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="AvatarAction.h">
       <Filter>ソース ファイル\GameScene\Object</Filter>
     </ClInclude>
   </ItemGroup>

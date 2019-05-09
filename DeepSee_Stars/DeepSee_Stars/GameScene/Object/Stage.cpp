@@ -46,17 +46,20 @@ void Stage::BlockCreate()
 	{
 		for (int row = 0;row < m_Row;row++)
 		{
-			if (m_StageData[culunm][row] == 0)	continue;
-
 			int typeSelected = m_StageData[culunm][row];
 			float blockCenterPosY = (culunm * BLOCKSIZE) + BLOCKSIZE / 2;
 			float blockCenterPosX = (row * BLOCKSIZE) + BLOCKSIZE / 2;
 			D3DXVECTOR2 buf = { blockCenterPosX,blockCenterPosY };
-			m_StagiesPos.push_back(buf);
 			switch (typeSelected)
 			{
-			case ROCK:
-				m_BlockCellPos.push_back(new BlockCell(buf, ROCK));
+			case FLOOR:
+				m_BlockCellPos.push_back(new BlockCell(buf, FLOOR));
+				break;
+			case WHITEBLOCK:
+				m_BlockCellPos.push_back(new BlockCell(buf, WHITEBLOCK));
+				break;
+			case BLACKBLOCK:
+				m_BlockCellPos.push_back(new BlockCell(buf, BLACKBLOCK));
 				break;
 			case HIDEBLOCK:
 				m_BlockCellPos.push_back(new BlockCell(buf, HIDEBLOCK));

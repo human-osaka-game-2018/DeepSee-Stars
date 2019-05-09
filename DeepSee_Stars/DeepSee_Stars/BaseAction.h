@@ -8,7 +8,8 @@ class BaseAction
 public:
 	BaseAction();
 	virtual ~BaseAction();
-	virtual void Operation();
+	virtual void Operation(D3DXVECTOR2 drawArea);
+	virtual void Render();
 
 private:
 

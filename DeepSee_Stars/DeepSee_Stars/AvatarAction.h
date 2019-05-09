@@ -9,7 +9,8 @@ class AvatarAction : public BaseAction
 public:
 	AvatarAction();
 	~AvatarAction();
-	void Operation();
+	void Operation(D3DXVECTOR2 drawArea);
+	void Render();
 
 private:
 	CustomVertex m_PlayerPosBuf[4];

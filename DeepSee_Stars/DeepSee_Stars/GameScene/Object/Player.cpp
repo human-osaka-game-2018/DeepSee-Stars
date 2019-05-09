@@ -9,18 +9,25 @@ Player::Player()
 
 Player::~Player()
 {
-
+	for (auto& actionObject : m_pAction)
+	{
+		delete actionObject;
+	}
 }
 
 void Player::Init()
 {
+	m_Life = 5;
+
 	m_CanDirectionInput = true;
 	m_IsHideState = false;
-	m_OnAvatar = false;
-	m_OnAutotomy = false;
+	m_OnAutotomy = true;
+	
+	m_pDirectX->InitVertex(m_LifeUI);
+	m_pDirectX->InitSquareCustomVertex(m_LifeUI, 100, 100, 200);
 
 	m_pDirectX->InitVertex(m_Player);
-	m_pDirectX->InitRectangleCustomVertex(m_Player, 928, 512, m_TextureSizeX, m_TextureSizeY);
+	m_pDirectX->InitRectangleCustomVertex(m_Player, (m_SquaresSize * 14) + (m_SquaresSize/2), (m_SquaresSize * 8), m_TextureSizeX, m_SquaresSize * 2);
 
 	m_CenterPos.x = m_Player[0].x + m_SquaresSize / 2;
 	m_CenterPos.y = m_Player[0].y + m_SquaresSize + m_SquaresSize / 2;
@@ -42,25 +49,67 @@ void Player::Update()
 
 void Player::Render(D3DXVECTOR2 drawArea)
 {
-	m_CenterPosBuf = m_CenterPos + drawArea;
+	m_DrawArea = drawArea;
+	m_CenterPosBuf = m_CenterPos + m_DrawArea;
 	CustomVertex vertexBuf[4];
-	m_pDirectX->InitRectangleCustomVertex(vertexBuf, m_CenterPosBuf.x, m_CenterPosBuf.y - 32, m_TextureSizeX, m_TextureSizeY);
+	m_pDirectX->InitRectangleCustomVertex(vertexBuf, m_CenterPosBuf.x, m_CenterPosBuf.y, m_TextureSizeX, m_TextureSizeY);
 	for (int i = 0;i<4;++i)
 	{
 		vertexBuf[i].tu = m_Player[i].tu;
 		vertexBuf[i].tv = m_Player[i].tv;
 	}
-	m_pDirectX->DrawTexture("GAME_PLAYER_TEX", vertexBuf);
-	if (m_OnAutotomy)
+	for (auto& actionObject : m_pAction)
 	{
-		D3DXVECTOR2 centerPosbBuf = m_AutotomyCenterPos + drawArea;
-		m_pDirectX->InitSquareCustomVertex(m_Autotomy, centerPosbBuf.x, centerPosbBuf.y, m_SquaresSize);
-		m_pDirectX->DrawTexture("GAME_PLAYER_TEX", m_Autotomy);
+		actionObject->Render();
 	}
-	//if (m_OnAvatar)
-	//{
-	//	m_pDirectX->DrawTexture("GAME_PLAYER_TEX", m_Avatar);
-	//}
+
+	m_LifeUI[0].tu = 0.f;
+	m_LifeUI[1].tu = 1.0f;
+	m_LifeUI[2].tu = 1.0f;
+	m_LifeUI[3].tu = 0.f;
+	m_pDirectX->DrawTexture("GAME_PLAYER_TEX", vertexBuf);
+
+	m_pDirectX->DrawTexture("GAME_LIFEFRAME_TEX", m_LifeUI);
+	switch (m_Life)
+	{
+	case 0:
+		m_LifeUI[0].tu = 0.f;
+		m_LifeUI[1].tu = 1.0f/6;
+		m_LifeUI[2].tu = 1.0f/6;
+		m_LifeUI[3].tu = 0.f;
+		break;
+	case 1:
+		m_LifeUI[0].tu = 1.0f/6;
+		m_LifeUI[1].tu = (1.0f/6) * 2;
+		m_LifeUI[2].tu = (1.0f/6) * 2;
+		m_LifeUI[3].tu = 1.0f/6;
+		break;
+	case 2:
+		m_LifeUI[0].tu = (1.0f / 6) * 2;
+		m_LifeUI[1].tu = (1.0f / 6) * 3;
+		m_LifeUI[2].tu = (1.0f / 6) * 3;
+		m_LifeUI[3].tu = (1.0f / 6) * 2;
+		break;
+	case 3:
+		m_LifeUI[0].tu = (1.0f / 6) * 3;
+		m_LifeUI[1].tu = (1.0f / 6) * 4;
+		m_LifeUI[2].tu = (1.0f / 6) * 4;
+		m_LifeUI[3].tu = (1.0f / 6) * 3;
+		break;
+	case 4:
+		m_LifeUI[0].tu = (1.0f / 6) * 4;
+		m_LifeUI[1].tu = (1.0f / 6) * 5;
+		m_LifeUI[2].tu = (1.0f / 6) * 5;
+		m_LifeUI[3].tu = (1.0f / 6) * 4;
+		break;
+	case 5:
+		m_LifeUI[0].tu = (1.0f / 6) * 5;
+		m_LifeUI[1].tu = 1.f;
+		m_LifeUI[2].tu = 1.f;
+		m_LifeUI[3].tu = (1.0f / 6) * 5;
+		break;
+	}
+	m_pDirectX->DrawTexture("GAME_LIFENUMBER_TEX", m_LifeUI);
 }
 
 void Player::Movement()
@@ -78,60 +127,70 @@ void Player::Movement()
 
 void Player::Action()
 {
-	if (m_CanAction.IsHide)
-	{
-		Hide();
-	}
-	if (m_CanAction.IsAutotomy)
+	
+	Hide();
+	if (!m_IsHideState)
 	{
 		Autotomy();
 	}
-	if (m_CanAction.IsAvatar)
+	Avatar();	
+
+	for (auto& actionObject : m_pAction)
 	{
-		Avatar();
+		actionObject->Operation(m_DrawArea);
 	}
 }
 
 void Player::Hide()
 {
-	if (m_pDirectX->IsKeyPressed(DIK_Z))
+	if (m_CanAction.IsHide)
 	{
-		m_CenterPos.y = m_CenterPos.y - 64.f;
-		m_IsHideState = true;
-		m_Direction = STAYING;
-	}
-	else
-	{
-		if (!m_IsHideState)return;
-		m_IsHideState = false;
-		m_CanDirectionInput = true;
+		if (m_pDirectX->IsKeyPressed(DIK_Z))
+		{
+			m_CenterPos.y = m_CenterPos.y - m_SquaresSize;
+			tvOperation(DOWN);
+			m_IsHideState = true;
+			m_Direction = STAYING;
+		}
+		else
+		{
+			if (!m_IsHideState)return;
+			m_IsHideState = false;
+			m_CanDirectionInput = true;
+		}
 	}
 }
 
 void Player::Autotomy()
 {
+	if (!m_CanAction.IsAutotomy) return;
 	if (m_pDirectX->IsKeyPressed(DIK_X))
 	{
-		if (!m_OnAutotomy)
+		if (!m_OnAutotomy) return;
+		if (m_Life > 0)
 		{
-			m_OnAutotomy = true;
-			m_AutotomyCenterPos = m_CenterPos;
+			m_Life -= 1;
+			m_OnAutotomy = false;
+			m_pAction.push_back(new AutotomyAction(m_CenterPos));
 		}
 	}
 }
 
 void Player::Avatar()
 {
-	//if (m_pDirectX->IsKeyPressed(DIK_C))
-	//{
-	//	m_pDirectX->InitRectangleCustomVertex(m_Avatar, m_CenterPosbBuf.x - 64.f, m_CenterPosbBuf.y - 32, m_TextureSizeX, m_TextureSizeY);
-	//	for (int i = 0;i<4;++i)
-	//	{
-	//		m_Avatar[i].tu = m_Player[i].tu;
-	//		m_Avatar[i].tv = m_Player[i].tv;
-	//	}
-	//	m_OnAvatar = true;
-	//}
+	if (m_CanAction.IsAvatar)
+	{
+		//if (m_pDirectX->IsKeyPressed(DIK_C))
+		//{
+		//	m_pDirectX->InitRectangleCustomVertex(m_Avatar, m_CenterPosbBuf.x - 64.f, m_CenterPosbBuf.y - 32, m_TextureSizeX, m_TextureSizeY);
+		//	for (int i = 0;i<4;++i)
+		//	{
+		//		m_Avatar[i].tu = m_Player[i].tu;
+		//		m_Avatar[i].tv = m_Player[i].tv;
+		//	}
+		//	m_OnAvatar = true;
+		//}
+	}
 }
 
 void Player::DirectionStatusCheck()
@@ -178,42 +237,42 @@ void Player::DirectionStatusCheck()
 void Player::DirectionStatusMotion()
 {
 	if (m_Direction == STAYING) return;
-
 	static float variationValue = 0.f;
 	switch (m_Direction)
 	{
 	case LEFT:
 		for (int i = 0;i < 4;i++)
 		{
-			m_Player[i].x -= 4.f;
+			m_Player[i].x -= m_MoveSpeed;
 		}
 		tvOperation(LEFT);
 		break;
 	case RIGHT:
 		for (int i = 0;i < 4;i++)
 		{
-			m_Player[i].x += 4.f;
+			m_Player[i].x += m_MoveSpeed;
 		}
 		tvOperation(RIGHT);
 		break;
 	case UP:
 		for (int i = 0;i < 4;i++)
 		{
-			m_Player[i].y -= 4.f;
+			m_Player[i].y -= m_MoveSpeed;
 		}
 		tvOperation(UP);
 		break;
 	case DOWN:
 		for (int i = 0;i < 4;i++)
 		{
-			m_Player[i].y += 4.f;
+			m_Player[i].y += m_MoveSpeed;
 		}
 		tvOperation(DOWN);
 		break;
 	}
-	variationValue += 4.f;
+	variationValue += m_MoveSpeed;
 	if (variationValue == m_SquaresSize)
 	{
+		m_OnAutotomy = true;
 		variationValue = 0.f;
 		m_CanDirectionInput = true;
 	}
@@ -252,7 +311,7 @@ void Player::tvOperation(int direction)
 	int upSideMultiplier = 0;
 	int downSideMultiplier = 0;
 
-	switch (m_Direction)
+	switch (direction)
 	{
 	case LEFT:
 		upSideMultiplier = 3;

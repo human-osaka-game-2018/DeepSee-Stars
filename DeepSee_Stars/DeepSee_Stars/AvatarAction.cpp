@@ -10,7 +10,12 @@ AvatarAction::~AvatarAction()
 
 }
 
-void AvatarAction::Operation()
+void AvatarAction::Operation(D3DXVECTOR2 drawArea)
+{
+
+}
+
+void AvatarAction::Render()
 {
 
 }

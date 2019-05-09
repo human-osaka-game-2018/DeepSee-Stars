@@ -15,21 +15,23 @@ public:
 	void Render();
 	void Init();
 	void ObjectCollision();
-	void CanPlayerAction();
+	void m_CanPlayerMoveJudg();
+	void CanPlayerActionJudg();
+
 
 private:
 	Stage * m_pStage;
 	Player* m_pPlayer;
 	Camera* m_pCamera;
 
-	D3DXVECTOR2 m_PlayerGirthCenterPos[4];;
+	D3DXVECTOR2 m_PlayerGirthCenterPos[4];
 
-	DIRECTION m_CanPlayerDirection;
-	ACTION m_CanPlayerAction;
+	DIRECTION m_PlayerDirection;
+	ACTION m_PlayerAction;
 	float m_WorldScrollX = 0.f;
 	float m_WorldScrollY = 0.f;
 
-	const float m_SquaresSize = 64.f;
+	const float m_SquaresSize = 100.f;
 };
 
 #endif // WORLD_H

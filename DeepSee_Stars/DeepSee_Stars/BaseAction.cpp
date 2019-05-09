@@ -10,7 +10,12 @@ BaseAction::~BaseAction()
 
 }
 
-void BaseAction::Operation()
+void BaseAction::Operation(D3DXVECTOR2 drawArea)
+{
+
+}
+
+void BaseAction::Render()
 {
 
 }

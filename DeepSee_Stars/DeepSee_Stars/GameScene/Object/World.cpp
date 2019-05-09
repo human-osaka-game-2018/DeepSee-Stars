@@ -17,14 +17,14 @@ World::~World()
 
 void World::Init()
 {
-	m_CanPlayerDirection.IsLeft = true;
-	m_CanPlayerDirection.IsRight = true;
-	m_CanPlayerDirection.IsUp = true;
-	m_CanPlayerDirection.IsDown = true;
+	m_PlayerDirection.IsLeft = true;
+	m_PlayerDirection.IsRight = true;
+	m_PlayerDirection.IsUp = true;
+	m_PlayerDirection.IsDown = true;
 
-	m_CanPlayerAction.IsHide = false;
-	m_CanPlayerAction.IsAutotomy = false;
-	m_CanPlayerAction.IsAvatar = false;
+	m_PlayerAction.IsHide = false;
+	m_PlayerAction.IsAutotomy = false;
+	m_PlayerAction.IsAvatar = false;
 }
 
 void World::Update()
@@ -33,15 +33,15 @@ void World::Update()
 	{
 		D3DXVECTOR2 playerHideStateCamera(0.f,0.f);
 		playerHideStateCamera.y = m_SquaresSize;
-		m_pCamera->Operation(m_pPlayer->GetCenterPos() + playerHideStateCamera);
+		m_pCamera->Update(m_pPlayer->GetCenterPos() + playerHideStateCamera);
 	}
 	if (!m_pPlayer->GetIsHideState())
 	{
-		m_pCamera->Operation(m_pPlayer->GetCenterPos());
+		m_pCamera->Update(m_pPlayer->GetCenterPos());
 	}
 
 	ObjectCollision();
-	CanPlayerAction();
+	CanPlayerActionJudg();
 	m_pStage->Update();
 	m_pPlayer->Update();
 }
@@ -60,59 +60,71 @@ void World::ObjectCollision()
 	m_pPlayer->SetCenterPos(playerCenterBuf);
 
 	//LEFT
-	m_PlayerGirthCenterPos[0] = { m_pPlayer->GetCenterPos().x - m_SquaresSize,m_pPlayer->GetCenterPos().y };
+	m_PlayerGirthCenterPos[LEFT] = { m_pPlayer->GetCenterPos().x - m_SquaresSize,m_pPlayer->GetCenterPos().y };
 	//RIGHT
-	m_PlayerGirthCenterPos[1] = { m_pPlayer->GetCenterPos().x + m_SquaresSize,m_pPlayer->GetCenterPos().y };
+	m_PlayerGirthCenterPos[RIGHT] = { m_pPlayer->GetCenterPos().x + m_SquaresSize,m_pPlayer->GetCenterPos().y };
 	//UP
-	m_PlayerGirthCenterPos[2] = { m_pPlayer->GetCenterPos().x,m_pPlayer->GetCenterPos().y - m_SquaresSize };
+	m_PlayerGirthCenterPos[UP] = { m_pPlayer->GetCenterPos().x,m_pPlayer->GetCenterPos().y - m_SquaresSize };
 	//DOWN
-	m_PlayerGirthCenterPos[3] = { m_pPlayer->GetCenterPos().x,m_pPlayer->GetCenterPos().y + m_SquaresSize };
+	m_PlayerGirthCenterPos[DOWN] = { m_pPlayer->GetCenterPos().x,m_pPlayer->GetCenterPos().y + m_SquaresSize };
 
+	m_CanPlayerMoveJudg();
+}
 
-	m_CanPlayerDirection.IsLeft = true;
-	m_CanPlayerDirection.IsRight = true;
-	m_CanPlayerDirection.IsUp = true;
-	m_CanPlayerDirection.IsDown = true;
+void World::m_CanPlayerMoveJudg()
+{
+	m_PlayerDirection.IsLeft = true;
+	m_PlayerDirection.IsRight = true;
+	m_PlayerDirection.IsUp = true;
+	m_PlayerDirection.IsDown = true;
 
 	for (int i = 0;i < 4;i++)
 	{
-		for (auto& stagePos : m_pStage->m_StagiesPos)
+		for (auto& stagePos : m_pStage->m_BlockCellPos)
 		{
-			if ((stagePos.x != m_PlayerGirthCenterPos[i].x) || (stagePos.y != m_PlayerGirthCenterPos[i].y)) continue;
-			if (i == 0)
+			if (stagePos->m_BlockType == 0) continue;
+			if ((stagePos->m_BlockCenterPos.x != m_PlayerGirthCenterPos[i].x) || (stagePos->m_BlockCenterPos.y != m_PlayerGirthCenterPos[i].y)) continue;
+			if (i == LEFT)
 			{
-				m_CanPlayerDirection.IsLeft = false;
+				m_PlayerDirection.IsLeft = false;
 			}
-			if (i == 1)
+			if (i == RIGHT)
 			{
-				m_CanPlayerDirection.IsRight = false;
+				m_PlayerDirection.IsRight = false;
 			}
-			if (i == 2)
+			if (i == UP)
 			{
-				m_CanPlayerDirection.IsUp = false;
+				m_PlayerDirection.IsUp = false;
 			}
-			if (i == 3)
+			if (i == DOWN)
 			{
-				m_CanPlayerDirection.IsDown = false;
+				m_PlayerDirection.IsDown = false;
 			}
 		}
 	}
-	m_pPlayer->SetCanMoveDirection(m_CanPlayerDirection);
+	if (m_pCamera->GetIsKeyOperation())
+	{
+		m_PlayerDirection.IsLeft = false;
+		m_PlayerDirection.IsRight = false;
+		m_PlayerDirection.IsUp = false;
+		m_PlayerDirection.IsDown = false;
+	}
+	m_pPlayer->SetCanMoveDirection(m_PlayerDirection);
 }
 
-void World::CanPlayerAction()
+void World::CanPlayerActionJudg()
 {
-	m_CanPlayerAction.IsHide = false;
-	m_CanPlayerAction.IsAutotomy = false;
-	m_CanPlayerAction.IsAvatar = false;
+	m_PlayerAction.IsHide = false;
+	m_PlayerAction.IsAutotomy = false;
+	m_PlayerAction.IsAvatar = false;
 
 	for (auto& stageInfo : m_pStage->m_BlockCellPos)
 	{
 		if ((stageInfo->m_BlockCenterPos.x != m_PlayerGirthCenterPos[2].x) || (stageInfo->m_BlockCenterPos.y != m_PlayerGirthCenterPos[2].y)) continue;
 		if (stageInfo->m_BlockType != HIDEBLOCK) continue;
-		m_CanPlayerAction.IsHide = true;
+		m_PlayerAction.IsHide = true;
 	}
-	m_CanPlayerAction.IsAvatar = true;
-	m_CanPlayerAction.IsAutotomy = true;
-	m_pPlayer->SetCanAction(m_CanPlayerAction);
+	m_PlayerAction.IsAvatar = true;
+	m_PlayerAction.IsAutotomy = true;
+	m_pPlayer->SetCanAction(m_PlayerAction);
 }
