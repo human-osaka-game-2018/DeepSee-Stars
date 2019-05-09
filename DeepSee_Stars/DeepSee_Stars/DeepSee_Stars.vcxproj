@@ -144,7 +144,9 @@
     <ClCompile Include="GameBaseMaker\TextureUV\TextureUV.cpp" />
     <ClCompile Include="GameBaseMaker\Vertices\CustomVertices.cpp" />
     <ClCompile Include="GameBaseMaker\Vertices\Vertices.cpp" />
+    <ClCompile Include="GameObjects\GameObjects.cpp" />
     <ClCompile Include="main\main.cpp" />
+    <ClCompile Include="SceneManager\SceneManager.cpp" />
     <ClCompile Include="Singleton\Singleton.cpp" />
     <ClCompile Include="Wnd\Wnd.cpp" />
   </ItemGroup>
@@ -169,6 +171,10 @@
     <ClInclude Include="GameBaseMaker\TextureUV\TextureUV.h" />
     <ClInclude Include="GameBaseMaker\Vertices\CustomVertices.h" />
     <ClInclude Include="GameBaseMaker\Vertices\Vertices.h" />
+    <ClInclude Include="GameObjects\GameObjects.h" />
+    <ClInclude Include="GameObjects\GameObject\GameObject.h" />
+    <ClInclude Include="SceneManager\SceneManager.h" />
+    <ClInclude Include="SceneManager\Scene\Scene.h" />
     <ClInclude Include="Singleton\Singleton.h" />
     <ClInclude Include="Wnd\Data\RectSize.h" />
     <ClInclude Include="Wnd\Wnd.h" />

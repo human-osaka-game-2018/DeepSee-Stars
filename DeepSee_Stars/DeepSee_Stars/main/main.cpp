@@ -10,13 +10,18 @@
 
 #include "../GameBaseMaker/GameBaseMaker.h"
 
+#include "../SceneManager/SceneManager.h"
+
 using namespace window;
 using namespace device;
 using namespace gamebasemaker;
+using deepseestars::SceneManager;
 
 void RunMain()
 {
-	
+	SceneManager& rSceneManager = SceneManager::GetInstance();
+	rSceneManager.Update();
+	rSceneManager.Render();
 }
 
 INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdShow)
