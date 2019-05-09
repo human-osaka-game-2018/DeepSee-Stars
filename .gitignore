@@ -41,3 +41,5 @@
 *.suo
 *.pdb
 *.ilk
+*.iobj
+*.ipdb
