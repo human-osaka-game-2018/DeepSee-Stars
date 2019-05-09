@@ -4,6 +4,7 @@
 #include "../Scene.h"
 
 #include "BackGround/TitleBackGround.h"
+#include "Logo/TitleLogo.h"
 
 namespace deepseestars
 {
@@ -16,6 +17,7 @@ namespace deepseestars
 		TitleScene()
 		{
 			m_objects.Register(static_cast<GameObject*>(new TitleBackGround()));
+			m_objects.Register(static_cast<GameObject*>(new TitleLogo()));
 		}
 	};
 }

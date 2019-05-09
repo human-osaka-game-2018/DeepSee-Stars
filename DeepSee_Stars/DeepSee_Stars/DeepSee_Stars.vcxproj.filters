@@ -100,6 +100,9 @@
     <Filter Include="SceneManager\Scene\TitleScene\BackGround">
       <UniqueIdentifier>{2613cd93-b74f-439d-898a-2509e9dab9d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SceneManager\Scene\TitleScene\Logo">
+      <UniqueIdentifier>{0e8040cf-c08c-4cfc-a5dd-5b8b1b4eeeb9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device\DirectXDevice\DirectXDevice.cpp">
@@ -164,6 +167,9 @@
     </ClCompile>
     <ClCompile Include="SceneManager\SceneManager.cpp">
       <Filter>SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\Scene\TitleScene\Logo\TitleLogo.cpp">
+      <Filter>SceneManager\Scene\TitleScene\Logo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -253,6 +259,9 @@
     </ClInclude>
     <ClInclude Include="SceneManager\Scene\TitleScene\BackGround\TitleBackGround.h">
       <Filter>SceneManager\Scene\TitleScene\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\TitleScene\Logo\TitleLogo.h">
+      <Filter>SceneManager\Scene\TitleScene\Logo</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
