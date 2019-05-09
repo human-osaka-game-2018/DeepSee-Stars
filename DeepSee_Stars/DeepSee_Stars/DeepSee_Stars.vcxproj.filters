@@ -82,6 +82,18 @@
     <Filter Include="main">
       <UniqueIdentifier>{08b8fe20-c34e-4b91-a2fa-64ab006a9bf3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObjects">
+      <UniqueIdentifier>{c9c21678-01a7-4ee8-b7ca-20f3276951de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\GameObject">
+      <UniqueIdentifier>{069bfa90-88b1-4c4b-a925-1ddea2f6f696}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneManager">
+      <UniqueIdentifier>{8f0a11b6-d868-4348-a76a-7c537e86ec11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneManager\Scene">
+      <UniqueIdentifier>{3699e032-aed5-48cc-8efb-52313aaaffea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device\DirectXDevice\DirectXDevice.cpp">
@@ -140,6 +152,12 @@
     </ClCompile>
     <ClCompile Include="main\main.cpp">
       <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\GameObjects.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\SceneManager.cpp">
+      <Filter>SceneManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -211,6 +229,18 @@
     </ClInclude>
     <ClInclude Include="Singleton\Singleton.h">
       <Filter>Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\GameObjects.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\GameObject\GameObject.h">
+      <Filter>GameObjects\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\SceneManager.h">
+      <Filter>SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\Scene.h">
+      <Filter>SceneManager\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
