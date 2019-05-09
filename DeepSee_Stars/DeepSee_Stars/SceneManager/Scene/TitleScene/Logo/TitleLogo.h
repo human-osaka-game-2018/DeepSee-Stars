@@ -5,6 +5,9 @@
 
 namespace deepseestars
 {
+	/// <summary>
+	/// タイトル画面で使うロゴクラス
+	/// </summary>
 	class TitleLogo :public GameObject
 	{
 	public:
