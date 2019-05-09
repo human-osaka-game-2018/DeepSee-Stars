@@ -42,14 +42,14 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -69,7 +69,14 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(DXSDK_DIR)include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DXSDK_DIR)Lib\x64;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(DXSDK_DIR)include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DXSDK_DIR)Lib\x64;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -84,7 +91,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>DIRECTINPUT_VERSION=0x0800;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>d3dx9d.lib;d3d9.lib;dinput8.lib;dxguid.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -108,13 +119,59 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>DIRECTINPUT_VERSION=0x0800;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>d3dx9d.lib;d3d9.lib;dinput8.lib;dxguid.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Device\DirectXDevices\DirectXDevices.cpp" />
+    <ClCompile Include="Device\DirectXDevice\DirectXDevice.cpp" />
+    <ClCompile Include="Device\DirectXGraphicDevice\DirectXGraphicDevice.cpp" />
+    <ClCompile Include="Device\DirectXGraphicDevice\PresentParam\PresentParam.cpp" />
+    <ClCompile Include="Device\DirectXInputDevice\DirectXInputDevice.cpp" />
+    <ClCompile Include="GameBaseMaker\Color\Color.cpp" />
+    <ClCompile Include="GameBaseMaker\GameBaseMaker.cpp" />
+    <ClCompile Include="GameBaseMaker\Graphics\ColorBlender\ColorBlender.cpp" />
+    <ClCompile Include="GameBaseMaker\Graphics\Renderer\Renderer.cpp" />
+    <ClCompile Include="GameBaseMaker\Graphics\Textures\Textures.cpp" />
+    <ClCompile Include="GameBaseMaker\Graphics\Textures\Texture\Texture.cpp" />
+    <ClCompile Include="GameBaseMaker\Input\DirectXInput\Keyboard.cpp" />
+    <ClCompile Include="GameBaseMaker\Input\DirectXInput\Mouse.cpp" />
+    <ClCompile Include="GameBaseMaker\TextureUV\TextureUV.cpp" />
+    <ClCompile Include="GameBaseMaker\Vertices\CustomVertices.cpp" />
+    <ClCompile Include="GameBaseMaker\Vertices\Vertices.cpp" />
+    <ClCompile Include="main\main.cpp" />
+    <ClCompile Include="Singleton\Singleton.cpp" />
+    <ClCompile Include="Wnd\Wnd.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Device\DirectXDevices\DeviceFactory\DeviceFactory.h" />
+    <ClInclude Include="Device\DirectXDevices\DirectXDevices.h" />
+    <ClInclude Include="Device\DirectXDevice\DirectXDevice.h" />
+    <ClInclude Include="Device\DirectXGraphicDevice\DirectXGraphicDevice.h" />
+    <ClInclude Include="Device\DirectXGraphicDevice\PresentParam\PresentParam.h" />
+    <ClInclude Include="Device\DirectXInputDevice\DirectXInputDevice.h" />
+    <ClInclude Include="GameBaseMaker\Color\Color.h" />
+    <ClInclude Include="GameBaseMaker\GameBaseMaker.h" />
+    <ClInclude Include="GameBaseMaker\Graphics\ColorBlender\ColorBlender.h" />
+    <ClInclude Include="GameBaseMaker\Graphics\Graphics.h" />
+    <ClInclude Include="GameBaseMaker\Graphics\Renderer\Renderer.h" />
+    <ClInclude Include="GameBaseMaker\Graphics\Textures\Textures.h" />
+    <ClInclude Include="GameBaseMaker\Graphics\Textures\Texture\Texture.h" />
+    <ClInclude Include="GameBaseMaker\Input\DirectXInput\Keyboard.h" />
+    <ClInclude Include="GameBaseMaker\Input\DirectXInput\Mouse.h" />
+    <ClInclude Include="GameBaseMaker\Input\Input.h" />
+    <ClInclude Include="GameBaseMaker\Input\InputDevice\InputDevice.h" />
+    <ClInclude Include="GameBaseMaker\TextureUV\TextureUV.h" />
+    <ClInclude Include="GameBaseMaker\Vertices\CustomVertices.h" />
+    <ClInclude Include="GameBaseMaker\Vertices\Vertices.h" />
+    <ClInclude Include="Singleton\Singleton.h" />
+    <ClInclude Include="Wnd\Data\RectSize.h" />
+    <ClInclude Include="Wnd\Wnd.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
