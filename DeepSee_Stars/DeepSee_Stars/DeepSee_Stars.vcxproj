@@ -150,6 +150,7 @@
     <ClCompile Include="main\main.cpp" />
     <ClCompile Include="SceneManager\SceneManager.cpp" />
     <ClCompile Include="SceneManager\Scene\TitleScene\Logo\TitleLogo.cpp" />
+    <ClCompile Include="SceneManager\Scene\TitleScene\Menu\TitleMenu.cpp" />
     <ClCompile Include="Singleton\Singleton.cpp" />
     <ClCompile Include="Wnd\Wnd.cpp" />
   </ItemGroup>
@@ -180,6 +181,7 @@
     <ClInclude Include="SceneManager\Scene\Scene.h" />
     <ClInclude Include="SceneManager\Scene\TitleScene\BackGround\TitleBackGround.h" />
     <ClInclude Include="SceneManager\Scene\TitleScene\Logo\TitleLogo.h" />
+    <ClInclude Include="SceneManager\Scene\TitleScene\Menu\TitleMenu.h" />
     <ClInclude Include="SceneManager\Scene\TitleScene\TitleScene.h" />
     <ClInclude Include="Singleton\Singleton.h" />
     <ClInclude Include="Wnd\Data\RectSize.h" />
