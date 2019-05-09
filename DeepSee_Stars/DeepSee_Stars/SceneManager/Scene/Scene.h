@@ -53,7 +53,7 @@ namespace deepseestars
 			m_objects.Release();
 		}
 
-	private:
+	protected:
 		GameObjects m_objects;
 	};
 }

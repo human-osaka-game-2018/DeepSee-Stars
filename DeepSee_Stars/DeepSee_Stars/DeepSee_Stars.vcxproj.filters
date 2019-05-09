@@ -94,6 +94,12 @@
     <Filter Include="SceneManager\Scene">
       <UniqueIdentifier>{3699e032-aed5-48cc-8efb-52313aaaffea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SceneManager\Scene\TitleScene">
+      <UniqueIdentifier>{8678d7d7-c96c-4263-a1bc-c288edd234a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneManager\Scene\TitleScene\BackGround">
+      <UniqueIdentifier>{2613cd93-b74f-439d-898a-2509e9dab9d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device\DirectXDevice\DirectXDevice.cpp">
@@ -241,6 +247,12 @@
     </ClInclude>
     <ClInclude Include="SceneManager\Scene\Scene.h">
       <Filter>SceneManager\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\TitleScene\TitleScene.h">
+      <Filter>SceneManager\Scene\TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\TitleScene\BackGround\TitleBackGround.h">
+      <Filter>SceneManager\Scene\TitleScene\BackGround</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
