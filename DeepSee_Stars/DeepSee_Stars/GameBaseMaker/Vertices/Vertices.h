@@ -27,6 +27,7 @@ namespace gamebasemaker
 		void SetDegreeZ(const float& degreeZ) { m_degree.z = degreeZ; }
 
 		void SetPos(const D3DXVECTOR3& pos) { m_pos = pos; }
+		void SetPos(const D3DXVECTOR2& pos) { m_pos = { pos.x,pos.y,0.f }; }
 
 		void SetScale(const D3DXVECTOR2& scale) { m_scale = scale; }
 		
