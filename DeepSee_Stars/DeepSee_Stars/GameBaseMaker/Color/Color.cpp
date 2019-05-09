@@ -28,10 +28,10 @@ namespace gamebasemaker
 
 	void Color::FadeIn(BYTE alphaMax, BYTE alphaMin, int& flashCount, int OneCycleCount)
 	{
+		if (flashCount > OneCycleCount) return;
+
 		++flashCount;
-
-		if (flashCount > OneCycleCount) flashCount = 0;
-
+		
 		float progressRatio = flashCount / static_cast<float>(OneCycleCount);
 		float rad = progressRatio * 0.5f * D3DX_PI;
 		
@@ -40,9 +40,9 @@ namespace gamebasemaker
 
 	void Color::FadeOut(BYTE alphaMax, BYTE alphaMin, int& flashCount, int OneCycleCount)
 	{
-		++flashCount;
+		if (flashCount > OneCycleCount) return;
 
-		if (flashCount > OneCycleCount) flashCount = 0;
+		++flashCount;
 
 		float progressRatio = flashCount / static_cast<float>(OneCycleCount);
 		float rad = progressRatio * 0.5f * D3DX_PI;
