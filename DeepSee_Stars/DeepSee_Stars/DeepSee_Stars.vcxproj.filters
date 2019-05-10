@@ -109,6 +109,9 @@
     <Filter Include="GameBaseMaker\Sound">
       <UniqueIdentifier>{b78126fe-1e59-4bcd-af6a-13f4819419dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SceneManager\Scene\GameScene">
+      <UniqueIdentifier>{be4223c7-aa2d-44ec-90dc-828e771a4f23}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device\DirectXDevice\DirectXDevice.cpp">
@@ -280,6 +283,9 @@
     </ClInclude>
     <ClInclude Include="GameBaseMaker\Sound\Sound.h">
       <Filter>GameBaseMaker\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\GameScene.h">
+      <Filter>SceneManager\Scene\GameScene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

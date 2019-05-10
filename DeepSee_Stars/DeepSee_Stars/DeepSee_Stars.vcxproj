@@ -182,6 +182,7 @@
     <ClInclude Include="GameObjects\GameObjects.h" />
     <ClInclude Include="GameObjects\GameObject\GameObject.h" />
     <ClInclude Include="SceneManager\SceneManager.h" />
+    <ClInclude Include="SceneManager\Scene\GameScene\GameScene.h" />
     <ClInclude Include="SceneManager\Scene\Scene.h" />
     <ClInclude Include="SceneManager\Scene\TitleScene\BackGround\TitleBackGround.h" />
     <ClInclude Include="SceneManager\Scene\TitleScene\Logo\TitleLogo.h" />

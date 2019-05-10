@@ -1,6 +1,7 @@
 ﻿#include "SceneManager.h"
 
 #include "Scene/TitleScene/TitleScene.h"
+#include "Scene/GameScene/GameScene.h"
 
 namespace deepseestars
 {
@@ -21,6 +22,8 @@ namespace deepseestars
 
 		case SCENE_ID::GAME:
 			delete m_pScene;
+
+			m_pScene = new GameScene();
 
 			break;
 
