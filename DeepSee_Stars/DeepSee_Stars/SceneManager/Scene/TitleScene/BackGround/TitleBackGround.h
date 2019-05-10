@@ -12,11 +12,11 @@ namespace deepseestars
 	{
 	public:
 		TitleBackGround() :
-			m_pFileName(_T("2DTexture/Title/TitleBack.jpg")), m_pTextureKey(_T("Back"))
+			GameObject(_T("Back"),_T("2DTexture/Title/TitleBack.jpg"))
 		{
 			Init();
 		}
-
+		
 		~TitleBackGround()
 		{
 			Release();
@@ -38,10 +38,6 @@ namespace deepseestars
 		{
 			m_rGameBaseMaker.ReleaseAllTex();
 		}
-
-	private:
-		const TCHAR* m_pFileName;
-		const TCHAR* m_pTextureKey;
 	};
 }
 
