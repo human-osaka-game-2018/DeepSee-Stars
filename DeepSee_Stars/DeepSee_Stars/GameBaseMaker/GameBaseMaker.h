@@ -6,6 +6,7 @@
 #include "../Singleton/Singleton.h"
 #include "Input/Input.h"
 #include "Graphics/Graphics.h"
+#include "Sound/Sound.h"
 
 namespace gamebasemaker
 {
@@ -13,6 +14,7 @@ namespace gamebasemaker
 	using input::Input;
 	using graphics::Graphics;
 	using graphics::Texture;
+	using namespace SoundLib;
 
 	class GameBaseMaker :public Singleton<GameBaseMaker>
 	{
@@ -184,9 +186,194 @@ namespace gamebasemaker
 		/// <summary>
 		/// デフォルトの色合成を使用する ウィンドウモードを切り替えた時には再設定する必要がある
 		/// </summary>
-		void DefaultColorBlending() const
+		inline void DefaultColorBlending() const
 		{
 			m_graphics.DefaultColorBlending();
+		}
+
+		/// <summary>
+		/// 音声ファイルを追加する。
+		/// </summary>
+		/// <param name="pFilePath">ファイルパス</param>
+		/// <param name="pKey">音声ファイルを識別するキー</param>
+		/// <param name="type">音声に設定する音声種別</param>
+		inline void AddFile(const TCHAR* pFilePath, const TCHAR* pKey, Sound::SoundType type)
+		{
+			m_sound.AddFile(pFilePath, pKey, type);
+		}
+
+		/// <summary>
+		/// 音声ファイルを10個分追加する。
+		/// </summary>
+		/// <param name="pFilePath">ファイルパス</param>
+		/// <param name="pKey">音声ファイルを識別するキー</param>
+		/// <param name="type">音声に設定する音声種別</param>
+		inline void AddSimultaneousFile(const TCHAR* pFilePath, const TCHAR* pKey, Sound::SoundType type)
+		{
+			m_sound.AddSimultaneousFile(pFilePath, pKey, type);
+		}
+
+		/// <summary>
+		/// ファイルの先頭から単発再生を行う。
+		/// </summary>
+		/// <param name="pKey">音声ファイルを識別するキー</param>
+		inline void OneShotSimultaneous(const TCHAR* pKey)
+		{
+			m_sound.OneShotSimultaneous(pKey);
+		}
+
+		/// <summary>
+		/// ファイルの先頭からループ再生を行う。
+		/// </summary>
+		/// <param name="pKey">音声ファイルを識別するキー</param>
+		inline void LoopStart(const TCHAR* pKey)
+		{
+			m_sound.LoopStart(pKey);
+		}
+
+		/// <summary>
+		/// ファイルの先頭から再生を行う。
+		/// </summary>
+		/// <param name="pKey">音声ファイルを識別するキー</param>
+		inline void OneShotStart(const TCHAR* pKey)
+		{
+			m_sound.OneShotStart(pKey);
+		}
+
+		/// <summary>
+		/// 再生を一時停止する。
+		/// </summary>
+		/// <param name="pKey">音声ファイルを識別するキー</param>
+		/// <returns>成否</returns>
+		/// <remarks>続きから再生再開するときには<see cref="Resume(const T*)"/>を実行して下さい。</remarks>
+		inline void Pause(const TCHAR* pKey)
+		{
+			m_sound.Pause(pKey);
+		}
+
+		/// <summary>
+		/// 一時停止中の音声を続きから再生する。
+		/// </summary>
+		/// <param name="pKey">音声ファイルを識別するキー</param>
+		/// <returns>成否</returns>
+		/// <remarks><see cref="Pause(const T*)"/>で一時停止した音声の続きからの再生に使用します。</remarks>
+		inline void Resume(const TCHAR* pKey)
+		{
+			m_sound.Resume(pKey);
+		}
+
+		/// <summary>
+		/// 再生を停止する。
+		/// </summary>
+		/// <param name="pKey">音声ファイルを識別するキー</param>
+		/// <returns>成否</returns>
+		/// <remarks>後で続きから再生する必要がある場合は、<see cref="Pause(const TCHAR*)"/>を使用して下さい。</remarks>
+		inline void Stop(const TCHAR* pKey)
+		{
+			m_sound.Stop(pKey);
+		}
+
+		/// <summary>
+		/// 再生を停止する。
+		/// </summary>
+		/// <param name="type">音声ファイルを識別する音声種別</param>
+		/// <returns>成否</returns>
+		/// <remarks>後で続きから再生する必要がある場合は、<see cref="Pause(const TCHAR*)"/>を使用して下さい。</remarks>
+		inline void Stop(Sound::SoundType type = Sound::SoundType::ALL_TYPE)
+		{
+			m_sound.Stop(type);
+		}
+
+		/// <summary>
+		/// 再生状況を示すステータスを取得する。
+		/// </summary>
+		/// <param name="pKey">音声ファイルを識別するキー</param>
+		/// <returns>再生ステータス</returns>
+		inline SoundLib::PlayingStatus GetStatus(const TCHAR* pKey) const
+		{
+			m_sound.GetStatus(pKey);
+		}
+
+		/// <summary>
+		/// ボリュームを取得する。
+		/// </summary>
+		/// <param name="pKey">音声ファイルを識別するキー</param>
+		/// <returns>ボリューム(0:無音　100:音源ボリューム)</returns>
+		inline uint8_t GetVolume(const TCHAR* pKey)
+		{
+			m_sound.GetVolume(pKey);
+		}
+
+		/// <summary>
+		/// 再生速度とピッチの変化率を取得する。
+		/// </summary>
+		/// <param name="pKey">音声ファイルを識別するキー</param>
+		/// <returns>音源からの変化率</returns>
+		/// <remarks>
+		/// 1.0の場合、音源から変化なし。
+		/// 2.0の場合、再生速度2倍で1オクターブ高音。
+		/// 0.5の場合、再生速度1/2で1オクターブ低音。
+		/// </remarks>
+		inline float GetFrequencyRatio(const TCHAR* pKey)
+		{
+			m_sound.GetFrequencyRatio(pKey);
+		}
+
+		/// <summary>
+		/// 再生速度とピッチの変化率を設定する。
+		/// </summary>
+		/// <param name="pKey">音声ファイルを識別するキー</param>
+		/// <param name="ratio">音源からの変化率</param>
+		/// <remarks>
+		/// <para>
+		/// 1.0の場合、音源から変化なし。
+		/// 2.0の場合、再生速度2倍で1オクターブ高音。
+		/// 0.5の場合、再生速度1/2で1オクターブ低音。
+		/// </para>
+		/// <para>設定可能最大値は4。</para>
+		/// </remarks>
+		inline void SetFrequencyRatio(const TCHAR* pKey, float ratio)
+		{
+			m_sound.SetFrequencyRatio(pKey, ratio);
+		}
+
+		/// <summary>
+		/// 再生速度とピッチの変化率を設定する。
+		/// </summary>
+		/// <param name="ratio">音源からの変化率</param>
+		/// <param name="type">音声ファイルを識別する音声種別</param>
+		/// <returns>成否</returns>
+		/// <remarks>
+		/// <para>
+		/// 1.0の場合、音源から変化なし。
+		/// 2.0の場合、再生速度2倍で1オクターブ高音。
+		/// 0.5の場合、再生速度1/2で1オクターブ低音。
+		/// </para>
+		/// <para>設定可能最大値は4。</para>
+		/// </remarks>
+		inline void SetFrequencyRatio(float ratio, Sound::SoundType type = Sound::SoundType::ALL_TYPE)
+		{
+			m_sound.SetFrequencyRatio(ratio, type);
+		}
+
+		/// <summary>
+		/// ボリュームを設定する。
+		/// </summary>
+		/// <param name="vol">ボリューム(0:無音　100:音源ボリューム)</param>
+		/// <param name="pKey">音声ファイルを識別するキー</param>
+		inline void SetVolume(int vol, const TCHAR* pKey)
+		{
+			m_sound.SetVolume(vol, pKey);
+		}
+
+		/// <summary>
+		/// ボリュームを設定する。
+		/// </summary>
+		/// <param name="vol">ボリューム(0:無音　100:音源ボリューム)</param>
+		/// <param name="type">音声ファイルを識別する音声種別</param>
+		inline void SetVolume(int vol, Sound::SoundType type = Sound::SoundType::ALL_TYPE)
+		{
+			m_sound.SetVolume(vol, type);
 		}
 
 	private:
@@ -210,6 +397,7 @@ namespace gamebasemaker
 
 		Input m_input;
 		Graphics m_graphics;
+		Sound m_sound;
 	};
 }
 
