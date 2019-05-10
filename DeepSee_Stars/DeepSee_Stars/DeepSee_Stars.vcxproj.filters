@@ -106,6 +106,9 @@
     <Filter Include="SceneManager\Scene\TitleScene\Menu">
       <UniqueIdentifier>{47b1532f-84ad-49cf-83e7-db5d58f7534d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameBaseMaker\Sound">
+      <UniqueIdentifier>{b78126fe-1e59-4bcd-af6a-13f4819419dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device\DirectXDevice\DirectXDevice.cpp">
@@ -165,9 +168,6 @@
     <ClCompile Include="main\main.cpp">
       <Filter>main</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjects\GameObjects.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="SceneManager\SceneManager.cpp">
       <Filter>SceneManager</Filter>
     </ClCompile>
@@ -176,6 +176,12 @@
     </ClCompile>
     <ClCompile Include="SceneManager\Scene\TitleScene\Menu\TitleMenu.cpp">
       <Filter>SceneManager\Scene\TitleScene\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\GameObjects.cpp">
+      <Filter>GameObjects\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GameBaseMaker\Sound\Sound.cpp">
+      <Filter>GameBaseMaker\Sound</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -271,6 +277,9 @@
     </ClInclude>
     <ClInclude Include="SceneManager\Scene\TitleScene\Menu\TitleMenu.h">
       <Filter>SceneManager\Scene\TitleScene\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBaseMaker\Sound\Sound.h">
+      <Filter>GameBaseMaker\Sound</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

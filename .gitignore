@@ -43,3 +43,6 @@
 *.ilk
 *.iobj
 *.ipdb
+*.vs
+
+

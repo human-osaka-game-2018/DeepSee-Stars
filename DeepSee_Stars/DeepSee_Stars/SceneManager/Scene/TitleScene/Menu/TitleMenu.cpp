@@ -6,6 +6,8 @@ namespace deepseestars
 {
 	void TitleMenu::Update()
 	{
+		m_rGameBaseMaker.LoopStart(m_pSoundKey);
+
 		if (!m_rGameBaseMaker.IsPressedToKeyboard(DIK_RETURN)) return;
 
 		SceneManager& rSceneManager = SceneManager::GetInstance();
