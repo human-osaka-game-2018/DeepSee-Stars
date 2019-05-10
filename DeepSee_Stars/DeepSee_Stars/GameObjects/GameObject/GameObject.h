@@ -14,7 +14,15 @@ namespace deepseestars
 	class GameObject
 	{
 	public:
-		GameObject() {}
+		/// <summary>
+		/// ファイルの名前とキーを設定するコンストラクタ
+		/// </summary>
+		/// <param name="pTextureKey">設定するキー</param>
+		/// <param name="pFileName">画像のファイルの名前</param>
+		GameObject(const TCHAR* pTextureKey,const TCHAR* pFileName):
+			m_pTextureKey(pTextureKey),m_pFileName(pFileName)
+		{}
+
 		virtual ~GameObject() {}
 
 		/// <summary>
@@ -40,6 +48,12 @@ namespace deepseestars
 	protected:
 		GameBaseMaker& m_rGameBaseMaker = GameBaseMaker::GetInstance();
 		Vertices m_vertices;
+
+		/// <summary>
+		/// ファイルの名前とキーの設定
+		/// </summary>
+		const TCHAR* m_pFileName;
+		const TCHAR* m_pTextureKey;
 	};
 }
 

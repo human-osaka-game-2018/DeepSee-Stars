@@ -12,7 +12,7 @@ namespace deepseestars
 	{
 	public:
 		TitleLogo() :
-			m_pFileName(_T("2DTexture/Title/TitleLogo.png")), m_pTextureKey(_T("Logo"))
+			GameObject(_T("Logo"),_T("2DTexture/Title/TitleLogo.png"))
 		{
 			Init();
 		}
@@ -32,10 +32,6 @@ namespace deepseestars
 		{
 			m_rGameBaseMaker.ReleaseAllTex();
 		}
-
-	private:
-		const TCHAR* m_pFileName;
-		const TCHAR* m_pTextureKey;
 	};
 }
 

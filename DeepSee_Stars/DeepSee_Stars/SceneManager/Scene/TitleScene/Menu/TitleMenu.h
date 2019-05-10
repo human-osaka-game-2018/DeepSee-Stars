@@ -12,7 +12,7 @@ namespace deepseestars
 	{
 	public:
 		TitleMenu() :
-			m_pFileName(_T("2DTexture/Title/TitleMenu.png")), m_pTextureKey(_T("Menu"))
+			GameObject(_T("Menu"), _T("2DTexture/Title/TitleMenu.png"))
 		{
 			Init();
 		}
@@ -35,10 +35,6 @@ namespace deepseestars
 		{
 			m_rGameBaseMaker.ReleaseAllTex();
 		}
-
-	private:
-		const TCHAR* m_pFileName;
-		const TCHAR* m_pTextureKey;
 	};
 }
 
