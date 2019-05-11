@@ -27,6 +27,7 @@ namespace deepseestars
 		{
 			m_rGameBaseMaker.CreateTex(m_pTextureKey, m_pFileName);
 			m_rGameBaseMaker.AddFile(m_pSoundFileName, m_pSoundKey, Sound::SoundType::BGM);
+			m_rGameBaseMaker.LoopStart(m_pSoundKey);
 		}
 
 		void Update();
@@ -36,6 +37,7 @@ namespace deepseestars
 		void Release()
 		{
 			m_rGameBaseMaker.ReleaseAllTex();
+			m_rGameBaseMaker.Stop(m_pSoundKey);
 		}
 
 	private:
