@@ -23,6 +23,20 @@ namespace deepseestars
 			m_pTextureKey(pTextureKey),m_pFileName(pFileName)
 		{}
 
+		/// <summary>
+		/// テクスチャのキーだけを設定するコンストラクタ
+		/// </summary>
+		GameObject(const TCHAR* pTextureKey) :
+			m_pTextureKey(pTextureKey), m_pFileName(nullptr)
+		{}
+
+		/// <summary>
+		/// ファイル名などを設定しないときに使用するコンストラクタ
+		/// </summary>
+		GameObject() :
+			m_pTextureKey(nullptr), m_pFileName(nullptr)
+		{}
+
 		virtual ~GameObject() {}
 
 		/// <summary>
