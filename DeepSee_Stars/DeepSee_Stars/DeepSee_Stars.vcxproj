@@ -152,6 +152,7 @@
     <ClCompile Include="GameObjects\GameObjects.cpp" />
     <ClCompile Include="main\main.cpp" />
     <ClCompile Include="SceneManager\SceneManager.cpp" />
+    <ClCompile Include="SceneManager\Scene\TitleScene\Bubbles\Bubbles.cpp" />
     <ClCompile Include="SceneManager\Scene\TitleScene\Logo\TitleLogo.cpp" />
     <ClCompile Include="SceneManager\Scene\TitleScene\Menu\TitleMenu.cpp" />
     <ClCompile Include="Singleton\Singleton.cpp" />
@@ -185,6 +186,7 @@
     <ClInclude Include="SceneManager\Scene\GameScene\GameScene.h" />
     <ClInclude Include="SceneManager\Scene\Scene.h" />
     <ClInclude Include="SceneManager\Scene\TitleScene\BackGround\TitleBackGround.h" />
+    <ClInclude Include="SceneManager\Scene\TitleScene\Bubbles\Bubbles.h" />
     <ClInclude Include="SceneManager\Scene\TitleScene\Logo\TitleLogo.h" />
     <ClInclude Include="SceneManager\Scene\TitleScene\Menu\TitleMenu.h" />
     <ClInclude Include="SceneManager\Scene\TitleScene\TitleScene.h" />

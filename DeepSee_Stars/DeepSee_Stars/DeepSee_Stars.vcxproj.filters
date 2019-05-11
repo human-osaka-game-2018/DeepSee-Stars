@@ -112,6 +112,9 @@
     <Filter Include="SceneManager\Scene\GameScene">
       <UniqueIdentifier>{be4223c7-aa2d-44ec-90dc-828e771a4f23}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SceneManager\Scene\TitleScene\Bubbles">
+      <UniqueIdentifier>{f8592a7f-9164-4a96-baa9-91b6b6263bc6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device\DirectXDevice\DirectXDevice.cpp">
@@ -185,6 +188,9 @@
     </ClCompile>
     <ClCompile Include="GameBaseMaker\Sound\Sound.cpp">
       <Filter>GameBaseMaker\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\Scene\TitleScene\Bubbles\Bubbles.cpp">
+      <Filter>SceneManager\Scene\TitleScene\Bubbles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -286,6 +292,9 @@
     </ClInclude>
     <ClInclude Include="SceneManager\Scene\GameScene\GameScene.h">
       <Filter>SceneManager\Scene\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\TitleScene\Bubbles\Bubbles.h">
+      <Filter>SceneManager\Scene\TitleScene\Bubbles</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
