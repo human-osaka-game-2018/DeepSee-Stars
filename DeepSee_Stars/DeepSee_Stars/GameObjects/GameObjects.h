@@ -11,7 +11,10 @@ namespace deepseestars
 	{
 	public:
 		GameObjects() {}
-		~GameObjects() {}
+		~GameObjects() 
+		{
+			Release();
+		}
 		
 		/// <summary>
 		/// ゲームオブジェクトを登録する
