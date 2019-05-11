@@ -51,7 +51,7 @@ namespace deepseestars
 
 		std::uniform_real_distribution<float> randPosX(0.f, m_vertices.GetDisplaySize().x);
 		std::uniform_real_distribution<float> randPosY(
-			m_vertices.GetDisplaySize().y * 0.2f, m_vertices.GetDisplaySize().y);
+			m_vertices.GetDisplaySize().y * 0.5f, m_vertices.GetDisplaySize().y);
 
 		D3DXVECTOR2 appearPos = { randPosX(mt),randPosY(mt) };
 		m_pos = appearPos;
@@ -67,7 +67,7 @@ namespace deepseestars
 
 	void Bubbles::Bubble::Render()
 	{
-		const float SCALE_SIZE = 16.f;
+		const float SCALE_SIZE = 8.f;
 
 		m_vertices.SetPos(m_pos);
 		m_vertices.SetScale(D3DXVECTOR2(SCALE_SIZE, SCALE_SIZE));
