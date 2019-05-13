@@ -78,6 +78,13 @@ namespace gamebasemaker
 		/// <param name="bottomRight">切り取りたい位置の右下</param>
 		void ClippingImage(D3DXVECTOR2 topLeft, D3DXVECTOR2 bottomRight);
 
+		/// <summary>
+		/// 各演出カウントの初期化関数
+		/// </summary>
+		void InitFadeInCount() { m_fadeInCount = 0; }
+		void InitFadeOutCount() { m_fadeOutCount = 0; }
+		void InitFlashCount() { m_flashCount = 0; }
+
 		inline CustomVertex* Get()
 		{
 			BuildRect();
