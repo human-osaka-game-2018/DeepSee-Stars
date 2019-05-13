@@ -4,6 +4,8 @@
 
 namespace deepseestars
 {
+	using std::uniform_real_distribution;
+
 	void Bubbles::Update()
 	{
 		for (auto& bubble : m_bubbles)
@@ -36,7 +38,7 @@ namespace deepseestars
 
 	void Bubbles::Create()
 	{
-		const int BUBBLE_NUM = 10;
+		const int BUBBLE_NUM = 15;
 		for (int i = 0; i < BUBBLE_NUM; ++i)
 		{
 			m_bubbles.push_back(new Bubble(m_pTextureKey));
@@ -45,32 +47,46 @@ namespace deepseestars
 
 	void Bubbles::Bubble::Init()
 	{
-		//ランダムで位置を決めている
-		std::random_device rd;
-		std::mt19937 mt(rd());
+		std::random_device seed;
+		std::mt19937 randGenerator(seed());
 
-		std::uniform_real_distribution<float> randPosX(0.f, m_vertices.GetDisplaySize().x);
-		std::uniform_real_distribution<float> randPosY(
-			m_vertices.GetDisplaySize().y * 0.5f, m_vertices.GetDisplaySize().y);
+		D3DXVECTOR2 displaySize = m_vertices.GetDisplaySize();
 
-		D3DXVECTOR2 appearPos = { randPosX(mt),randPosY(mt) };
-		m_pos = appearPos;
+		//出現位置の設定
+		uniform_real_distribution<float> distPosX(0.f, displaySize.x);
+		uniform_real_distribution<float> distPosY(displaySize.y * 0.5f, displaySize.y);
+		m_pos = { distPosX(randGenerator),distPosY(randGenerator) };
+		
+		//泡の大きさの設定
+		uniform_real_distribution<float> distScaleSize(3.f, 6.f);
+		m_scaleSize = distScaleSize(randGenerator);
+		
+		//初期角度の設定
+		uniform_real_distribution<float> distRad(0.f, 4.f * D3DX_PI);
+		m_rad = distRad(randGenerator);
+
+		//振動スピードの設定
+		uniform_real_distribution<float> distVibrationSpeed(0.01f, 0.05f);
+		m_vibrationSpeed = distVibrationSpeed(randGenerator);
+
+		//浮力の設定
+		uniform_real_distribution<float> distBuoyancy(1.f, 1.3f);
+		m_buoyancy = distBuoyancy(randGenerator);
+
+		m_vertices.InitFadeInCount();
 	}
 
 	void Bubbles::Bubble::Update()
 	{
-		//浮力
-		const float BUOYANCY = 3.0f;
-
-		m_pos.y -= BUOYANCY;
+		m_pos.x += 0.3f * sin(m_rad += m_vibrationSpeed);
+		m_pos.y -= m_buoyancy;
 	}
 
 	void Bubbles::Bubble::Render()
 	{
-		const float SCALE_SIZE = 8.f;
-
 		m_vertices.SetPos(m_pos);
-		m_vertices.SetScale(D3DXVECTOR2(SCALE_SIZE, SCALE_SIZE));
+		m_vertices.SetScale(D3DXVECTOR2(m_scaleSize, m_scaleSize));
+		m_vertices.FadeIn(0x8F, 0x00, 120);
 		m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_pTextureKey));
 	}
 }
