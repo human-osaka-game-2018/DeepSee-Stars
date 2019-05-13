@@ -15,7 +15,7 @@ namespace deepseestars
 		{
 			Init();
 		}
-
+		
 		virtual ~Scene()
 		{
 			Release();

@@ -3,6 +3,8 @@
 
 #include "../Scene.h"
 
+#include "../GameScene/World/World.h"
+
 namespace deepseestars
 {
 	class GameScene :public Scene
@@ -10,7 +12,7 @@ namespace deepseestars
 	public:
 		GameScene()
 		{
-
+			m_objects.Register(static_cast<GameObject*>(new World()));
 		}
 	};
 }

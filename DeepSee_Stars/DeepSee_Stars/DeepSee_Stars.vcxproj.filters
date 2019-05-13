@@ -115,6 +115,33 @@
     <Filter Include="SceneManager\Scene\TitleScene\Bubbles">
       <UniqueIdentifier>{f8592a7f-9164-4a96-baa9-91b6b6263bc6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SceneManager\Scene\GameScene\Camera">
+      <UniqueIdentifier>{83d15171-167c-4e8e-af31-45d4ec8dee81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneManager\Scene\GameScene\Cell">
+      <UniqueIdentifier>{9947674b-1d67-47e8-a17c-76442a889b56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneManager\Scene\GameScene\Stage">
+      <UniqueIdentifier>{0fb3b1b2-a002-4fc7-9654-4ea7af71c204}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneManager\Scene\GameScene\Player">
+      <UniqueIdentifier>{a643b271-5ae8-4ba9-845a-2c3596e0e796}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneManager\Scene\GameScene\World">
+      <UniqueIdentifier>{5d6b3e69-9914-40ea-82e5-631e1613c553}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneManager\Scene\GameScene\Player\Action">
+      <UniqueIdentifier>{5445608a-b96d-4c1e-a95b-3cd1371bca74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneManager\Scene\GameScene\Player\Action\Autotomy">
+      <UniqueIdentifier>{7652a714-3d4e-4950-b55e-c47f679c8225}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneManager\Scene\GameScene\Player\Action\Avatar">
+      <UniqueIdentifier>{66309817-8471-40ac-ac3f-e59d5a037226}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneManager\Scene\GameScene\Cell\Block">
+      <UniqueIdentifier>{9392c829-7d3a-4f4f-8cc4-cc5bbc7b4014}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device\DirectXDevice\DirectXDevice.cpp">
@@ -191,6 +218,33 @@
     </ClCompile>
     <ClCompile Include="SceneManager\Scene\TitleScene\Bubbles\Bubbles.cpp">
       <Filter>SceneManager\Scene\TitleScene\Bubbles</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\Scene\GameScene\Camera\Camera.cpp">
+      <Filter>SceneManager\Scene\GameScene\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\Scene\GameScene\Cell\BaseCell.cpp">
+      <Filter>SceneManager\Scene\GameScene\Cell</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\Scene\GameScene\Cell\Block\BlockCell.cpp">
+      <Filter>SceneManager\Scene\GameScene\Cell\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\Scene\GameScene\Player\Player.cpp">
+      <Filter>SceneManager\Scene\GameScene\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\Scene\GameScene\Player\Action\BaseAction.cpp">
+      <Filter>SceneManager\Scene\GameScene\Player\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\Scene\GameScene\Player\Action\Autotomy\AutotomyAction.cpp">
+      <Filter>SceneManager\Scene\GameScene\Player\Action\Autotomy</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\Scene\GameScene\Player\Action\Avatar\AvatarAction.cpp">
+      <Filter>SceneManager\Scene\GameScene\Player\Action\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\Scene\GameScene\Stage\Stage.cpp">
+      <Filter>SceneManager\Scene\GameScene\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\Scene\GameScene\World\World.cpp">
+      <Filter>SceneManager\Scene\GameScene\World</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -295,6 +349,33 @@
     </ClInclude>
     <ClInclude Include="SceneManager\Scene\TitleScene\Bubbles\Bubbles.h">
       <Filter>SceneManager\Scene\TitleScene\Bubbles</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Camera\Camera.h">
+      <Filter>SceneManager\Scene\GameScene\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Cell\BaseCell.h">
+      <Filter>SceneManager\Scene\GameScene\Cell</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Cell\Block\BlockCell.h">
+      <Filter>SceneManager\Scene\GameScene\Cell\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Player\Player.h">
+      <Filter>SceneManager\Scene\GameScene\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Player\Action\BaseAction.h">
+      <Filter>SceneManager\Scene\GameScene\Player\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Player\Action\Autotomy\AutotomyAction.h">
+      <Filter>SceneManager\Scene\GameScene\Player\Action\Autotomy</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Player\Action\Avatar\AvatarAction.h">
+      <Filter>SceneManager\Scene\GameScene\Player\Action\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Stage\Stage.h">
+      <Filter>SceneManager\Scene\GameScene\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\World\World.h">
+      <Filter>SceneManager\Scene\GameScene\World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
