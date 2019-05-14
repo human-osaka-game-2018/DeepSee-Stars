@@ -17,7 +17,7 @@ namespace deepseestars
 
 		void Init()
 		{
-			const float squaresSize = 100.f;
+			const float squaresSize = 50.f;
 		
 			m_center = { (squaresSize * 14) + (squaresSize / 2) ,(squaresSize * 8) + (squaresSize / 2) };
 
@@ -36,12 +36,28 @@ namespace deepseestars
 			m_rGameBaseMaker.ReleaseAllTex();
 		}
 
+		void DeterminePlayerIsHide();
 		void KeyOperation();
 		void CenterPosReset();
+		
+
+		D3DXVECTOR2 GetoperationValue()
+		{
+			return m_operationValue;
+		}
+		void SetoperationValue(D3DXVECTOR2 operationValue)
+		{
+			m_operationValue = operationValue;
+		}
 
 		D3DXVECTOR2 Getcenter()
 		{
 			return m_center;
+		}
+
+		void Setcenter(D3DXVECTOR2 center)
+		{
+			m_center = center;
 		}
 
 		D3DXVECTOR2 GetUpperLeft()
@@ -57,10 +73,16 @@ namespace deepseestars
 			return m_differencetoStartingPoint;
 		}
 
+		void SetIsPlayerHide(bool isPlayerHide)
+		{
+			m_isPlayerHide = isPlayerHide;
+		}
+
 		bool GetIsKeyOperation()
 		{
 			return m_isKeyOperation;
 		}
+		
 	private:
 		const D3DXVECTOR2& m_playerPos;
 		D3DXVECTOR2 m_center;
@@ -71,8 +93,9 @@ namespace deepseestars
 		D3DXVECTOR2 m_lowerRight;
 		D3DXVECTOR2 m_differencetoStartingPoint;
 
+		bool m_isPlayerHide = false;
 		bool m_isKeyOperation = false;
-		const float m_OperationSpeed = 10.f;
+		const float m_operationSpeed = 10.f;
 		const D3DXVECTOR2 m_operationArea = { 920.f,440.f };
 	};
 }

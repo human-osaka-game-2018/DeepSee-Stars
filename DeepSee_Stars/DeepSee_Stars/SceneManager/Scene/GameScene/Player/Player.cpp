@@ -5,7 +5,7 @@ namespace deepseestars
 {
 	Player::~Player()
 	{
-		for (auto& actionObject : m_pAction)
+		for (auto& actionObject : m_paction)
 		{
 			delete actionObject;
 		}
@@ -19,16 +19,16 @@ namespace deepseestars
 
 	void Player::Render()
 	{
-		m_CenterPosBuf = m_CenterPos + m_differencetoStartingPoint;
+		m_centerPosBuf = m_centerPos + m_differencetoStartingPoint;
 
-		D3DXVECTOR2 pos ={ m_CenterPosBuf.x ,m_CenterPosBuf.y};
-		D3DXVECTOR2 scale = { m_TextureSizeX,m_TextureSizeY};
+		D3DXVECTOR2 pos ={ m_centerPosBuf.x ,m_centerPosBuf.y};
+		D3DXVECTOR2 scale = { m_TextureSizeX/2,m_TextureSizeY/2};
 
 		m_vertices.SetPos(pos);
 		m_vertices.SetScale(scale);
 
 
-		for (auto& actionObject : m_pAction)
+		for (auto& actionObject : m_paction)
 		{
 			actionObject->Render();
 		}
@@ -37,12 +37,12 @@ namespace deepseestars
 
 	void Player::Movement()
 	{
-		if (m_CanDirectionInput)
+		if (m_canDirectionInput)
 		{
 			DirectionStatusCheck();
 		}
 		Action();
-		if (!m_IsHideState)
+		if (!m_isHideState)
 		{
 			DirectionStatusMotion();
 		}
@@ -51,7 +51,7 @@ namespace deepseestars
 	void Player::Action()
 	{
 
-		//Hide();
+		Hide();
 		//if (!m_IsHideState)
 		//{
 		//	Autotomy();
@@ -66,34 +66,34 @@ namespace deepseestars
 
 	void Player::Hide()
 	{
-		if (m_CanAction.IsHide)
+		if (m_canAction.IsHide)
 		{
-			if (m_rGameBaseMaker.IsPressedToKeyboard(DIK_Z))
+			if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_Z))
 			{
-				m_CenterPos.y = m_CenterPos.y - m_SquaresSize;
+			m_centerPos.y = m_centerPos.y - m_SquaresSize;
 				tvOperation(DOWN);
-				m_IsHideState = true;
-				m_Direction = STAYING;
+				m_isHideState = true;
+				m_direction = STAYING;
 			}
 			else
 			{
-				if (!m_IsHideState)return;
-				m_IsHideState = false;
-				m_CanDirectionInput = true;
+				if (!m_isHideState)return;
+				m_isHideState = false;
+				m_canDirectionInput = true;
 			}
 		}
 	}
 
 	void Player::Autotomy()
 	{
-		if (!m_CanAction.IsAutotomy) return;
+		if (!m_canAction.IsAutotomy) return;
 		if (m_rGameBaseMaker.IsPressedToKeyboard(DIK_X))
 		{
-			if (!m_OnAutotomy) return;
+			if (!m_isAutotomy) return;
 			if (m_Life > 0)
 			{
 				m_Life -= 1;
-				m_OnAutotomy = false;
+				m_isAutotomy = false;
 				//m_pAction.push_back(new AutotomyAction(m_CenterPos));
 			}
 		}
@@ -101,7 +101,7 @@ namespace deepseestars
 
 	void Player::Avatar()
 	{
-		if (m_CanAction.IsAvatar)
+		if (m_canAction.IsAvatar)
 		{
 			
 		}
@@ -111,68 +111,68 @@ namespace deepseestars
 	{
 		if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_LEFT))
 		{
-			if (m_CanMoveDirection.IsLeft)
+			if (m_canMoveDirection.IsLeft)
 			{
-				m_Direction = LEFT;
-				m_CanDirectionInput = false;
+				m_direction = LEFT;
+				m_canDirectionInput = false;
 				return;
 			}
 		}
 		if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_RIGHT))
 		{
-			if (m_CanMoveDirection.IsRight)
+			if (m_canMoveDirection.IsRight)
 			{
-				m_Direction = RIGHT;
-				m_CanDirectionInput = false;
+				m_direction = RIGHT;
+				m_canDirectionInput = false;
 				return;
 			}
 		}
 		if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_UP))
 		{
-			if (m_CanMoveDirection.IsUp)
+			if (m_canMoveDirection.IsUp)
 			{
-				m_Direction = UP;
-				m_CanDirectionInput = false;
+				m_direction = UP;
+				m_canDirectionInput = false;
 				return;
 			}
 		}
 		if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_DOWN))
 		{
-			if (m_CanMoveDirection.IsDown)
+			if (m_canMoveDirection.IsDown)
 			{
-				m_Direction = DOWN;
-				m_CanDirectionInput = false;
+				m_direction = DOWN;
+				m_canDirectionInput = false;
 				return;
 			}
 		}
-		m_Direction = STAYING;
+		m_direction = STAYING;
 	}
 
 	void Player::DirectionStatusMotion()
 	{
-		if (m_Direction == STAYING) return;
+		if (m_direction == STAYING) return;
 		static float variationValue = 0.f;
-		switch (m_Direction)
+		switch (m_direction)
 		{
 		case LEFT:
-				m_CenterPos.x -= m_MoveSpeed;
+			m_centerPos.x -= m_MoveSpeed;
 			break;
 		case RIGHT:
-				m_CenterPos.x += m_MoveSpeed;
+			m_centerPos.x += m_MoveSpeed;
 			break;
 		case UP:
-				m_CenterPos.y -= m_MoveSpeed;
+			m_centerPos.y -= m_MoveSpeed;
 			break;
 		case DOWN:
-				m_CenterPos.y += m_MoveSpeed;
+			m_centerPos.y += m_MoveSpeed;
 			break;
 		}
 		variationValue += m_MoveSpeed;
 		if (variationValue == m_SquaresSize)
 		{
-			m_OnAutotomy = true;
+			m_isAutotomy = true;
 			variationValue = 0.f;
-			m_CanDirectionInput = true;
+			m_canDirectionInput = true;
 		}
 	}
 

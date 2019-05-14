@@ -10,15 +10,13 @@ namespace deepseestars
 
 		if (m_pPlayer->GetIsHideState())
 		{
-			D3DXVECTOR2 playerHideStateCamera(0.f, 0.f);
-			playerHideStateCamera.y = m_SquaresSize;
-			m_pCamera->Update();
-			//m_pCamera->Update(m_pPlayer->GetCenterPos() + playerHideStateCamera);
+			m_pCamera->SetIsPlayerHide(true);
 		}
 		if (!m_pPlayer->GetIsHideState())
 		{
-			m_pCamera->Update();
+			m_pCamera->SetIsPlayerHide(false);
 		}
+		m_pCamera->Update();
 
 		ObjectCollision();
 		CanPlayerActionJudg();
@@ -35,8 +33,11 @@ namespace deepseestars
 	void World::ObjectCollision()
 	{
 		D3DXVECTOR2 playerCenterBuf;
-		playerCenterBuf.x = (m_SquaresSize * m_pPlayer->m_row) + m_SquaresSize / 2;
-		playerCenterBuf.y = (m_SquaresSize * m_pPlayer->m_colunm)  + m_SquaresSize / 2;
+		playerCenterBuf = m_pPlayer->GetCenterPos();
+		if (m_pPlayer->GetIsHideState())
+		{
+			playerCenterBuf.y = playerCenterBuf.y + m_SquaresSize;
+		}
 		m_pPlayer->SetCenterPos(playerCenterBuf);
 
 		//LEFT
@@ -62,12 +63,12 @@ namespace deepseestars
 		{
 			for (auto& stagePos : m_pStage->m_blockCellPos)
 			{
-				if (stagePos->m_BlockType == 4)
+				if (stagePos->m_blockType == 4)
 				{
 
 				}
-				if (stagePos->m_BlockType == 0) continue;
-				if ((stagePos->m_BlockCenterPos.x != m_PlayerGirthCenterPos[i].x) || (stagePos->m_BlockCenterPos.y != m_PlayerGirthCenterPos[i].y)) continue;
+				if (stagePos->m_blockType == 0) continue;
+				if ((stagePos->m_blockCenterPos.x != m_PlayerGirthCenterPos[i].x) || (stagePos->m_blockCenterPos.y != m_PlayerGirthCenterPos[i].y)) continue;
 				if (i == LEFT)
 				{
 					m_PlayerDirection.IsLeft = false;
@@ -104,8 +105,8 @@ namespace deepseestars
 
 		for (auto& stageInfo : m_pStage->m_blockCellPos)
 		{
-			if ((stageInfo->m_BlockCenterPos.x != m_PlayerGirthCenterPos[2].x) || (stageInfo->m_BlockCenterPos.y != m_PlayerGirthCenterPos[2].y)) continue;
-			if (stageInfo->m_BlockType != HIDE_BLOCK) continue;
+			if ((stageInfo->m_blockCenterPos.x != m_PlayerGirthCenterPos[2].x) || (stageInfo->m_blockCenterPos.y != m_PlayerGirthCenterPos[2].y)) continue;
+			if (stageInfo->m_blockType != HIDE_BLOCK) continue;
 			m_PlayerAction.IsHide = true;
 		}
 		m_PlayerAction.IsAvatar = true;

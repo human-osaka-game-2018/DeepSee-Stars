@@ -10,7 +10,7 @@ namespace deepseestars
 
 	void BlockCell::Render()
 	{
-		D3DXVECTOR2 centerPosbBuf = m_BlockCenterPos + m_differencetoStartingPoint;
+		D3DXVECTOR2 centerPosbBuf = m_blockCenterPos + m_differencetoStartingPoint;
 
 		D3DXVECTOR2 pos = { centerPosbBuf.x ,centerPosbBuf.y };
 		D3DXVECTOR2 scale = { BLOCKSIZE ,BLOCKSIZE };
@@ -20,7 +20,7 @@ namespace deepseestars
 
 		if (-BLOCKSIZE <= centerPosbBuf.x && centerPosbBuf.x <= m_vertices.GetDisplaySize().x + BLOCKSIZE && -BLOCKSIZE <= centerPosbBuf.y && centerPosbBuf.y <= m_vertices.GetDisplaySize().y + BLOCKSIZE)
 		{
-			switch (m_BlockType)
+			switch (m_blockType)
 			{
 			case FLOOR:
 				m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_pTextureKey));

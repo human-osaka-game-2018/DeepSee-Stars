@@ -21,7 +21,6 @@ namespace deepseestars
 	{
 		for (auto& blockCellData : m_blockCellPos)
 		{
-			int a = m_differencetoStartingPoint.x;
 			blockCellData->Render();
 		}
 	}

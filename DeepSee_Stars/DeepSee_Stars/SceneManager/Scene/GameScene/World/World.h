@@ -70,7 +70,7 @@ namespace deepseestars
 		float m_WorldScrollX = 0.f;
 		float m_WorldScrollY = 0.f;
 
-		const float m_SquaresSize = 100.f;
+		const float m_SquaresSize = 50.f;
 	};
 }
 
