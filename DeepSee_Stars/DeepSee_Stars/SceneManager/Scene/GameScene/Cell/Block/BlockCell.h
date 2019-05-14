@@ -16,13 +16,13 @@ namespace deepseestars
 	};
 
 
-	const float BLOCKSIZE = 100.f;
+	const float BLOCKSIZE = 50.f;
 
 	class BlockCell : public GameObject
 	{
 	public:
 		BlockCell(const D3DXVECTOR2& differencetoStartingPoint,D3DXVECTOR2 blockPos, TYPE blockType) :
-			GameObject(_T("Block"), _T("2DTexture/Game/Floor.png")), m_differencetoStartingPoint(differencetoStartingPoint), m_BlockCenterPos(blockPos), m_BlockType(blockType)
+			GameObject(_T("Block"), _T("2DTexture/Game/Floor.png")), m_differencetoStartingPoint(differencetoStartingPoint), m_blockCenterPos(blockPos), m_blockType(blockType)
 		{
 			Init();
 		}
@@ -31,6 +31,7 @@ namespace deepseestars
 
 		void Init()
 		{
+			m_rGameBaseMaker.CreateTex(m_pTextureKey, m_pFileName);
 			m_rGameBaseMaker.CreateTex(m_pTextureKey, m_pFileName);
 		}
 
@@ -43,11 +44,11 @@ namespace deepseestars
 			m_rGameBaseMaker.ReleaseAllTex();
 		}
 
-		D3DXVECTOR2 m_BlockCenterPos;
-		TYPE m_BlockType;
+		D3DXVECTOR2 m_blockCenterPos;
+		TYPE m_blockType;
 	private:
 		const D3DXVECTOR2& m_differencetoStartingPoint;
-
+		const TCHAR* m_block[PlAYER_RECOVERY_OBJECT + 1];
 	};
 }
 

@@ -50,11 +50,11 @@ namespace deepseestars
 			m_row = 14;
 			m_colunm = 8;
 
-			m_CanDirectionInput = true;
-			m_IsHideState = false;
-			m_OnAutotomy = true;
+			m_canDirectionInput = true;
+			m_isHideState = false;
+			m_isAutotomy = true;
 
-			m_CenterPos = { (m_SquaresSize * m_row) + (m_SquaresSize / 2) ,(m_SquaresSize * m_colunm) + (m_SquaresSize / 2) };
+			m_centerPos = { (m_SquaresSize * m_row) + (m_SquaresSize / 2) ,(m_SquaresSize * m_colunm) + (m_SquaresSize / 2) };
 		}
 
 
@@ -73,55 +73,55 @@ namespace deepseestars
 
 		D3DXVECTOR2 GetCenterPos()
 		{
-			return m_CenterPos;
+			return m_centerPos;
 		}
 		void SetCenterPos(D3DXVECTOR2 centerPos)
 		{
-			m_CenterPos = centerPos;
+			m_centerPos = centerPos;
 		}
 
 		void SetCanMoveDirection(DIRECTION canMove)
 		{
-			m_CanMoveDirection = canMove;
+			m_canMoveDirection = canMove;
 		}
 
 		void SetCanAction(ACTION canAction)
 		{
-			m_CanAction = canAction;
+			m_canAction = canAction;
 		}
 
 		bool GetIsHideState()
 		{
-			return m_IsHideState;
+			return m_isHideState;
 		}
 
 		int m_row = 14;
 		int m_colunm = 8;
 	private:
 		const D3DXVECTOR2& m_differencetoStartingPoint;
-		std::vector<BaseAction*> m_pAction;
+		std::vector<BaseAction*> m_paction;
 
-		const float m_TextureSizeX = 100.f;
-		const float m_TextureSizeY = 100.f;
-		const float m_SquaresSize = 100.f;
+		const float m_TextureSizeX = 50.f;
+		const float m_TextureSizeY = 50.f;
+		const float m_SquaresSize = 50.f;
 		const float m_MoveSpeed = 10.f;
 	
 		//CustomVertex m_Player[4];
 
 		int m_Life;
 
-		DIRECTION m_CanMoveDirection;
-		ACTION m_CanAction;
-		bool m_OnAutotomy;
+		DIRECTION m_canMoveDirection;
+		ACTION m_canAction;
+		bool m_isAutotomy;
 
 	
-		D3DXVECTOR2 m_CenterPos;
-		D3DXVECTOR2 m_CenterPosBuf;
-		D3DXVECTOR2 m_PrevPlayerCenterPos;
-		int m_Direction;
+		D3DXVECTOR2 m_centerPos;
+		D3DXVECTOR2 m_centerPosBuf;
+		D3DXVECTOR2 m_prevPlayerCenterPos;
+		int m_direction;
 		//方向の入力できるか？
-		bool m_CanDirectionInput;
-		bool m_IsHideState;
+		bool m_canDirectionInput;
+		bool m_isHideState;
 
 		void Movement();
 		void Action();
