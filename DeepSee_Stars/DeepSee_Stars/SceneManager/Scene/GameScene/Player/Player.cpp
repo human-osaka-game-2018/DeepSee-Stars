@@ -13,7 +13,7 @@ namespace deepseestars
 
 	void Player::Update()
 	{
-		Move();
+		UpdateAction();
 		GameOverandClearConfirmation();
 	}
 
@@ -35,15 +35,18 @@ namespace deepseestars
 		m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_pTextureKey));
 	}
 
-	void Player::Move()
+	void Player::UpdateAction()
 	{
 		if (m_canDirectionInput)
 		{
-			DirectionStatusCheck();
+			CheckDirectionStatus();
 		}
+
 		Action();
+
 		if (m_isHideState) return;
-		DirectionStatusMotion();
+
+		Move();
 	}
 
 	void Player::Action()
@@ -104,7 +107,7 @@ namespace deepseestars
 		}
 	}
 
-	void Player::DirectionStatusCheck()
+	void Player::CheckDirectionStatus()
 	{
 		if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_LEFT))
 		{
@@ -145,7 +148,7 @@ namespace deepseestars
 		m_direction = STAYING;
 	}
 
-	void Player::DirectionStatusMotion()
+	void Player::Move()
 	{
 		if (m_direction == STAYING) return;
 		switch (m_direction)
@@ -167,6 +170,7 @@ namespace deepseestars
 		m_variationValue += m_MoveSpeed;
 
 		if (m_variationValue != m_CellSize) return;
+
 		m_isAutotomyState = true;
 		m_variationValue = 0.f;
 		m_canDirectionInput = true;

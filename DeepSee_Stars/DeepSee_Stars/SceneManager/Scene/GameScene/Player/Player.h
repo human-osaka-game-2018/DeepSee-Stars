@@ -128,13 +128,13 @@ namespace deepseestars
 		int m_colunm = 8;
 		//
 
-		void Move();
+		void UpdateAction();
 		void Action();
 		void Hide();
 		void Autotomy();
 		void Avatar();
-		void DirectionStatusCheck();
-		void DirectionStatusMotion();
+		void CheckDirectionStatus();
+		void Move();
 	};
 }
 #endif // PLAYER_H
