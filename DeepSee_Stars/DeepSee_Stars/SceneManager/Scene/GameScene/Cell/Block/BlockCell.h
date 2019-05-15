@@ -19,8 +19,8 @@ namespace deepseestars
 	class BlockCell : public GameObject
 	{
 	public:
-		BlockCell(const D3DXVECTOR2& distanceToOrigin,D3DXVECTOR2 blockPos, TYPE blockType, const float& blockSize) :
-			GameObject(_T("Block"), _T("2DTexture/Game/Floor.png")), m_distanceToOrigin(distanceToOrigin), m_center(blockPos), m_type(blockType),m_blockSize(blockSize)
+		BlockCell(const D3DXVECTOR2& distanceToOrigin,D3DXVECTOR2 blockPos, TYPE blockType, const float& blockSize,const TCHAR* TextureKey) :
+			GameObject(TextureKey), m_distanceToOrigin(distanceToOrigin), m_center(blockPos), m_type(blockType),m_blockSize(blockSize)
 		{
 			Init();
 		}
@@ -29,7 +29,7 @@ namespace deepseestars
 
 		void Init()
 		{
-			m_rGameBaseMaker.CreateTex(m_pTextureKey, m_pFileName);
+			
 		}
 
 		void Update();
@@ -50,7 +50,6 @@ namespace deepseestars
 			m_center = center;
 		}
 
-
 		TYPE Gettype()
 		{
 			return m_type;
@@ -65,7 +64,7 @@ namespace deepseestars
 
 		D3DXVECTOR2 m_center;
 		TYPE m_type;
-
+		bool m_isWithinRenderArea = false;
 	};
 }
 

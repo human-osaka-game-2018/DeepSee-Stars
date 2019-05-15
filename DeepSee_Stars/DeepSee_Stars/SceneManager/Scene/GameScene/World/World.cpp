@@ -5,21 +5,14 @@ namespace deepseestars
 
 	void World::Update()
 	{
-		m_distanceToOrigin = m_pCamera->GetdistanceToOrigin();
+		m_distanceToOrigin = m_pCamera->GetDistanceToOrigin();
 		m_playerCenterPos = m_pPlayer->GetCenterPos();
-
-		if (m_pPlayer->GetIsHideState())
-		{
-			m_pCamera->SetIsPlayerHide(true);
-		}
-		if (!m_pPlayer->GetIsHideState())
-		{
-			m_pCamera->SetIsPlayerHide(false);
-		}
+		m_pCamera->SetIsPlayerHide(m_pPlayer->GetIsHideState());
+		
 		m_pCamera->Update();
 
 		ObjectCollision();
-		CanPlayerActionJudg();
+		JudgePlayerAction();
 		m_pStage->Update();
 		m_pPlayer->Update();
 	}
@@ -36,28 +29,25 @@ namespace deepseestars
 		playerCenterBuf = m_pPlayer->GetCenterPos();
 		if (m_pPlayer->GetIsHideState())
 		{
-			playerCenterBuf.y = playerCenterBuf.y + m_SquaresSize;
+			playerCenterBuf.y = playerCenterBuf.y + m_CellSize;
 		}
 		m_pPlayer->SetCenterPos(playerCenterBuf);
 
 		//LEFT
-		m_PlayerGirthCenter[LEFT] = { m_pPlayer->GetCenterPos().x - m_SquaresSize,m_pPlayer->GetCenterPos().y };
+		m_PlayerGirthCenter[LEFT] = { m_pPlayer->GetCenterPos().x - m_CellSize,m_pPlayer->GetCenterPos().y };
 		//RIGHT
-		m_PlayerGirthCenter[RIGHT] = { m_pPlayer->GetCenterPos().x + m_SquaresSize,m_pPlayer->GetCenterPos().y };
+		m_PlayerGirthCenter[RIGHT] = { m_pPlayer->GetCenterPos().x + m_CellSize,m_pPlayer->GetCenterPos().y };
 		//UP
-		m_PlayerGirthCenter[UP] = { m_pPlayer->GetCenterPos().x,m_pPlayer->GetCenterPos().y - m_SquaresSize };
+		m_PlayerGirthCenter[UP] = { m_pPlayer->GetCenterPos().x,m_pPlayer->GetCenterPos().y - m_CellSize };
 		//DOWN
-		m_PlayerGirthCenter[DOWN] = { m_pPlayer->GetCenterPos().x,m_pPlayer->GetCenterPos().y + m_SquaresSize };
+		m_PlayerGirthCenter[DOWN] = { m_pPlayer->GetCenterPos().x,m_pPlayer->GetCenterPos().y + m_CellSize };
 
-		m_CanPlayerMoveJudg();
+		JudgePlayerMove();
 	}
 
-	void World::m_CanPlayerMoveJudg()
+	void World::JudgePlayerMove()
 	{
-		m_PlayerDirection.IsLeft = true;
-		m_PlayerDirection.IsRight = true;
-		m_PlayerDirection.IsUp = true;
-		m_PlayerDirection.IsDown = true;
+		Movements playerDirection;
 
 		for (int i = 0;i < 4;i++)
 		{
@@ -65,35 +55,31 @@ namespace deepseestars
 			{
 				if (stagePos->Gettype() == 0) continue;
 				if ((stagePos->Getcenter().x != m_PlayerGirthCenter[i].x) || (stagePos->Getcenter().y != m_PlayerGirthCenter[i].y)) continue;
-				if (i == LEFT)
+				switch (i)
 				{
-					m_PlayerDirection.IsLeft = false;
-				}
-				if (i == RIGHT)
-				{
-					m_PlayerDirection.IsRight = false;
-				}
-				if (i == UP)
-				{
-					m_PlayerDirection.IsUp = false;
-				}
-				if (i == DOWN)
-				{
-					m_PlayerDirection.IsDown = false;
+				case LEFT:
+					playerDirection.CanMoveLeft = false;
+					break;
+				case RIGHT:
+					playerDirection.CanMoveRight = false;
+					break;
+				case UP:
+					playerDirection.CanMoveUp = false;
+					break;
+				case DOWN:
+					playerDirection.CanMoveDown = false;
+					break;
 				}
 			}
 		}
 		if (m_pCamera->GetIsCenterReset())
 		{
-			m_PlayerDirection.IsLeft = false;
-			m_PlayerDirection.IsRight = false;
-			m_PlayerDirection.IsUp = false;
-			m_PlayerDirection.IsDown = false;
+			playerDirection.Freeze();
 		}
-		m_pPlayer->SetCanMoveDirection(m_PlayerDirection);
+		m_pPlayer->SetCanMoveDirection(playerDirection);
 	}
 
-	void World::CanPlayerActionJudg()
+	void World::JudgePlayerAction()
 	{
 		m_PlayerAction.IsHide = false;
 		m_PlayerAction.IsAutotomy = false;

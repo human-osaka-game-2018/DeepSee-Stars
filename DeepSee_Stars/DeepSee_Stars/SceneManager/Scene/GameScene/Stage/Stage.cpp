@@ -25,32 +25,32 @@ namespace deepseestars
 		}
 	}
 
-	void Stage::BlockCreate()
+	void Stage::CreateBlock()
 	{
 		for (int culunm = 0; culunm < m_colunm;culunm++)
 		{
 			for (int row = 0;row < m_row;row++)
 			{
 				int typeSelected = m_stageSize[culunm][row];
-				float blockCenterPosY = (culunm * m_squaresSize) + m_squaresSize / 2;
-				float blockCenterPosX = (row * m_squaresSize) + m_squaresSize / 2;
+				float blockCenterPosY = (culunm * m_CellSize) + m_CellSize / 2;
+				float blockCenterPosX = (row * m_CellSize) + m_CellSize / 2;
 				D3DXVECTOR2 buf = { blockCenterPosX,blockCenterPosY };
 				switch (typeSelected)
 				{
 				case FLOOR:
-					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, FLOOR, m_squaresSize));
+					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, FLOOR, m_CellSize, m_blockTextureKey[FLOOR]));
 					break;
 				case WHITE_BLOCK:
-					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, WHITE_BLOCK, m_squaresSize));
+					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, WHITE_BLOCK, m_CellSize, m_blockTextureKey[WHITE_BLOCK]));
 					break;
 				case BLACK_BLOCK:
-					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, BLACK_BLOCK, m_squaresSize));
+					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, BLACK_BLOCK, m_CellSize, m_blockTextureKey[BLACK_BLOCK]));
 					break;
 				case HIDE_BLOCK:
-					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, HIDE_BLOCK, m_squaresSize));
+					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, HIDE_BLOCK, m_CellSize, m_blockTextureKey[HIDE_BLOCK]));
 					break;
 				case PlAYER_RECOVERY_OBJECT:
-					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, PlAYER_RECOVERY_OBJECT, m_squaresSize));
+					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, PlAYER_RECOVERY_OBJECT, m_CellSize, m_blockTextureKey[PlAYER_RECOVERY_OBJECT]));
 					break;
 				}
 			}
@@ -68,8 +68,7 @@ namespace deepseestars
 		{
 			replace(str.begin(), str.end(), ',', ' ');
 			stringstream staggStream(str);
-			static bool flag = true;
-			if (flag == true)
+			if (m_isFirstLine == true)
 			{
 				staggStream >> m_row;
 				staggStream >> m_colunm;
@@ -78,7 +77,7 @@ namespace deepseestars
 				{
 					m_stageSize[j].resize(m_row);
 				}
-				flag = false;
+				m_isFirstLine = false;
 				continue;
 			}
 
