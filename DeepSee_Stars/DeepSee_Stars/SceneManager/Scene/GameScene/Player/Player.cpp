@@ -64,30 +64,32 @@ namespace deepseestars
 
 	void Player::Hide()
 	{
-		if (m_canAction.IsHide)
+		if (!m_action.CanHide) return;
+
+		if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_Z))
 		{
-			if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_Z))
-			{
 			m_center.y = m_center.y - m_CellSize;
-				m_isHideState = true;
-				m_direction = STAYING;
-			}
-			else
-			{
-				if (!m_isHideState)return;
-				m_isHideState = false;
-				m_canDirectionInput = true;
-			}
+			m_isHideState = true;
+			m_direction = STAYING;
+		}
+		else
+		{
+			if (!m_isHideState)return;
+			m_isHideState = false;
+			m_canDirectionInput = true;
 		}
 	}
 
 	void Player::Autotomy()
 	{
-		if (!m_canAction.IsAutotomy) return;
+		if (!m_action.CanAutotomy) return;
+
 		if (m_rGameBaseMaker.IsPressedToKeyboard(DIK_X))
 		{
 			if (!m_isAutotomyState) return;
+
 			if (m_Life < 0) return;
+
 			m_Life -= 1;
 			m_isAutotomyState = false;
 			//m_pAction.push_back(new AutotomyAction(m_CenterPos));
@@ -96,7 +98,7 @@ namespace deepseestars
 
 	void Player::Avatar()
 	{
-		if (m_canAction.IsAvatar)
+		if (m_action.CanAvatar)
 		{
 			
 		}
@@ -106,7 +108,7 @@ namespace deepseestars
 	{
 		if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_LEFT))
 		{
-			if (m_canMoveDirection.CanMoveLeft)
+			if (m_movements.CanMoveLeft)
 			{
 				m_direction = LEFT;
 				m_canDirectionInput = false;
@@ -115,7 +117,7 @@ namespace deepseestars
 		}
 		if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_RIGHT))
 		{
-			if (m_canMoveDirection.CanMoveRight)
+			if (m_movements.CanMoveRight)
 			{
 				m_direction = RIGHT;
 				m_canDirectionInput = false;
@@ -124,7 +126,7 @@ namespace deepseestars
 		}
 		if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_UP))
 		{
-			if (m_canMoveDirection.CanMoveUp)
+			if (m_movements.CanMoveUp)
 			{
 				m_direction = UP;
 				m_canDirectionInput = false;
@@ -133,7 +135,7 @@ namespace deepseestars
 		}
 		if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_DOWN))
 		{
-			if (m_canMoveDirection.CanMoveDown)
+			if (m_movements.CanMoveDown)
 			{
 				m_direction = DOWN;
 				m_canDirectionInput = false;

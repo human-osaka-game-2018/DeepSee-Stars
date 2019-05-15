@@ -30,36 +30,35 @@ namespace deepseestars
 
 	void Camera::KeyOperation()
 	{
-		if (!m_isCenterReset)
-		{
-			if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_A))
-			{
-				if (m_operationValue.x >= m_operationArea.x)return;
-				m_operationValue.x += m_operationSpeed;
-			}
-			if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_D))
-			{
-				if (m_operationValue.x <= -m_operationArea.x)return;
-				m_operationValue.x -= m_operationSpeed;
-			}
-			if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_W))
-			{
-				if (m_operationValue.y >= m_operationArea.y)return;
-				m_operationValue.y += m_operationSpeed;
-			}
-			if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_S))
-			{
-				if (m_operationValue.y <= -m_operationArea.y)return;
-				m_operationValue.y -= m_operationSpeed;
-			}
-		}
-
-		if (m_rGameBaseMaker.IsPressedToKeyboard(DIK_RIGHT)||
+		if (m_rGameBaseMaker.IsPressedToKeyboard(DIK_RIGHT) ||
 			m_rGameBaseMaker.IsPressedToKeyboard(DIK_LEFT) ||
-			m_rGameBaseMaker.IsPressedToKeyboard(DIK_UP)|| 
+			m_rGameBaseMaker.IsPressedToKeyboard(DIK_UP) ||
 			m_rGameBaseMaker.IsPressedToKeyboard(DIK_DOWN))
 		{
 			m_isCenterReset = true;
+		}
+
+		if (m_isCenterReset) return;
+
+		if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_A))
+		{
+			if (m_operationValue.x >= m_operationArea.x)return;
+			m_operationValue.x += m_operationSpeed;
+		}
+		if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_D))
+		{
+			if (m_operationValue.x <= -m_operationArea.x)return;
+			m_operationValue.x -= m_operationSpeed;
+		}
+		if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_W))
+		{
+			if (m_operationValue.y >= m_operationArea.y)return;
+			m_operationValue.y += m_operationSpeed;
+		}
+		if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_S))
+		{
+			if (m_operationValue.y <= -m_operationArea.y)return;
+			m_operationValue.y -= m_operationSpeed;
 		}
 	}
 

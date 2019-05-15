@@ -64,11 +64,13 @@ namespace deepseestars
 		string str;
 
 		int colunm = 0;
+		bool isFirstLine = true;
+
 		while (getline(ifs, str))
 		{
 			replace(str.begin(), str.end(), ',', ' ');
 			stringstream staggStream(str);
-			if (m_isFirstLine == true)
+			if (isFirstLine == true)
 			{
 				staggStream >> m_row;
 				staggStream >> m_colunm;
@@ -77,7 +79,8 @@ namespace deepseestars
 				{
 					m_stageSize[j].resize(m_row);
 				}
-				m_isFirstLine = false;
+
+				isFirstLine = false;
 				continue;
 			}
 

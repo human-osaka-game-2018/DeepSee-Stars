@@ -68,7 +68,6 @@ namespace deepseestars
 
 		int m_row;
 		int m_colunm;
-		bool m_isFirstLine = true;
 
 		std::vector<BlockCell*> m_blockCellPos;
 		std::vector< std::vector<int> > m_stageSize;

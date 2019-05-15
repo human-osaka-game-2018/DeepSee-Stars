@@ -49,7 +49,7 @@ namespace deepseestars
 	{
 		Movements playerDirection;
 
-		for (int i = 0;i < 4;i++)
+		for (int i = 0;i <= DOWN;i++)
 		{
 			for (auto& stagePos : m_pStage->GetblockCellPos())
 			{
@@ -81,18 +81,18 @@ namespace deepseestars
 
 	void World::JudgePlayerAction()
 	{
-		m_PlayerAction.IsHide = false;
-		m_PlayerAction.IsAutotomy = false;
-		m_PlayerAction.IsAvatar = false;
+		m_PlayerAction.CanHide = false;
+		m_PlayerAction.CanAutotomy = false;
+		m_PlayerAction.CanAvatar = false;
 
 		for (auto& stageInfo : m_pStage->GetblockCellPos())
 		{
 			if ((stageInfo->Getcenter().x != m_PlayerGirthCenter[2].x) || (stageInfo->Getcenter().y != m_PlayerGirthCenter[2].y)) continue;
 			if (stageInfo->Gettype() != HIDE_BLOCK) continue;
-			m_PlayerAction.IsHide = true;
+			m_PlayerAction.CanHide = true;
 		}
-		m_PlayerAction.IsAvatar = true;
-		m_PlayerAction.IsAutotomy = true;
+		m_PlayerAction.CanAvatar = true;
+		m_PlayerAction.CanAutotomy = true;
 		m_pPlayer->SetCanAction(m_PlayerAction);
 	}
 }
