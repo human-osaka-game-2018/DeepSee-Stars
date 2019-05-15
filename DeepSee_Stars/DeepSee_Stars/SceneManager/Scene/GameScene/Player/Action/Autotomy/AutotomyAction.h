@@ -12,7 +12,7 @@
 //	void Render();
 //
 //private:
-//	D3DXVECTOR2 m_AutotomyCenterPos;
+//	D3DXVECTOR2 m_center;
 //	CustomVertex m_Autotomy[4];
 //	const float m_SquaresSize = 100.f;
 //};

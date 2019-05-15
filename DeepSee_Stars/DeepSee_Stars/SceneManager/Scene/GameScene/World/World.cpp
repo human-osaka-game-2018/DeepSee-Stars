@@ -5,8 +5,8 @@ namespace deepseestars
 
 	void World::Update()
 	{
-		m_differencetoStartingPoint = m_pCamera->GetUpperLeftWithTheDifference();
-		m_playerPos = m_pPlayer->GetCenterPos();
+		m_distanceToOrigin = m_pCamera->GetdistanceToOrigin();
+		m_playerCenterPos = m_pPlayer->GetCenterPos();
 
 		if (m_pPlayer->GetIsHideState())
 		{
@@ -41,13 +41,13 @@ namespace deepseestars
 		m_pPlayer->SetCenterPos(playerCenterBuf);
 
 		//LEFT
-		m_PlayerGirthCenterPos[LEFT] = { m_pPlayer->GetCenterPos().x - m_SquaresSize,m_pPlayer->GetCenterPos().y };
+		m_PlayerGirthCenter[LEFT] = { m_pPlayer->GetCenterPos().x - m_SquaresSize,m_pPlayer->GetCenterPos().y };
 		//RIGHT
-		m_PlayerGirthCenterPos[RIGHT] = { m_pPlayer->GetCenterPos().x + m_SquaresSize,m_pPlayer->GetCenterPos().y };
+		m_PlayerGirthCenter[RIGHT] = { m_pPlayer->GetCenterPos().x + m_SquaresSize,m_pPlayer->GetCenterPos().y };
 		//UP
-		m_PlayerGirthCenterPos[UP] = { m_pPlayer->GetCenterPos().x,m_pPlayer->GetCenterPos().y - m_SquaresSize };
+		m_PlayerGirthCenter[UP] = { m_pPlayer->GetCenterPos().x,m_pPlayer->GetCenterPos().y - m_SquaresSize };
 		//DOWN
-		m_PlayerGirthCenterPos[DOWN] = { m_pPlayer->GetCenterPos().x,m_pPlayer->GetCenterPos().y + m_SquaresSize };
+		m_PlayerGirthCenter[DOWN] = { m_pPlayer->GetCenterPos().x,m_pPlayer->GetCenterPos().y + m_SquaresSize };
 
 		m_CanPlayerMoveJudg();
 	}
@@ -61,14 +61,10 @@ namespace deepseestars
 
 		for (int i = 0;i < 4;i++)
 		{
-			for (auto& stagePos : m_pStage->m_blockCellPos)
+			for (auto& stagePos : m_pStage->GetblockCellPos())
 			{
-				if (stagePos->m_blockType == 4)
-				{
-
-				}
-				if (stagePos->m_blockType == 0) continue;
-				if ((stagePos->m_blockCenterPos.x != m_PlayerGirthCenterPos[i].x) || (stagePos->m_blockCenterPos.y != m_PlayerGirthCenterPos[i].y)) continue;
+				if (stagePos->Gettype() == 0) continue;
+				if ((stagePos->Getcenter().x != m_PlayerGirthCenter[i].x) || (stagePos->Getcenter().y != m_PlayerGirthCenter[i].y)) continue;
 				if (i == LEFT)
 				{
 					m_PlayerDirection.IsLeft = false;
@@ -87,7 +83,7 @@ namespace deepseestars
 				}
 			}
 		}
-		if (m_pCamera->GetIsKeyOperation())
+		if (m_pCamera->GetIsCenterReset())
 		{
 			m_PlayerDirection.IsLeft = false;
 			m_PlayerDirection.IsRight = false;
@@ -103,10 +99,10 @@ namespace deepseestars
 		m_PlayerAction.IsAutotomy = false;
 		m_PlayerAction.IsAvatar = false;
 
-		for (auto& stageInfo : m_pStage->m_blockCellPos)
+		for (auto& stageInfo : m_pStage->GetblockCellPos())
 		{
-			if ((stageInfo->m_blockCenterPos.x != m_PlayerGirthCenterPos[2].x) || (stageInfo->m_blockCenterPos.y != m_PlayerGirthCenterPos[2].y)) continue;
-			if (stageInfo->m_blockType != HIDE_BLOCK) continue;
+			if ((stageInfo->Getcenter().x != m_PlayerGirthCenter[2].x) || (stageInfo->Getcenter().y != m_PlayerGirthCenter[2].y)) continue;
+			if (stageInfo->Gettype() != HIDE_BLOCK) continue;
 			m_PlayerAction.IsHide = true;
 		}
 		m_PlayerAction.IsAvatar = true;

@@ -11,8 +11,8 @@ namespace deepseestars
 	class Stage : public GameObject
 	{
 	public:
-		Stage(const D3DXVECTOR2& differencetoStartingPoint) :
-			GameObject(_T(""), _T("")), m_differencetoStartingPoint(differencetoStartingPoint)
+		Stage(const D3DXVECTOR2& distanceToOrigin, const float& squaresSize) :
+			GameObject(),m_distanceToOrigin(distanceToOrigin), m_squaresSize(squaresSize)
 		{
 			Init();
 		}
@@ -34,16 +34,21 @@ namespace deepseestars
 		void LoadStageDate(const char* fileName);
 		void BlockCreate();
 
-
-		std::vector<BlockCell*> m_blockCellPos;
+		std::vector<BlockCell*> GetblockCellPos()
+		{
+			return m_blockCellPos;
+		}
 	private:
-
-		const D3DXVECTOR2& m_differencetoStartingPoint;
+		const float& m_squaresSize;
+		const D3DXVECTOR2& m_distanceToOrigin;
+		//const TCHAR* m_blockTextureKey[PlAYER_RECOVERY_OBJECT + 1];
+		//const TCHAR* m_blockTextureName[PlAYER_RECOVERY_OBJECT + 1];
 
 		int m_row;
 		int m_colunm;
 
-		std::vector< std::vector<int> > m_stageData;
+		std::vector<BlockCell*> m_blockCellPos;
+		std::vector< std::vector<int> > m_stageSize;
 
 	};
 

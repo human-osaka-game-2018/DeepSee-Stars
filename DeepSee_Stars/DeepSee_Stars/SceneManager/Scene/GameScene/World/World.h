@@ -16,10 +16,10 @@ namespace deepseestars
 			GameObject(_T("Logo"), _T("2DTexture/Title/TitleLogo.png"))
 		{
 			Init();
-			m_pCamera = new Camera(m_playerPos);
-			m_differencetoStartingPoint = m_pCamera->GetUpperLeftWithTheDifference();
-			m_pPlayer = new Player(m_differencetoStartingPoint);
-			m_pStage = new Stage(m_differencetoStartingPoint);
+			m_pCamera = new Camera(m_playerCenterPos, m_SquaresSize);
+			m_distanceToOrigin = m_pCamera->GetdistanceToOrigin();
+			m_pPlayer = new Player(m_distanceToOrigin, m_SquaresSize);
+			m_pStage = new Stage(m_distanceToOrigin, m_SquaresSize);
 		}
 
 		~World()
@@ -56,17 +56,17 @@ namespace deepseestars
 
 
 	private:
-		D3DXVECTOR2 m_differencetoStartingPoint;
-		D3DXVECTOR2 m_playerPos;
+		D3DXVECTOR2 m_distanceToOrigin;
+		D3DXVECTOR2 m_playerCenterPos;
 
 		Camera* m_pCamera;
 		Player* m_pPlayer;
 		Stage*  m_pStage ;
 
-		D3DXVECTOR2 m_PlayerGirthCenterPos[4];
+		D3DXVECTOR2 m_PlayerGirthCenter[4];
 
-		DIRECTION m_PlayerDirection;
-		ACTION m_PlayerAction;
+		CanMoveDirection m_PlayerDirection;
+		CanAction m_PlayerAction;
 		float m_WorldScrollX = 0.f;
 		float m_WorldScrollY = 0.f;
 
