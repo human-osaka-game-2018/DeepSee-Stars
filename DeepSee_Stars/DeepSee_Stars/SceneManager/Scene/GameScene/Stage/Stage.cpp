@@ -31,26 +31,26 @@ namespace deepseestars
 		{
 			for (int row = 0;row < m_row;row++)
 			{
-				int typeSelected = m_stageData[culunm][row];
-				float blockCenterPosY = (culunm * BLOCKSIZE) + BLOCKSIZE / 2;
-				float blockCenterPosX = (row * BLOCKSIZE) + BLOCKSIZE / 2;
+				int typeSelected = m_stageSize[culunm][row];
+				float blockCenterPosY = (culunm * m_squaresSize) + m_squaresSize / 2;
+				float blockCenterPosX = (row * m_squaresSize) + m_squaresSize / 2;
 				D3DXVECTOR2 buf = { blockCenterPosX,blockCenterPosY };
 				switch (typeSelected)
 				{
 				case FLOOR:
-					m_blockCellPos.push_back(new BlockCell(m_differencetoStartingPoint,buf, FLOOR));
+					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, FLOOR, m_squaresSize));
 					break;
 				case WHITE_BLOCK:
-					m_blockCellPos.push_back(new BlockCell(m_differencetoStartingPoint,buf, WHITE_BLOCK));
+					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, WHITE_BLOCK, m_squaresSize));
 					break;
 				case BLACK_BLOCK:
-					m_blockCellPos.push_back(new BlockCell(m_differencetoStartingPoint,buf, BLACK_BLOCK));
+					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, BLACK_BLOCK, m_squaresSize));
 					break;
 				case HIDE_BLOCK:
-					m_blockCellPos.push_back(new BlockCell(m_differencetoStartingPoint,buf, HIDE_BLOCK));
+					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, HIDE_BLOCK, m_squaresSize));
 					break;
 				case PlAYER_RECOVERY_OBJECT:
-					m_blockCellPos.push_back(new BlockCell(m_differencetoStartingPoint,buf, PlAYER_RECOVERY_OBJECT));
+					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, PlAYER_RECOVERY_OBJECT, m_squaresSize));
 					break;
 				}
 			}
@@ -73,10 +73,10 @@ namespace deepseestars
 			{
 				staggStream >> m_row;
 				staggStream >> m_colunm;
-				m_stageData.resize(m_colunm);
+				m_stageSize.resize(m_colunm);
 				for (int j = 0; j < m_colunm; j++)
 				{
-					m_stageData[j].resize(m_row);
+					m_stageSize[j].resize(m_row);
 				}
 				flag = false;
 				continue;
@@ -84,7 +84,7 @@ namespace deepseestars
 
 			for (int row = 0;row < m_row;++row)
 			{
-				staggStream >> m_stageData[colunm][row];
+				staggStream >> m_stageSize[colunm][row];
 			}
 			colunm++;
 		}

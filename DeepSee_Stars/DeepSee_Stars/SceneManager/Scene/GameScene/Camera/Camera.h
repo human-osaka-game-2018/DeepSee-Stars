@@ -8,8 +8,8 @@ namespace deepseestars
 	class Camera : public GameObject
 	{
 	public:
-		Camera(const D3DXVECTOR2& playerPos) :
-			GameObject(_T("Logo"), _T("2DTexture/Game/Ayototomy.png")), m_playerPos(playerPos)
+		Camera(const D3DXVECTOR2& playerPos, const float& squaresSize) :
+			GameObject(_T("Logo"), _T("2DTexture/Game/Ayototomy.png")), m_playerPos(playerPos), m_squaresSize(squaresSize)
 		{
 			Init();
 		}
@@ -17,14 +17,12 @@ namespace deepseestars
 
 		void Init()
 		{
-			const float squaresSize = 50.f;
-		
-			m_center = { (squaresSize * 14) + (squaresSize / 2) ,(squaresSize * 8) + (squaresSize / 2) };
+			m_center = { (m_squaresSize * 14) + (m_squaresSize / 2) ,(m_squaresSize * 8) + (m_squaresSize / 2) };
 
-			m_upperLeft = { m_center.x - m_vertices.GetDisplaySize().x / 2 , m_center.y - m_vertices.GetDisplaySize().y / 2 };
-			m_lowerRight = { m_center.x + m_vertices.GetDisplaySize().x / 2 , m_center.y + m_vertices.GetDisplaySize().y / 2 };
+			m_upperLeftPos = { m_center.x - m_vertices.GetDisplaySize().x / 2 , m_center.y - m_vertices.GetDisplaySize().y / 2 };
+			m_lowerRightPos = { m_center.x + m_vertices.GetDisplaySize().x / 2 , m_center.y + m_vertices.GetDisplaySize().y / 2 };
 
-			m_differencetoStartingPoint = m_worldStartingPoint - m_upperLeft;
+			m_distanceToOrigin = m_worldOrigin - m_upperLeftPos;
 		}
 
 		void Update();
@@ -60,17 +58,17 @@ namespace deepseestars
 			m_center = center;
 		}
 
-		D3DXVECTOR2 GetUpperLeft()
+		D3DXVECTOR2 GetUpperLeftPos()
 		{
-			return m_upperLeft;
+			return m_upperLeftPos;
 		}
-		D3DXVECTOR2 GetLowerRight()
+		D3DXVECTOR2 GetLowerRightPos()
 		{
-			return m_lowerRight;
+			return m_lowerRightPos;
 		}
-		D3DXVECTOR2 GetUpperLeftWithTheDifference()
+		D3DXVECTOR2 GetdistanceToOrigin()
 		{
-			return m_differencetoStartingPoint;
+			return m_distanceToOrigin;
 		}
 
 		void SetIsPlayerHide(bool isPlayerHide)
@@ -78,23 +76,24 @@ namespace deepseestars
 			m_isPlayerHide = isPlayerHide;
 		}
 
-		bool GetIsKeyOperation()
+		bool GetIsCenterReset()
 		{
-			return m_isKeyOperation;
+			return m_isCenterReset;
 		}
 		
-	private:
+	private:;
+		const float& m_squaresSize;
 		const D3DXVECTOR2& m_playerPos;
 		D3DXVECTOR2 m_center;
 
 		D3DXVECTOR2 m_operationValue = { 0.f,0.f };
-		D3DXVECTOR2 m_worldStartingPoint = { 0.f,0.f };
-		D3DXVECTOR2 m_upperLeft;
-		D3DXVECTOR2 m_lowerRight;
-		D3DXVECTOR2 m_differencetoStartingPoint;
+		D3DXVECTOR2 m_worldOrigin = { 0.f,0.f };
+		D3DXVECTOR2 m_upperLeftPos;
+		D3DXVECTOR2 m_lowerRightPos;
+		D3DXVECTOR2 m_distanceToOrigin;
 
 		bool m_isPlayerHide = false;
-		bool m_isKeyOperation = false;
+		bool m_isCenterReset = false;
 		const float m_operationSpeed = 10.f;
 		const D3DXVECTOR2 m_operationArea = { 920.f,440.f };
 	};

@@ -16,7 +16,7 @@ namespace deepseestars
 		STAYING,
 	};
 
-	struct DIRECTION
+	struct CanMoveDirection
 	{
 		bool IsLeft;
 		bool IsRight;
@@ -24,7 +24,7 @@ namespace deepseestars
 		bool IsDown;
 	};
 
-	struct ACTION
+	struct CanAction
 	{
 		bool IsHide;
 		bool IsAutotomy;
@@ -34,8 +34,8 @@ namespace deepseestars
 	class Player : public GameObject
 	{
 	public:
-		Player(const D3DXVECTOR2& differencetoStartingPoint):
-			GameObject(_T("Player"), _T("2DTexture/Game/Player.png")), m_differencetoStartingPoint(differencetoStartingPoint)
+		Player(const D3DXVECTOR2& distanceToOrigin, const float& squaresSize):
+			GameObject(_T("Player"), _T("2DTexture/Game/Player.png")), m_distanceToOrigin(distanceToOrigin), m_squaresSize(squaresSize)
 		{
 			Init();
 		}
@@ -52,9 +52,9 @@ namespace deepseestars
 
 			m_canDirectionInput = true;
 			m_isHideState = false;
-			m_isAutotomy = true;
+			m_isAutotomyState = true;
 
-			m_centerPos = { (m_SquaresSize * m_row) + (m_SquaresSize / 2) ,(m_SquaresSize * m_colunm) + (m_SquaresSize / 2) };
+			m_center = { (m_squaresSize * m_row) + (m_squaresSize / 2) ,(m_squaresSize * m_colunm) + (m_squaresSize / 2) };
 		}
 
 
@@ -66,26 +66,22 @@ namespace deepseestars
 
 		void GameOverandClearConfirmation();
 
-		//CustomVertex* GetPlayer()
-		//{
-		//	return m_Player;
-		//}
 
 		D3DXVECTOR2 GetCenterPos()
 		{
-			return m_centerPos;
+			return m_center;
 		}
 		void SetCenterPos(D3DXVECTOR2 centerPos)
 		{
-			m_centerPos = centerPos;
+			m_center = centerPos;
 		}
 
-		void SetCanMoveDirection(DIRECTION canMove)
+		void SetCanMoveDirection(CanMoveDirection canMove)
 		{
 			m_canMoveDirection = canMove;
 		}
 
-		void SetCanAction(ACTION canAction)
+		void SetCanAction(CanAction canAction)
 		{
 			m_canAction = canAction;
 		}
@@ -95,33 +91,35 @@ namespace deepseestars
 			return m_isHideState;
 		}
 
-		int m_row = 14;
-		int m_colunm = 8;
 	private:
-		const D3DXVECTOR2& m_differencetoStartingPoint;
+		const float& m_squaresSize;
+		const D3DXVECTOR2& m_distanceToOrigin;
 		std::vector<BaseAction*> m_paction;
 
 		const float m_TextureSizeX = 50.f;
 		const float m_TextureSizeY = 50.f;
-		const float m_SquaresSize = 50.f;
 		const float m_MoveSpeed = 10.f;
 	
 		//CustomVertex m_Player[4];
 
 		int m_Life;
 
-		DIRECTION m_canMoveDirection;
-		ACTION m_canAction;
-		bool m_isAutotomy;
+		CanMoveDirection m_canMoveDirection;
+		CanAction m_canAction;
+		bool m_isAutotomyState;
 
 	
-		D3DXVECTOR2 m_centerPos;
-		D3DXVECTOR2 m_centerPosBuf;
-		D3DXVECTOR2 m_prevPlayerCenterPos;
+		D3DXVECTOR2 m_center;
+		D3DXVECTOR2 m_centerBuf;
+		D3DXVECTOR2 m_prevPlayerCenter;
 		int m_direction;
-		//方向の入力できるか？
 		bool m_canDirectionInput;
 		bool m_isHideState;
+
+		//キャラのスタート位置Stage読み込みの際スタート位置の番号の数字を渡す
+		int m_row = 14;
+		int m_colunm = 8;
+		//
 
 		void Movement();
 		void Action();

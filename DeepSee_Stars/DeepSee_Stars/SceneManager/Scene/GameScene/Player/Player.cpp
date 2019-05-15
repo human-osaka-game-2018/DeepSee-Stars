@@ -19,9 +19,9 @@ namespace deepseestars
 
 	void Player::Render()
 	{
-		m_centerPosBuf = m_centerPos + m_differencetoStartingPoint;
+		m_centerBuf = m_center + m_distanceToOrigin;
 
-		D3DXVECTOR2 pos ={ m_centerPosBuf.x ,m_centerPosBuf.y};
+		D3DXVECTOR2 pos ={ m_centerBuf.x ,m_centerBuf.y};
 		D3DXVECTOR2 scale = { m_TextureSizeX/2,m_TextureSizeY/2};
 
 		m_vertices.SetPos(pos);
@@ -70,7 +70,7 @@ namespace deepseestars
 		{
 			if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_Z))
 			{
-			m_centerPos.y = m_centerPos.y - m_SquaresSize;
+			m_center.y = m_center.y - m_squaresSize;
 				tvOperation(DOWN);
 				m_isHideState = true;
 				m_direction = STAYING;
@@ -89,11 +89,11 @@ namespace deepseestars
 		if (!m_canAction.IsAutotomy) return;
 		if (m_rGameBaseMaker.IsPressedToKeyboard(DIK_X))
 		{
-			if (!m_isAutotomy) return;
+			if (!m_isAutotomyState) return;
 			if (m_Life > 0)
 			{
 				m_Life -= 1;
-				m_isAutotomy = false;
+				m_isAutotomyState = false;
 				//m_pAction.push_back(new AutotomyAction(m_CenterPos));
 			}
 		}
@@ -155,22 +155,22 @@ namespace deepseestars
 		switch (m_direction)
 		{
 		case LEFT:
-			m_centerPos.x -= m_MoveSpeed;
+			m_center.x -= m_MoveSpeed;
 			break;
 		case RIGHT:
-			m_centerPos.x += m_MoveSpeed;
+			m_center.x += m_MoveSpeed;
 			break;
 		case UP:
-			m_centerPos.y -= m_MoveSpeed;
+			m_center.y -= m_MoveSpeed;
 			break;
 		case DOWN:
-			m_centerPos.y += m_MoveSpeed;
+			m_center.y += m_MoveSpeed;
 			break;
 		}
 		variationValue += m_MoveSpeed;
-		if (variationValue == m_SquaresSize)
+		if (variationValue == m_squaresSize)
 		{
-			m_isAutotomy = true;
+			m_isAutotomyState = true;
 			variationValue = 0.f;
 			m_canDirectionInput = true;
 		}
