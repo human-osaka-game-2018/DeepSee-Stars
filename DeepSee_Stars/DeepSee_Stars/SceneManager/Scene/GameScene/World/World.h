@@ -31,9 +31,9 @@ namespace deepseestars
 
 		void Init()
 		{
-			m_PlayerAction.IsHide = false;
-			m_PlayerAction.IsAutotomy = false;
-			m_PlayerAction.IsAvatar = false;
+			m_PlayerAction.CanHide = false;
+			m_PlayerAction.CanAutotomy = false;
+			m_PlayerAction.CanAvatar = false;
 		}
 
 		void Update();

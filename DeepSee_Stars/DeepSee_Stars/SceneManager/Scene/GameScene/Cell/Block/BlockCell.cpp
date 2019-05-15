@@ -18,7 +18,10 @@ namespace deepseestars
 		m_vertices.SetPos(pos);
 		m_vertices.SetScale(scale);
 
-		if (-m_blockSize <= centerBuf.x && centerBuf.x <= m_vertices.GetDisplaySize().x + m_blockSize && -m_blockSize <= centerBuf.y && centerBuf.y <= m_vertices.GetDisplaySize().y + m_blockSize)
+		bool InRangeX = -m_blockSize <= centerBuf.x && centerBuf.x <= m_vertices.GetDisplaySize().x + m_blockSize;
+		bool InRangeY = -m_blockSize <= centerBuf.y && centerBuf.y <= m_vertices.GetDisplaySize().y + m_blockSize;
+		
+		if (InRangeX && InRangeY)
 		{
 			m_isWithinRenderArea = true;
 		}
@@ -27,26 +30,25 @@ namespace deepseestars
 			m_isWithinRenderArea = false;
 		}
 
-		if (m_isWithinRenderArea)
+		if (!m_isWithinRenderArea) return;
+
+		switch (m_type)
 		{
-			switch (m_type)
-			{
-			case FLOOR:
-				m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_pTextureKey));
-				break;
-			case WHITE_BLOCK:
-				m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_pTextureKey));
-				break;
-			case BLACK_BLOCK:
-				m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_pTextureKey));
-				break;
-			case HIDE_BLOCK:
-				m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_pTextureKey));
-				break;
-			case PlAYER_RECOVERY_OBJECT:
-				m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_pTextureKey));
-				break;
-			}
+		case FLOOR:
+			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_pTextureKey));
+			break;
+		case WHITE_BLOCK:
+			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_pTextureKey));
+			break;
+		case BLACK_BLOCK:
+			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_pTextureKey));
+			break;
+		case HIDE_BLOCK:
+			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_pTextureKey));
+			break;
+		case PlAYER_RECOVERY_OBJECT:
+			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_pTextureKey));
+			break;
 		}
 	}
 }

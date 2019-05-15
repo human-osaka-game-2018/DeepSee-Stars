@@ -34,9 +34,9 @@ namespace deepseestars
 
 	struct Action
 	{
-		bool IsHide;
-		bool IsAutotomy;
-		bool IsAvatar;
+		bool CanHide;
+		bool CanAutotomy;
+		bool CanAvatar;
 	};
 
 	class Player : public GameObject
@@ -86,12 +86,12 @@ namespace deepseestars
 
 		void SetCanMoveDirection(Movements canMove)
 		{
-			m_canMoveDirection = canMove;
+			m_movements = canMove;
 		}
 
 		void SetCanAction(Action canAction)
 		{
-			m_canAction = canAction;
+			m_action = canAction;
 		}
 
 		bool GetIsHideState()
@@ -111,8 +111,8 @@ namespace deepseestars
 
 		int m_Life;
 
-		Movements m_canMoveDirection;
-		Action m_canAction;
+		Movements m_movements;
+		Action m_action;
 		bool m_isAutotomyState;
 
 	
