@@ -13,13 +13,13 @@ namespace deepseestars
 	{
 	public:
 		World() :
-			GameObject(_T("Logo"), _T("2DTexture/Title/TitleLogo.png"))
+			GameObject()
 		{
 			Init();
-			m_pCamera = new Camera(m_playerCenterPos, m_SquaresSize);
-			m_distanceToOrigin = m_pCamera->GetdistanceToOrigin();
-			m_pPlayer = new Player(m_distanceToOrigin, m_SquaresSize);
-			m_pStage = new Stage(m_distanceToOrigin, m_SquaresSize);
+			m_pCamera = new Camera(m_playerCenterPos, m_CellSize);
+			m_distanceToOrigin = m_pCamera->GetDistanceToOrigin();
+			m_pPlayer = new Player(m_distanceToOrigin, m_CellSize);
+			m_pStage = new Stage(m_distanceToOrigin, m_CellSize);
 		}
 
 		~World()
@@ -31,11 +31,6 @@ namespace deepseestars
 
 		void Init()
 		{
-			m_PlayerDirection.IsLeft = true;
-			m_PlayerDirection.IsRight = true;
-			m_PlayerDirection.IsUp = true;
-			m_PlayerDirection.IsDown = true;
-
 			m_PlayerAction.IsHide = false;
 			m_PlayerAction.IsAutotomy = false;
 			m_PlayerAction.IsAvatar = false;
@@ -51,8 +46,8 @@ namespace deepseestars
 		}
 
 		void ObjectCollision();
-		void m_CanPlayerMoveJudg();
-		void CanPlayerActionJudg();
+		void JudgePlayerMove();
+		void JudgePlayerAction();
 
 
 	private:
@@ -65,12 +60,11 @@ namespace deepseestars
 
 		D3DXVECTOR2 m_PlayerGirthCenter[4];
 
-		CanMoveDirection m_PlayerDirection;
-		CanAction m_PlayerAction;
+		Action m_PlayerAction;
 		float m_WorldScrollX = 0.f;
 		float m_WorldScrollY = 0.f;
 
-		const float m_SquaresSize = 50.f;
+		const float m_CellSize = 50.f;
 	};
 }
 

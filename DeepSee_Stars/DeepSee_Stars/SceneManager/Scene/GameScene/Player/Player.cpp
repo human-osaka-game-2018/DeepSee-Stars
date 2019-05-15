@@ -13,7 +13,7 @@ namespace deepseestars
 
 	void Player::Update()
 	{
-		Movement();
+		Move();
 		GameOverandClearConfirmation();
 	}
 
@@ -35,17 +35,15 @@ namespace deepseestars
 		m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_pTextureKey));
 	}
 
-	void Player::Movement()
+	void Player::Move()
 	{
 		if (m_canDirectionInput)
 		{
 			DirectionStatusCheck();
 		}
 		Action();
-		if (!m_isHideState)
-		{
-			DirectionStatusMotion();
-		}
+		if (m_isHideState) return;
+		DirectionStatusMotion();
 	}
 
 	void Player::Action()
@@ -70,8 +68,7 @@ namespace deepseestars
 		{
 			if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_Z))
 			{
-			m_center.y = m_center.y - m_squaresSize;
-				tvOperation(DOWN);
+			m_center.y = m_center.y - m_CellSize;
 				m_isHideState = true;
 				m_direction = STAYING;
 			}
@@ -90,12 +87,10 @@ namespace deepseestars
 		if (m_rGameBaseMaker.IsPressedToKeyboard(DIK_X))
 		{
 			if (!m_isAutotomyState) return;
-			if (m_Life > 0)
-			{
-				m_Life -= 1;
-				m_isAutotomyState = false;
-				//m_pAction.push_back(new AutotomyAction(m_CenterPos));
-			}
+			if (m_Life < 0) return;
+			m_Life -= 1;
+			m_isAutotomyState = false;
+			//m_pAction.push_back(new AutotomyAction(m_CenterPos));
 		}
 	}
 
@@ -111,7 +106,7 @@ namespace deepseestars
 	{
 		if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_LEFT))
 		{
-			if (m_canMoveDirection.IsLeft)
+			if (m_canMoveDirection.CanMoveLeft)
 			{
 				m_direction = LEFT;
 				m_canDirectionInput = false;
@@ -120,7 +115,7 @@ namespace deepseestars
 		}
 		if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_RIGHT))
 		{
-			if (m_canMoveDirection.IsRight)
+			if (m_canMoveDirection.CanMoveRight)
 			{
 				m_direction = RIGHT;
 				m_canDirectionInput = false;
@@ -129,7 +124,7 @@ namespace deepseestars
 		}
 		if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_UP))
 		{
-			if (m_canMoveDirection.IsUp)
+			if (m_canMoveDirection.CanMoveUp)
 			{
 				m_direction = UP;
 				m_canDirectionInput = false;
@@ -138,7 +133,7 @@ namespace deepseestars
 		}
 		if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_DOWN))
 		{
-			if (m_canMoveDirection.IsDown)
+			if (m_canMoveDirection.CanMoveDown)
 			{
 				m_direction = DOWN;
 				m_canDirectionInput = false;
@@ -151,7 +146,6 @@ namespace deepseestars
 	void Player::DirectionStatusMotion()
 	{
 		if (m_direction == STAYING) return;
-		static float variationValue = 0.f;
 		switch (m_direction)
 		{
 		case LEFT:
@@ -167,72 +161,13 @@ namespace deepseestars
 			m_center.y += m_MoveSpeed;
 			break;
 		}
-		variationValue += m_MoveSpeed;
-		if (variationValue == m_squaresSize)
-		{
-			m_isAutotomyState = true;
-			variationValue = 0.f;
-			m_canDirectionInput = true;
-		}
-	}
 
-	void Player::tuOperation(int direction)
-	{
-		//float tuAverage = 1.f / 12.f;
-		//int leftSideMultiplier = 0;
-		//int rightSideMultiplier = 0;
-		//switch (direction)
-		//{
-		//case LEFT:
-		//	leftSideMultiplier = 2;
-		//	rightSideMultiplier = 3;
-		//	break;
-		//case RIGHT:
-		//	leftSideMultiplier = 0;
-		//	rightSideMultiplier = 1;
-		//	break;
-		//case STAYING:
-		//	leftSideMultiplier = 1;
-		//	rightSideMultiplier = 2;
-		//	break;
-		//}
-		//for (int i = 0;i < 4;i++)
-		//{
-		//	if (i == 0 || i == 3) m_Player[i].tu = tuAverage * leftSideMultiplier;
-		//	if (i == 1 || i == 2) m_Player[i].tu = tuAverage * rightSideMultiplier;
-		//}
-	}
+		m_variationValue += m_MoveSpeed;
 
-	void Player::tvOperation(int direction)
-	{
-		//float tvAverage = 1.f / 8.f;
-		//int upSideMultiplier = 0;
-		//int downSideMultiplier = 0;
-		//
-		//switch (direction)
-		//{
-		//case LEFT:
-		//	upSideMultiplier = 3;
-		//	downSideMultiplier = 4;
-		//	break;
-		//case RIGHT:
-		//	upSideMultiplier = 1;
-		//	downSideMultiplier = 2;
-		//	break;
-		//case UP:
-		//	upSideMultiplier = 0;
-		//	downSideMultiplier = 1;
-		//	break;
-		//case DOWN:
-		//	upSideMultiplier = 2;
-		//	downSideMultiplier = 3;
-		//	break;
-		//}
-		//for (int i = 0;i < 4;i++)
-		//{
-		//	if (i == 0 || i == 1) m_Player[i].tv = tvAverage * upSideMultiplier;
-		//	if (i == 2 || i == 3) m_Player[i].tv = tvAverage * downSideMultiplier;
-		//}
+		if (m_variationValue != m_CellSize) return;
+		m_isAutotomyState = true;
+		m_variationValue = 0.f;
+		m_canDirectionInput = true;
 	}
 
 	void Player::GameOverandClearConfirmation()

@@ -16,15 +16,23 @@ namespace deepseestars
 		STAYING,
 	};
 
-	struct CanMoveDirection
+	struct Movements
 	{
-		bool IsLeft;
-		bool IsRight;
-		bool IsUp;
-		bool IsDown;
+		bool CanMoveLeft = true;
+		bool CanMoveRight = true;
+		bool CanMoveUp = true;
+		bool CanMoveDown = true;
+
+		void Freeze()
+		{
+			CanMoveLeft = false;
+			CanMoveRight = false;
+			CanMoveUp = false;
+			CanMoveDown = false;
+		}
 	};
 
-	struct CanAction
+	struct Action
 	{
 		bool IsHide;
 		bool IsAutotomy;
@@ -35,7 +43,7 @@ namespace deepseestars
 	{
 	public:
 		Player(const D3DXVECTOR2& distanceToOrigin, const float& squaresSize):
-			GameObject(_T("Player"), _T("2DTexture/Game/Player.png")), m_distanceToOrigin(distanceToOrigin), m_squaresSize(squaresSize)
+			GameObject(_T("Player"), _T("2DTexture/Game/Player.png")), m_distanceToOrigin(distanceToOrigin), m_CellSize(squaresSize)
 		{
 			Init();
 		}
@@ -54,7 +62,7 @@ namespace deepseestars
 			m_isHideState = false;
 			m_isAutotomyState = true;
 
-			m_center = { (m_squaresSize * m_row) + (m_squaresSize / 2) ,(m_squaresSize * m_colunm) + (m_squaresSize / 2) };
+			m_center = { (m_CellSize * m_row) + (m_CellSize / 2) ,(m_CellSize * m_colunm) + (m_CellSize / 2) };
 		}
 
 
@@ -76,12 +84,12 @@ namespace deepseestars
 			m_center = centerPos;
 		}
 
-		void SetCanMoveDirection(CanMoveDirection canMove)
+		void SetCanMoveDirection(Movements canMove)
 		{
 			m_canMoveDirection = canMove;
 		}
 
-		void SetCanAction(CanAction canAction)
+		void SetCanAction(Action canAction)
 		{
 			m_canAction = canAction;
 		}
@@ -92,7 +100,7 @@ namespace deepseestars
 		}
 
 	private:
-		const float& m_squaresSize;
+		const float& m_CellSize;
 		const D3DXVECTOR2& m_distanceToOrigin;
 		std::vector<BaseAction*> m_paction;
 
@@ -100,19 +108,18 @@ namespace deepseestars
 		const float m_TextureSizeY = 50.f;
 		const float m_MoveSpeed = 10.f;
 	
-		//CustomVertex m_Player[4];
 
 		int m_Life;
 
-		CanMoveDirection m_canMoveDirection;
-		CanAction m_canAction;
+		Movements m_canMoveDirection;
+		Action m_canAction;
 		bool m_isAutotomyState;
 
 	
 		D3DXVECTOR2 m_center;
 		D3DXVECTOR2 m_centerBuf;
-		D3DXVECTOR2 m_prevPlayerCenter;
-		int m_direction;
+		float m_variationValue = 0.f;
+		Direction m_direction;
 		bool m_canDirectionInput;
 		bool m_isHideState;
 
@@ -121,15 +128,13 @@ namespace deepseestars
 		int m_colunm = 8;
 		//
 
-		void Movement();
+		void Move();
 		void Action();
 		void Hide();
 		void Autotomy();
 		void Avatar();
 		void DirectionStatusCheck();
 		void DirectionStatusMotion();
-		void tuOperation(int direction);
-		void tvOperation(int direction);
 	};
 }
 #endif // PLAYER_H

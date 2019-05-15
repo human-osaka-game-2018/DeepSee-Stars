@@ -13,7 +13,7 @@
 //void AutotomyAction::Update(D3DXVECTOR2 drawArea)
 //{
 //	D3DXVECTOR2 centerPosbBuf = m_center + drawArea;
-//	m_pDirectX->InitSquareCustomVertex(m_Autotomy, centerPosbBuf.x, centerPosbBuf.y, m_SquaresSize);
+//	m_pDirectX->InitSquareCustomVertex(m_Autotomy, centerPosbBuf.x, centerPosbBuf.y, m_CellSize);
 //}
 //
 //void AutotomyAction::Render()
