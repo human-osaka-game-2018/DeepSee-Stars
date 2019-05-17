@@ -13,7 +13,7 @@ namespace deepseestars
 		D3DXVECTOR2 centerBuf = m_center + m_distanceToOrigin;
 
 		D3DXVECTOR2 pos = { centerBuf.x ,centerBuf.y };
-		D3DXVECTOR2 scale = { m_blockSize ,m_blockSize };
+		D3DXVECTOR2 scale = { m_blockSize/2 ,m_blockSize/2 };
 
 		m_vertices.SetPos(pos);
 		m_vertices.SetScale(scale);
@@ -32,23 +32,6 @@ namespace deepseestars
 
 		if (!m_isWithinRenderArea) return;
 
-		switch (m_type)
-		{
-		case FLOOR:
-			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_pTextureKey));
-			break;
-		case WHITE_BLOCK:
-			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_pTextureKey));
-			break;
-		case BLACK_BLOCK:
-			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_pTextureKey));
-			break;
-		case HIDE_BLOCK:
-			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_pTextureKey));
-			break;
-		case PlAYER_RECOVERY_OBJECT:
-			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_pTextureKey));
-			break;
-		}
+		m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_pTextureKey));
 	}
 }

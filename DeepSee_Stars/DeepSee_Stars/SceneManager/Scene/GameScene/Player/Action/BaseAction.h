@@ -1,17 +1,30 @@
 ﻿#ifndef BASEACTION_H
 #define BASEACTION_H
 
+#include "GameObject.h"
 
-class BaseAction
+
+namespace deepseestars
 {
-public:
-	BaseAction();
-	virtual ~BaseAction();
-	virtual void Update();
-	virtual void Render();
+	class BaseAction : public GameObject
+	{
+	public:
+		BaseAction() : GameObject()
+		{
+			
+		}
 
-private:
+		~BaseAction();
+
+		virtual void Init();
+
+		virtual void Update();
+
+		virtual void Render();
+
+		virtual void Release();
 
 
-};
+	};
+}
 #endif // BASEACTION_H

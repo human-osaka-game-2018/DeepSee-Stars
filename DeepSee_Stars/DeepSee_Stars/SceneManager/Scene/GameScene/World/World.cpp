@@ -53,7 +53,7 @@ namespace deepseestars
 	{
 		Movements playerDirection;
 
-		for (int i = 0;i <= DOWN;i++)
+		for (int i = 0;i < DOWN;i++)
 		{
 			for (auto& stagePos : m_pStage->GetblockCellPos())
 			{

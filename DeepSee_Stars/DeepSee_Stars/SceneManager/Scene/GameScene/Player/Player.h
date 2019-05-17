@@ -4,6 +4,7 @@
 #include "../Enum/Direction.h"
 #include "../Player/Action/Autotomy/AutotomyAction.h"
 #include "../Player/Action/Avatar/AvatarAction.h"
+#include "../../GameBaseMaker/TextureUV/TextureUV.h"
 #include "GameObject.h"
 
 namespace deepseestars
@@ -35,7 +36,7 @@ namespace deepseestars
 	{
 	public:
 		Player(const D3DXVECTOR2& distanceToOrigin, const float& squaresSize):
-			GameObject(_T("Player"), _T("2DTexture/Game/Player.png")), m_distanceToOrigin(distanceToOrigin), m_CellSize(squaresSize)
+			GameObject(), m_distanceToOrigin(distanceToOrigin), m_CellSize(squaresSize)
 		{
 			Init();
 		}
@@ -44,11 +45,18 @@ namespace deepseestars
 
 		void Init()
 		{
-			m_rGameBaseMaker.CreateTex(m_pTextureKey, m_pFileName);
+			gamebasemaker::TextureUV Autotomy(D3DXVECTOR2(0.0f,0.0f), D3DXVECTOR2(1024.f, 150.f), D3DXVECTOR2(150.f, 150.f));
+			m_vertices.SetTextureUV(Autotomy);
 
-			m_Life = 5;
-			m_row = 20;
-			m_colunm = 60;
+			for (int i = 0;i <= 8;i++)
+			{
+				m_rGameBaseMaker.CreateTex(m_playerTextureKey[i], m_playerTextureName[i]);
+			}
+
+			m_pTextureKey = m_playerTextureKey[2];
+			m_life = 5;
+			m_row = 14;
+			m_colunm = 8;
 
 			m_canDirectionInput = true;
 			m_isHideState = false;
@@ -62,7 +70,10 @@ namespace deepseestars
 
 		void Render();
 
-		void Release() {}
+		void Release() 
+		{
+			m_rGameBaseMaker.ReleaseAllTex();
+		}
 
 		void GameOverandClearConfirmation();
 
@@ -92,6 +103,31 @@ namespace deepseestars
 		}
 
 	private:
+		const TCHAR* m_playerTextureKey[9] =
+		{
+			_T("PlayerLeft"),
+			_T("PlayerRight"),
+			_T("ReadyAction"),
+			_T("Hide"),
+			_T("Autotomy"),
+			_T("Avatar1"),
+			_T("Avatar2"),
+			_T("Avatar3"),
+			_T("Avatar4"),
+		};
+		const TCHAR* m_playerTextureName[9] =
+		{
+			_T("2DTexture/Game/Player/PlayerLeft.png"),
+			_T("2DTexture/Game/Player/PlayerRight.png"),
+			_T("2DTexture/Game/Player/PlayerReadyAction.png"),
+			_T("2DTexture/Game/Player/PlayerHide.png"),
+			_T("2DTexture/Game/Player/PlayerAutotomy.png"),
+			_T("2DTexture/Game/Player/PlayerAvatar1.png"),
+			_T("2DTexture/Game/Player/PlayerAvatar2.png"),
+			_T("2DTexture/Game/Player/PlayerAvatar3.png"),
+			_T("2DTexture/Game/Player/PlayerAvatar4.png"),
+		};
+
 		const float& m_CellSize;
 		const D3DXVECTOR2& m_distanceToOrigin;
 		std::vector<BaseAction*> m_paction;
@@ -101,11 +137,12 @@ namespace deepseestars
 		const float m_MoveSpeed = 10.f;
 	
 
-		int m_Life;
+		int m_life;
 
 		Movements m_movements;
 		Action m_action;
 		bool m_isAutotomyState;
+		bool m_isAutotomyAnimation = false;
 
 	
 		D3DXVECTOR2 m_center;
