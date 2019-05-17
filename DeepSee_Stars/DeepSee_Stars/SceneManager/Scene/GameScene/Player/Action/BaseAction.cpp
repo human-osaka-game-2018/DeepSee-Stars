@@ -7,11 +7,6 @@ namespace deepseestars
 
 	}
 
-	void BaseAction::Init()
-	{
-
-	}
-
 	void BaseAction::Update()
 	{
 
@@ -22,8 +17,4 @@ namespace deepseestars
 
 	}
 
-	void BaseAction::Release()
-	{
-
-	}
 }
