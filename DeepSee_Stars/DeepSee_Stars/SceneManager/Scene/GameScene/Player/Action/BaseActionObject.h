@@ -1,20 +1,20 @@
-﻿#ifndef BASEACTION_H
-#define BASEACTION_H
+﻿#ifndef BASEACTIONOBJECT_H
+#define BASEACTIONOBJECT_H
 
 #include "GameObject.h"
 
 
 namespace deepseestars
 {
-	class BaseAction : public GameObject
+	class BaseActionObject : public GameObject
 	{
 	public:
-		BaseAction() : GameObject()
+		BaseActionObject() : GameObject()
 		{
 			Init();
 		}
 
-		~BaseAction();
+		~BaseActionObject();
 
 		virtual void Init()
 		{
@@ -49,4 +49,4 @@ namespace deepseestars
 
 	};
 }
-#endif // BASEACTION_H
+#endif // BASEACTIONOBJECT_H

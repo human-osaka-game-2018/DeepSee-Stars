@@ -2,8 +2,7 @@
 #define PLAYER_H
 
 #include "../Enum/Direction.h"
-#include "../Player/Action/Autotomy/AutotomyAction.h"
-#include "../Player/Action/Avatar/AvatarAction.h"
+#include "../Player/Action/Autotomy/AutotomyObject.h"
 #include "../../GameBaseMaker/TextureUV/TextureUV.h"
 #include "GameObject.h"
 
@@ -45,13 +44,16 @@ namespace deepseestars
 
 		void Init()
 		{
-			gamebasemaker::TextureUV Autotomy(D3DXVECTOR2(0.0f,0.0f), D3DXVECTOR2(1024.f, 150.f), D3DXVECTOR2(150.f, 150.f));
-			m_vertices.SetTextureUV(Autotomy);
+			gamebasemaker::TextureUV autotomy(D3DXVECTOR2(0.0f,0.0f), D3DXVECTOR2(1024.f, 150.f), D3DXVECTOR2(150.f, 150.f));
+			m_vertices.SetTextureUV(autotomy);
 
 			for (int i = 0;i <= 8;i++)
 			{
 				m_rGameBaseMaker.CreateTex(m_playerTextureKey[i], m_playerTextureName[i]);
 			}
+
+			m_vertices.SetImageSize(D3DXVECTOR2(150.f, 150.f));
+			m_vertices.ClippingImage(D3DXVECTOR2(0.f, 0.f), D3DXVECTOR2(150.f, 150.f));
 
 			m_pTextureKey = m_playerTextureKey[2];
 			m_life = 5;
@@ -130,7 +132,7 @@ namespace deepseestars
 
 		const float& m_CellSize;
 		const D3DXVECTOR2& m_distanceToOrigin;
-		std::vector<BaseAction*> m_paction;
+		std::vector<BaseActionObject*> m_paction;
 
 		const float m_TextureSizeX = 50.f;
 		const float m_TextureSizeY = 50.f;

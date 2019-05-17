@@ -1,10 +1,10 @@
-﻿#include "AutotomyAction.h"
+﻿#include "AutotomyObject.h"
 
 
 namespace deepseestars
 {
 
-	void AutotomyAction::Update()
+	void AutotomyObject::Update()
 	{
 		D3DXVECTOR2 centerBuf = m_center + m_distanceToOrigin;
 
@@ -15,7 +15,7 @@ namespace deepseestars
 		m_vertices.SetScale(scale);
 	}
 
-	void AutotomyAction::Render()
+	void AutotomyObject::Render()
 	{
 		m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(GetactionTextureKey()[0]));
 

@@ -252,12 +252,6 @@
     <ClCompile Include="SceneManager\Scene\GameScene\Player\Player.cpp">
       <Filter>SceneManager\Scene\GameScene\Player</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager\Scene\GameScene\Player\Action\BaseAction.cpp">
-      <Filter>SceneManager\Scene\GameScene\Player\Action</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager\Scene\GameScene\Player\Action\Autotomy\AutotomyAction.cpp">
-      <Filter>SceneManager\Scene\GameScene\Player\Action\Autotomy</Filter>
-    </ClCompile>
     <ClCompile Include="SceneManager\Scene\GameScene\Player\Action\Avatar\AvatarAction.cpp">
       <Filter>SceneManager\Scene\GameScene\Player\Action\Avatar</Filter>
     </ClCompile>
@@ -281,6 +275,12 @@
     </ClCompile>
     <ClCompile Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\StraightLine\StraightLine.cpp">
       <Filter>SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\StraightLine</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\Scene\GameScene\Player\Action\Autotomy\AutotomyObject.cpp">
+      <Filter>SceneManager\Scene\GameScene\Player\Action\Autotomy</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\Scene\GameScene\Player\Action\BaseActionObject.cpp">
+      <Filter>SceneManager\Scene\GameScene\Player\Action</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -398,12 +398,6 @@
     <ClInclude Include="SceneManager\Scene\GameScene\Player\Player.h">
       <Filter>SceneManager\Scene\GameScene\Player</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager\Scene\GameScene\Player\Action\BaseAction.h">
-      <Filter>SceneManager\Scene\GameScene\Player\Action</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager\Scene\GameScene\Player\Action\Autotomy\AutotomyAction.h">
-      <Filter>SceneManager\Scene\GameScene\Player\Action\Autotomy</Filter>
-    </ClInclude>
     <ClInclude Include="SceneManager\Scene\GameScene\Player\Action\Avatar\AvatarAction.h">
       <Filter>SceneManager\Scene\GameScene\Player\Action\Avatar</Filter>
     </ClInclude>
@@ -433,6 +427,12 @@
     </ClInclude>
     <ClInclude Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\StraightLine\StraightLine.h">
       <Filter>SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\StraightLine</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Player\Action\Autotomy\AutotomyObject.h">
+      <Filter>SceneManager\Scene\GameScene\Player\Action\Autotomy</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Player\Action\BaseActionObject.h">
+      <Filter>SceneManager\Scene\GameScene\Player\Action</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

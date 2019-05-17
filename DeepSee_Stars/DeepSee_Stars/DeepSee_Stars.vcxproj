@@ -161,9 +161,9 @@
     <ClCompile Include="SceneManager\Scene\GameScene\Camera\Camera.cpp" />
     <ClCompile Include="SceneManager\Scene\GameScene\Cell\BaseCell.cpp" />
     <ClCompile Include="SceneManager\Scene\GameScene\Cell\Block\BlockCell.cpp" />
-    <ClCompile Include="SceneManager\Scene\GameScene\Player\Action\Autotomy\AutotomyAction.cpp" />
+    <ClCompile Include="SceneManager\Scene\GameScene\Player\Action\Autotomy\AutotomyObject.cpp" />
     <ClCompile Include="SceneManager\Scene\GameScene\Player\Action\Avatar\AvatarAction.cpp" />
-    <ClCompile Include="SceneManager\Scene\GameScene\Player\Action\BaseAction.cpp" />
+    <ClCompile Include="SceneManager\Scene\GameScene\Player\Action\BaseActionObject.cpp" />
     <ClCompile Include="SceneManager\Scene\GameScene\Player\Player.cpp" />
     <ClCompile Include="SceneManager\Scene\GameScene\Stage\Stage.cpp" />
     <ClCompile Include="SceneManager\Scene\GameScene\World\World.cpp" />
@@ -209,9 +209,9 @@
     <ClInclude Include="SceneManager\Scene\GameScene\Cell\BaseCell.h" />
     <ClInclude Include="SceneManager\Scene\GameScene\Cell\Block\BlockCell.h" />
     <ClInclude Include="SceneManager\Scene\GameScene\GameScene.h" />
-    <ClInclude Include="SceneManager\Scene\GameScene\Player\Action\Autotomy\AutotomyAction.h" />
+    <ClInclude Include="SceneManager\Scene\GameScene\Player\Action\Autotomy\AutotomyObject.h" />
     <ClInclude Include="SceneManager\Scene\GameScene\Player\Action\Avatar\AvatarAction.h" />
-    <ClInclude Include="SceneManager\Scene\GameScene\Player\Action\BaseAction.h" />
+    <ClInclude Include="SceneManager\Scene\GameScene\Player\Action\BaseActionObject.h" />
     <ClInclude Include="SceneManager\Scene\GameScene\Player\Player.h" />
     <ClInclude Include="SceneManager\Scene\GameScene\Stage\Stage.h" />
     <ClInclude Include="SceneManager\Scene\GameScene\World\World.h" />

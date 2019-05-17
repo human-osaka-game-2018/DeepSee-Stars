@@ -58,8 +58,10 @@ namespace deepseestars
 
 	void Player::Action()
 	{
-
-		Hide();
+		if (!m_isAutotomyAnimation)
+		{
+			Hide();
+		}
 		if (!m_isHideState)
 		{
 			Autotomy();
@@ -102,9 +104,11 @@ namespace deepseestars
 
 			if (!m_isAutotomyState) return;
 
+			m_vertices.PossibleAnimation();
+			m_vertices.SetImageSize(D3DXVECTOR2(1024.f, 150.f));
+			m_vertices.ClippingImage(D3DXVECTOR2(0.f, 0.f), D3DXVECTOR2(150.f, 150.f));
 			m_pTextureKey = m_playerTextureKey[4];
 
-			m_vertices.PossibleAnimation();
 
 			m_isAutotomyAnimation = true;
 
@@ -116,9 +120,12 @@ namespace deepseestars
 			m_vertices.Animation(4, 6);
 			if (!m_vertices.GetIsPossibleAnimation())
 			{
-				m_paction.push_back(new AutotomyAction(m_center, m_distanceToOrigin, m_CellSize));
+				m_paction.push_back(new AutotomyObject(m_center, m_distanceToOrigin, m_CellSize));
 				m_life -= 1;
 				m_isAutotomyAnimation = false;
+				m_pTextureKey = m_playerTextureKey[2];
+				m_vertices.SetImageSize(D3DXVECTOR2(150.f, 150.f));
+				m_vertices.ClippingImage(D3DXVECTOR2(0.f, 0.f), D3DXVECTOR2(150.f, 150.f));
 			}
 		}
 	}
