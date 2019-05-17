@@ -1,7 +1,7 @@
 ﻿#ifndef AVATARACTION_H
 #define AVATARACTION_H
 
-#include"../BaseAction.h"
+#include"../BaseActionObject.h"
 
 //class AvatarAction : public BaseAction
 //{

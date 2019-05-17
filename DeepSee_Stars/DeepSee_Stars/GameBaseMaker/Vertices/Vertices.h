@@ -110,6 +110,11 @@ namespace gamebasemaker
 			return displaySize;
 		}
 
+		inline void SetImageSize(D3DXVECTOR2 imageSize)
+		{
+			m_uv.SetImageSize(imageSize);
+		}
+
 		inline bool GetIsPossibleAnimation() { return m_uv.GetIsPossibleAnimation(); }
 
 	private:
