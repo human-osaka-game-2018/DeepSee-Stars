@@ -72,6 +72,14 @@ namespace gamebasemaker
 		void Animation(int nextAnimationFrame, int animationNum);
 
 		/// <summary>
+		/// アニメーションを可能にする
+		/// </summary>
+		inline void PossibleAnimation()
+		{
+			m_uv.PossibleAnimation();
+		}
+
+		/// <summary>
 		/// 画像の切り取る
 		/// </summary>
 		/// <param name="topLeft">切り取りたい位置の左上</param>
@@ -101,6 +109,8 @@ namespace gamebasemaker
 
 			return displaySize;
 		}
+
+		inline bool GetIsPossibleAnimation() { return m_uv.GetIsPossibleAnimation(); }
 
 	private:
 		void BuildRect();

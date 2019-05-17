@@ -8,6 +8,7 @@ namespace deepseestars
 		for (auto& actionObject : m_paction)
 		{
 			delete actionObject;
+			actionObject = nullptr;
 		}
 	}
 
@@ -21,17 +22,22 @@ namespace deepseestars
 	{
 		m_centerBuf = m_center + m_distanceToOrigin;
 
-		D3DXVECTOR2 pos ={ m_centerBuf.x ,m_centerBuf.y};
+		float posY = m_centerBuf.y - m_CellSize / 4;
+		if (m_isHideState)
+		{
+			posY = m_centerBuf.y;
+		}
+		D3DXVECTOR2 pos ={ m_centerBuf.x ,posY };
 		D3DXVECTOR2 scale = { m_TextureSizeX/2,m_TextureSizeY/2};
 
 		m_vertices.SetPos(pos);
 		m_vertices.SetScale(scale);
 
-
 		for (auto& actionObject : m_paction)
 		{
 			actionObject->Render();
 		}
+		
 		m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_pTextureKey));
 	}
 
@@ -53,16 +59,16 @@ namespace deepseestars
 	{
 
 		Hide();
-		//if (!m_IsHideState)
-		//{
-		//	Autotomy();
-		//}
+		if (!m_isHideState)
+		{
+			Autotomy();
+		}
 		//Avatar();
 
-		//for (auto& actionObject : m_pAction)
-		//{
-		//	actionObject->Update(m_DrawArea);
-		//}
+		for (auto& actionObject : m_paction)
+		{
+			actionObject->Update();
+		}
 	}
 
 	void Player::Hide()
@@ -74,12 +80,14 @@ namespace deepseestars
 			m_center.y = m_center.y - m_CellSize;
 			m_isHideState = true;
 			m_direction = STAYING;
+			m_pTextureKey = m_playerTextureKey[3];
 		}
 		else
 		{
 			if (!m_isHideState)return;
 			m_isHideState = false;
 			m_canDirectionInput = true;
+			m_pTextureKey = m_playerTextureKey[2];
 		}
 	}
 
@@ -87,15 +95,31 @@ namespace deepseestars
 	{
 		if (!m_action.CanAutotomy) return;
 
+		if (m_isAutotomyAnimation)
+		{
+			m_vertices.Animation(4, 6);
+			if (!m_vertices.GetIsPossibleAnimation())
+			{
+				m_paction.push_back(new AutotomyAction(m_center, m_distanceToOrigin, m_CellSize));
+				m_life -= 1;
+				m_isAutotomyAnimation = false;
+			}
+		}
+
 		if (m_rGameBaseMaker.IsPressedToKeyboard(DIK_X))
 		{
+			if (m_life <= 0) return;
+
 			if (!m_isAutotomyState) return;
 
-			if (m_Life < 0) return;
+			if (m_isAutotomyAnimation) return;
 
-			m_Life -= 1;
+			m_pTextureKey = m_playerTextureKey[4];
+
+			m_vertices.PossibleAnimation();
+
+			m_isAutotomyAnimation = true;
 			m_isAutotomyState = false;
-			//m_pAction.push_back(new AutotomyAction(m_CenterPos));
 		}
 	}
 

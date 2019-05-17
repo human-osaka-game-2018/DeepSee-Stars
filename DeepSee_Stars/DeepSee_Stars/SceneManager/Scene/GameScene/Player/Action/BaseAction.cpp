@@ -1,21 +1,29 @@
 ﻿#include "BaseAction.h"
 
-BaseAction::BaseAction()
+namespace deepseestars
 {
+	BaseAction::~BaseAction()
+	{
 
-}
+	}
 
-BaseAction::~BaseAction()
-{
+	void BaseAction::Init()
+	{
 
-}
+	}
 
-void BaseAction::Update()
-{
+	void BaseAction::Update()
+	{
 
-}
+	}
 
-void BaseAction::Render()
-{
+	void BaseAction::Render()
+	{
 
+	}
+
+	void BaseAction::Release()
+	{
+
+	}
 }

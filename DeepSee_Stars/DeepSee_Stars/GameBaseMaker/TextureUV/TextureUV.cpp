@@ -10,13 +10,16 @@ namespace gamebasemaker
 
 	void TextureUV::Animation(int nextAnimationFrame, int animationNum)
 	{
-		m_animationCount = (m_animationCount > nextAnimationFrame)?
+		if (!m_isPossibleAnimation) return;
+
+		m_animationCount = (m_animationCount >= nextAnimationFrame)?
 			0 : ++m_animationCount;
 
 		if (nextAnimationFrame > m_animationCount) return;
 		
 		if (m_AnimationNum >= animationNum)
 		{
+			m_isPossibleAnimation = false;
 			m_AnimationNum = 0;
 
 			m_topLeft = { 0.f,0.f };

@@ -44,6 +44,14 @@ namespace gamebasemaker
 		/// <param name="animationNum">アニメーションのフレーム数</param>
 		void Animation(int nextAnimationFrame, int animationNum);
 
+		/// <summary>
+		/// アニメーションを可能にする
+		/// </summary>
+		inline void PossibleAnimation()
+		{
+			m_isPossibleAnimation = true;
+		}
+
 		inline D3DXVECTOR2 GetStartUV()
 		{
 			return m_startUV;
@@ -53,6 +61,8 @@ namespace gamebasemaker
 		{
 			return m_endUV;
 		}
+
+		inline bool GetIsPossibleAnimation() { return m_isPossibleAnimation; }
 
 	private:
 		D3DXVECTOR2 m_startUV = { 0.0f,0.0f };
@@ -64,8 +74,9 @@ namespace gamebasemaker
 		D3DXVECTOR2 m_imageSize;
 		D3DXVECTOR2 m_illustSize;
 
-		int m_animationCount = 0;
-		int m_AnimationNum = 0;
+		int  m_animationCount = 0;
+		int  m_AnimationNum = 0;
+		bool m_isPossibleAnimation = false;
 	};
 }
 

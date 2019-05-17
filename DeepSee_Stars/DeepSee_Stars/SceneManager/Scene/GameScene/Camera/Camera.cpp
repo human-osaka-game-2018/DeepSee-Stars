@@ -17,14 +17,14 @@ namespace deepseestars
 
 	void Camera::DeterminePlayerIsHide()
 	{
-		if (m_isPlayerHide)
+		D3DXVECTOR2 playerIsHideStateCamera(0.f, 0.f);
+		if (!m_isPlayerHide)
 		{
 			m_center = m_playerPos;
 			return;
 		}
-
-		D3DXVECTOR2 playerIsHideStateCamera(0.f, 0.f);
-		playerIsHideStateCamera.y = -m_CellSize;
+		if (m_isPlayerHide) return;
+		playerIsHideStateCamera.y = m_CellSize;
 		m_center = m_playerPos + playerIsHideStateCamera;
 	}
 
