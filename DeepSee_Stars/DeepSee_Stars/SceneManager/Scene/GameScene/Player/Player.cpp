@@ -43,12 +43,13 @@ namespace deepseestars
 
 	void Player::UpdateAction()
 	{
+		Action();
+
 		if (m_canDirectionInput)
 		{
+			if (m_isAutotomyAnimation)return;
 			CheckDirectionStatus();
 		}
-
-		Action();
 
 		if (m_isHideState) return;
 
@@ -95,6 +96,21 @@ namespace deepseestars
 	{
 		if (!m_action.CanAutotomy) return;
 
+		if (m_rGameBaseMaker.IsPressedToKeyboard(DIK_X))
+		{
+			if (m_life <= 0) return;
+
+			if (!m_isAutotomyState) return;
+
+			m_pTextureKey = m_playerTextureKey[4];
+
+			m_vertices.PossibleAnimation();
+
+			m_isAutotomyAnimation = true;
+
+			m_isAutotomyState = false;
+		}
+
 		if (m_isAutotomyAnimation)
 		{
 			m_vertices.Animation(4, 6);
@@ -104,22 +120,6 @@ namespace deepseestars
 				m_life -= 1;
 				m_isAutotomyAnimation = false;
 			}
-		}
-
-		if (m_rGameBaseMaker.IsPressedToKeyboard(DIK_X))
-		{
-			if (m_life <= 0) return;
-
-			if (!m_isAutotomyState) return;
-
-			if (m_isAutotomyAnimation) return;
-
-			m_pTextureKey = m_playerTextureKey[4];
-
-			m_vertices.PossibleAnimation();
-
-			m_isAutotomyAnimation = true;
-			m_isAutotomyState = false;
 		}
 	}
 

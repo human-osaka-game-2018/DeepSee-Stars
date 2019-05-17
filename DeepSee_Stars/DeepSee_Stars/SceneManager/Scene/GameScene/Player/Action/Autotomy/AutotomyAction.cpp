@@ -17,7 +17,7 @@ namespace deepseestars
 
 	void AutotomyAction::Render()
 	{
-		m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("PlayerRecoveryObject")));
+		m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(GetactionTextureKey()[0]));
 
 	}
 }
