@@ -12,7 +12,7 @@ namespace deepseestars
 		WHITE_BLOCK,
 		BLACK_BLOCK,
 		HIDE_BLOCK,
-		PlAYER_RECOVERY_OBJECT,
+		PLAYER_RECOVERY_OBJECT,
 	};
 
 
@@ -36,10 +36,7 @@ namespace deepseestars
 
 		void Render();
 
-		void Release()
-		{
-			m_rGameBaseMaker.ReleaseAllTex();
-		}
+		void Release(){}
 
 		D3DXVECTOR2 Getcenter()
 		{

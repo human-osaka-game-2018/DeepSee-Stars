@@ -46,7 +46,7 @@ namespace deepseestars
 		case HIDE_BLOCK:
 			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("HideBlock")));
 			break;
-		case PlAYER_RECOVERY_OBJECT:
+		case PLAYER_RECOVERY_OBJECT:
 			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("PlayerRecoveryObject")));
 			break;
 		}

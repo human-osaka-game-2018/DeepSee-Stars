@@ -5,13 +5,21 @@ namespace deepseestars
 
 	void PlayerLife::Update()
 	{
-	
+		if (m_playerLife > 5)
+		{
+			m_playerLife = 5;
+		}
+
+		if (m_playerLife < 0)
+		{
+			m_playerLife = 0;
+		}
 	}
 
 	void PlayerLife::Render()
 	{
-		D3DXVECTOR2 pos = { 80 ,80 };
-		D3DXVECTOR2 scale = { 70 , 70 };
+		D3DXVECTOR2 pos = { 70.f,70.f };
+		D3DXVECTOR2 scale = { 70.f , 70.f };
 
 		m_vertices.SetPos(pos);
 		m_vertices.SetScale(scale);

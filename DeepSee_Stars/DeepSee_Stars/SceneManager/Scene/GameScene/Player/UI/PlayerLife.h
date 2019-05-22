@@ -8,7 +8,7 @@ namespace deepseestars
 	class PlayerLife : public GameObject
 	{
 	public:
-		PlayerLife(const int& playerLife) : GameObject(), m_playerLife(playerLife)
+		PlayerLife(int& playerLife) : GameObject(), m_playerLife(playerLife)
 		{
 			Init();
 		}
@@ -46,16 +46,16 @@ namespace deepseestars
 		};
 		const TCHAR* m_LifeUITextureName[7] =
 		{
-			_T("2DTexture/Game/LifeFrame.png"),
-			_T("2DTexture/Game/LifeNumber0.png"),
-			_T("2DTexture/Game/LifeNumber1.png"),
-			_T("2DTexture/Game/LifeNumber2.png"),
-			_T("2DTexture/Game/LifeNumber3.png"),
-			_T("2DTexture/Game/LifeNumber4.png"),
-			_T("2DTexture/Game/LifeNumber5.png"),
+			_T("2DTexture/Game/UI/LifeFrame.png"),
+			_T("2DTexture/Game/UI/Number0.png"),
+			_T("2DTexture/Game/UI/Number1.png"),
+			_T("2DTexture/Game/UI/Number2.png"),
+			_T("2DTexture/Game/UI/Number3.png"),
+			_T("2DTexture/Game/UI/Number4.png"),
+			_T("2DTexture/Game/UI/Number5.png"),
 		};
 
-		const int& m_playerLife;
+		int& m_playerLife;
 	};
 }
 
