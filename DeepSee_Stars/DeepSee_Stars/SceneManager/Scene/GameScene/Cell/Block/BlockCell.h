@@ -19,8 +19,8 @@ namespace deepseestars
 	class BlockCell : public GameObject
 	{
 	public:
-		BlockCell(const D3DXVECTOR2& distanceToOrigin,D3DXVECTOR2 blockPos, TYPE blockType, const float& blockSize,const TCHAR* TextureKey) :
-			GameObject(TextureKey), m_distanceToOrigin(distanceToOrigin), m_center(blockPos), m_type(blockType),m_blockSize(blockSize)
+		BlockCell(const D3DXVECTOR2& distanceToOrigin,D3DXVECTOR2 blockPos, TYPE blockType, const float& blockSize) :
+			GameObject(), m_distanceToOrigin(distanceToOrigin), m_center(blockPos), m_type(blockType),m_blockSize(blockSize)
 		{
 			Init();
 		}

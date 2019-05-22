@@ -3,7 +3,9 @@
 
 #include "../Enum/Direction.h"
 #include "../Player/Action/Autotomy/AutotomyObject.h"
+#include "../Player/Action/Avatar/AvatarObject.h"
 #include "../../GameBaseMaker/TextureUV/TextureUV.h"
+#include "../Player/UI/PlayerLife.h"
 #include "GameObject.h"
 
 namespace deepseestars
@@ -35,38 +37,14 @@ namespace deepseestars
 	{
 	public:
 		Player(const D3DXVECTOR2& distanceToOrigin, const float& squaresSize):
-			GameObject(), m_distanceToOrigin(distanceToOrigin), m_CellSize(squaresSize)
+			GameObject(), m_distanceToOrigin(distanceToOrigin), m_cellSize(squaresSize)
 		{
 			Init();
 		}
 		
 		~Player();
 
-		void Init()
-		{
-			gamebasemaker::TextureUV autotomy(D3DXVECTOR2(0.0f,0.0f), D3DXVECTOR2(1024.f, 150.f), D3DXVECTOR2(150.f, 150.f));
-			m_vertices.SetTextureUV(autotomy);
-
-			for (int i = 0;i <= 8;i++)
-			{
-				m_rGameBaseMaker.CreateTex(m_playerTextureKey[i], m_playerTextureName[i]);
-			}
-
-			m_vertices.SetImageSize(D3DXVECTOR2(150.f, 150.f));
-			m_vertices.ClippingImage(D3DXVECTOR2(0.f, 0.f), D3DXVECTOR2(150.f, 150.f));
-
-			m_pTextureKey = m_playerTextureKey[2];
-			m_life = 5;
-			m_row = 14;
-			m_colunm = 8;
-
-			m_canDirectionInput = true;
-			m_isHideState = false;
-			m_isAutotomyState = true;
-
-			m_center = { (m_CellSize * m_row) + (m_CellSize / 2) ,(m_CellSize * m_colunm) + (m_CellSize / 2) };
-		}
-
+		void Init();
 
 		void Update();
 
@@ -104,6 +82,16 @@ namespace deepseestars
 			return m_isHideState;
 		}
 
+		int GetLife()
+		{
+			return m_life;
+		}
+
+		void SetLife(int life)
+		{
+			m_life = life;
+		}
+
 	private:
 		const TCHAR* m_playerTextureKey[9] =
 		{
@@ -130,13 +118,16 @@ namespace deepseestars
 			_T("2DTexture/Game/Player/PlayerAvatar4.png"),
 		};
 
-		const float& m_CellSize;
+		const float& m_cellSize;
 		const D3DXVECTOR2& m_distanceToOrigin;
 		std::vector<BaseActionObject*> m_paction;
+		AutotomyAction* m_pautotomyAction;
+		AvatarAction* m_pavatarAction;
+		PlayerLife* m_pplayerLife;
 
-		const float m_TextureSizeX = 50.f;
-		const float m_TextureSizeY = 50.f;
-		const float m_MoveSpeed = 10.f;
+		const float m_textureSizeX = 50.f;
+		const float m_textureSizeY = 50.f;
+		const float m_moveSpeed = 10.f;
 	
 
 		int m_life;
@@ -144,7 +135,7 @@ namespace deepseestars
 		Movements m_movements;
 		Action m_action;
 		bool m_isAutotomyState;
-		bool m_isAutotomyAnimation = false;
+		bool m_isAutotomyAnimation;
 
 	
 		D3DXVECTOR2 m_center;
@@ -160,6 +151,7 @@ namespace deepseestars
 		//
 
 		void UpdateAction();
+		void StatusManagement();
 		void Action();
 		void Hide();
 		void Autotomy();

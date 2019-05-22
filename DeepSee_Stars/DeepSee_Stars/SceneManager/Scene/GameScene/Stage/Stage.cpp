@@ -38,19 +38,19 @@ namespace deepseestars
 				switch (typeSelected)
 				{
 				case FLOOR:
-					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, FLOOR, m_CellSize, m_blockTextureKey[FLOOR]));
+					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, FLOOR, m_CellSize));
 					break;
 				case WHITE_BLOCK:
-					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, WHITE_BLOCK, m_CellSize, m_blockTextureKey[WHITE_BLOCK]));
+					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, WHITE_BLOCK, m_CellSize));
 					break;
 				case BLACK_BLOCK:
-					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, BLACK_BLOCK, m_CellSize, m_blockTextureKey[BLACK_BLOCK]));
+					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, BLACK_BLOCK, m_CellSize));
 					break;
 				case HIDE_BLOCK:
-					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, HIDE_BLOCK, m_CellSize, m_blockTextureKey[HIDE_BLOCK]));
+					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, HIDE_BLOCK, m_CellSize));
 					break;
 				case PlAYER_RECOVERY_OBJECT:
-					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, PlAYER_RECOVERY_OBJECT, m_CellSize, m_blockTextureKey[PlAYER_RECOVERY_OBJECT]));
+					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, PlAYER_RECOVERY_OBJECT, m_CellSize));
 					break;
 				}
 			}

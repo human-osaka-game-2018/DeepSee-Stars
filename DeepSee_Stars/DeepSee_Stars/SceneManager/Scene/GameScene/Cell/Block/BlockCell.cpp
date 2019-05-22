@@ -32,6 +32,23 @@ namespace deepseestars
 
 		if (!m_isWithinRenderArea) return;
 
-		m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_pTextureKey));
+		switch (m_type)
+		{
+		case FLOOR:
+			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("FloorBlock")));
+			break;
+		case WHITE_BLOCK:
+			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("WhiteBlock")));
+			break;
+		case BLACK_BLOCK:
+			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("BlackBlock")));
+			break;
+		case HIDE_BLOCK:
+			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("HideBlock")));
+			break;
+		case PlAYER_RECOVERY_OBJECT:
+			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("PlayerRecoveryObject")));
+			break;
+		}
 	}
 }
