@@ -24,12 +24,11 @@ namespace deepseestars
 
 		void Init()
 		{
-			for (int i = 0;i <= PlAYER_RECOVERY_OBJECT;i++)
+			for (int i = 0;i <= PLAYER_RECOVERY_OBJECT;i++)
 			{
 				m_rGameBaseMaker.CreateTex(m_blockTextureKey[i], m_blockTextureName[i]);
 			}
-			LoadStageDate("csv/Stage1.csv");
-			CreateBlock();
+			LoadStageData("csv/Stage1.csv");
 		}
 
 		void Update();
@@ -50,8 +49,8 @@ namespace deepseestars
 			m_rGameBaseMaker.ReleaseAllTex();
 		}
 
-		void LoadStageDate(const char* fileName);
-		void CreateBlock();
+		void LoadStageData(const char* fileName);
+		void CreateBlock(int colunm, int row);
 
 		std::vector<BlockCell*> GetblockCellPos()
 		{
@@ -60,7 +59,7 @@ namespace deepseestars
 	private:
 		const float& m_CellSize;
 		const D3DXVECTOR2& m_distanceToOrigin;
-		const TCHAR* m_blockTextureKey[PlAYER_RECOVERY_OBJECT + 1]=
+		const TCHAR* m_blockTextureKey[PLAYER_RECOVERY_OBJECT + 1]=
 		{
 			_T("FloorBlock"),
 			_T("WhiteBlock"),
@@ -69,7 +68,7 @@ namespace deepseestars
 			_T("PlayerRecoveryObject"),
 		};
 
-		const TCHAR* m_blockTextureName[PlAYER_RECOVERY_OBJECT + 1]=
+		const TCHAR* m_blockTextureName[PLAYER_RECOVERY_OBJECT + 1]=
 		{
 			_T("2DTexture/Game/Floor.png"),
 			_T("2DTexture/Game/WhiteBlock.png"),

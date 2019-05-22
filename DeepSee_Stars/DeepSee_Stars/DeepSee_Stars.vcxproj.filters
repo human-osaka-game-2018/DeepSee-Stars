@@ -285,16 +285,10 @@
     <ClCompile Include="SceneManager\Scene\GameScene\Player\Action\Avatar\AvatarObject.cpp">
       <Filter>SceneManager\Scene\GameScene\Player\Action\Avatar</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager\Scene\GameScene\Player\Action\BaseAction.cpp">
-      <Filter>SceneManager\Scene\GameScene\Player\Action</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager\Scene\GameScene\Player\Action\Autotomy\AutotomyAction.cpp">
-      <Filter>SceneManager\Scene\GameScene\Player\Action\Autotomy</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager\Scene\GameScene\Player\Action\Avatar\AvatarAction.cpp">
-      <Filter>SceneManager\Scene\GameScene\Player\Action\Avatar</Filter>
-    </ClCompile>
     <ClCompile Include="SceneManager\Scene\GameScene\Player\UI\PlayerLife.cpp">
+      <Filter>SceneManager\Scene\GameScene\Player\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\Scene\GameScene\Player\UI\SafetyLevel.cpp">
       <Filter>SceneManager\Scene\GameScene\Player\UI</Filter>
     </ClCompile>
   </ItemGroup>
@@ -449,17 +443,14 @@
     <ClInclude Include="SceneManager\Scene\GameScene\Player\Action\Avatar\AvatarObject.h">
       <Filter>SceneManager\Scene\GameScene\Player\Action\Avatar</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager\Scene\GameScene\Player\Action\BaseAction.h">
-      <Filter>SceneManager\Scene\GameScene\Player\Action</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager\Scene\GameScene\Player\Action\Autotomy\AutotomyAction.h">
-      <Filter>SceneManager\Scene\GameScene\Player\Action\Autotomy</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager\Scene\GameScene\Player\Action\Avatar\AvatarAction.h">
-      <Filter>SceneManager\Scene\GameScene\Player\Action\Avatar</Filter>
-    </ClInclude>
     <ClInclude Include="SceneManager\Scene\GameScene\Player\UI\PlayerLife.h">
       <Filter>SceneManager\Scene\GameScene\Player\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Player\UI\SafetyLevel.h">
+      <Filter>SceneManager\Scene\GameScene\Player\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Player\DirectionID.h">
+      <Filter>SceneManager\Scene\GameScene\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

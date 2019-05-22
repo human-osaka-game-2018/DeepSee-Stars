@@ -52,7 +52,7 @@ namespace deepseestars
 		{
 			if ((stagePos->Getcenter().x != playerCenterBuf.x) || (stagePos->Getcenter().y != playerCenterBuf.y)) continue;
 
-			if (stagePos->Gettype() == PlAYER_RECOVERY_OBJECT)
+			if (stagePos->Gettype() == PLAYER_RECOVERY_OBJECT)
 			{
 				m_pPlayer->SetLife(m_pPlayer->GetLife() + 1);
 				stagePos->Settype(FLOOR);
@@ -69,7 +69,7 @@ namespace deepseestars
 			for (auto& stagePos : m_pStage->GetblockCellPos())
 			{
 				if (stagePos->Gettype() == FLOOR) continue;
-				if (stagePos->Gettype() == PlAYER_RECOVERY_OBJECT) continue;
+				if (stagePos->Gettype() == PLAYER_RECOVERY_OBJECT) continue;
 
 				if ((stagePos->Getcenter().x != m_PlayerGirthCenter[i].x) || (stagePos->Getcenter().y != m_PlayerGirthCenter[i].y)) continue;
 				switch (i)

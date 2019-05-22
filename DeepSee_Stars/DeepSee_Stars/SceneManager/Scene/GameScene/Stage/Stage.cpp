@@ -25,39 +25,34 @@ namespace deepseestars
 		}
 	}
 
-	void Stage::CreateBlock()
+	void Stage::CreateBlock(int colunm,int row)
 	{
-		for (int culunm = 0; culunm < m_colunm;culunm++)
+		int typeSelected = m_stageSize[colunm][row];
+		float blockCenterPosY = (colunm * m_CellSize) + m_CellSize / 2;
+		float blockCenterPosX = (row * m_CellSize) + m_CellSize / 2;
+		D3DXVECTOR2 buf = { blockCenterPosX,blockCenterPosY };
+		switch (typeSelected)
 		{
-			for (int row = 0;row < m_row;row++)
-			{
-				int typeSelected = m_stageSize[culunm][row];
-				float blockCenterPosY = (culunm * m_CellSize) + m_CellSize / 2;
-				float blockCenterPosX = (row * m_CellSize) + m_CellSize / 2;
-				D3DXVECTOR2 buf = { blockCenterPosX,blockCenterPosY };
-				switch (typeSelected)
-				{
-				case FLOOR:
-					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, FLOOR, m_CellSize));
-					break;
-				case WHITE_BLOCK:
-					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, WHITE_BLOCK, m_CellSize));
-					break;
-				case BLACK_BLOCK:
-					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, BLACK_BLOCK, m_CellSize));
-					break;
-				case HIDE_BLOCK:
-					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, HIDE_BLOCK, m_CellSize));
-					break;
-				case PlAYER_RECOVERY_OBJECT:
-					m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin,buf, PlAYER_RECOVERY_OBJECT, m_CellSize));
-					break;
-				}
-			}
+		case FLOOR:
+			m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin, buf, FLOOR, m_CellSize));
+			break;
+		case WHITE_BLOCK:
+			m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin, buf, WHITE_BLOCK, m_CellSize));
+			break;
+		case BLACK_BLOCK:
+			m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin, buf, BLACK_BLOCK, m_CellSize));
+			break;
+		case HIDE_BLOCK:
+			m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin, buf, HIDE_BLOCK, m_CellSize));
+			break;
+		case PLAYER_RECOVERY_OBJECT:
+			m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin, buf, PLAYER_RECOVERY_OBJECT, m_CellSize));
+			break;
 		}
 	}
 
-	void Stage::LoadStageDate(const char* fileName)
+
+	void Stage::LoadStageData(const char* fileName)
 	{
 		// ファイル読み込み関数実行
 		ifstream ifs(fileName);
@@ -87,6 +82,7 @@ namespace deepseestars
 			for (int row = 0;row < m_row;++row)
 			{
 				staggStream >> m_stageSize[colunm][row];
+				CreateBlock(colunm, row);
 			}
 			colunm++;
 		}

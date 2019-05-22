@@ -10,19 +10,26 @@ namespace deepseestars
 			delete actionObject;
 			actionObject = nullptr;
 		}
-		delete m_pautotomyAction;
-		m_pautotomyAction = nullptr;
-		delete m_pavatarAction;
-		m_pavatarAction = nullptr;
+		//delete m_pautotomyAction;
+		//m_pautotomyAction = nullptr;
+		//delete m_pavatarAction;
+		//m_pavatarAction = nullptr;
 		delete m_pplayerLife;
 		m_pplayerLife = nullptr;
+		delete m_psafetyLevel;
+		m_psafetyLevel = nullptr;
 	}
 
 	void Player::Init()
 	{
-		m_pautotomyAction = new AutotomyAction(m_isAutotomyState, m_isAutotomyAnimation);
-		m_pavatarAction = new AvatarAction();
+		//m_pautotomyAction = new AutotomyAction(m_isAutotomyState, m_isAutotomyAnimation);
+		//m_pavatarAction = new AvatarAction();
+		m_life = 5;
+		m_safetyLevel = 40;
+		m_row = 14;
+		m_colunm = 8;
 		m_pplayerLife = new PlayerLife(m_life);
+		m_psafetyLevel = new SafetyLevel(m_safetyLevel, m_direction, m_isHideState);
 
 		gamebasemaker::TextureUV autotomy(D3DXVECTOR2(0.0f, 0.0f), D3DXVECTOR2(1024.f, 150.f), D3DXVECTOR2(150.f, 150.f));
 		m_vertices.SetTextureUV(autotomy);
@@ -36,9 +43,6 @@ namespace deepseestars
 		m_vertices.ClippingImage(D3DXVECTOR2(0.f, 0.f), D3DXVECTOR2(150.f, 150.f));
 
 		m_pTextureKey = m_playerTextureKey[2];
-		m_life = 5;
-		m_row = 14;
-		m_colunm = 8;
 
 		m_canDirectionInput = true;
 		m_isHideState = false;
@@ -78,6 +82,7 @@ namespace deepseestars
 		m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_pTextureKey));
 
 		m_pplayerLife->Render();
+		m_psafetyLevel->Render();
 	}
 
 	void Player::UpdateAction()
@@ -119,6 +124,10 @@ namespace deepseestars
 
 		if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_Z))
 		{
+			if (!m_isHideState)
+			{
+				m_safetyLevel += 40;
+			}
 			m_center.y = m_center.y - m_cellSize;
 			m_isHideState = true;
 			m_direction = STAYING;
@@ -130,6 +139,7 @@ namespace deepseestars
 			m_isHideState = false;
 			m_canDirectionInput = true;
 			m_pTextureKey = m_playerTextureKey[2];
+			m_safetyLevel -= 40;
 		}
 	}
 
@@ -253,14 +263,15 @@ namespace deepseestars
 		m_isAutotomyState = true;
 		m_variationValue = 0.f;
 		m_canDirectionInput = true;
+		m_safetyLevel -= 1;
+
 	}
 
 	void Player::StatusManagement()
 	{
-		if (m_life > 5)
-		{
-			m_life = 5;
-		}
+		m_psafetyLevel->Update();
+
+		m_pplayerLife->Update();
 	}
 
 	void Player::GameOverandClearConfirmation()

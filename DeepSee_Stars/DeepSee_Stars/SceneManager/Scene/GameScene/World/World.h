@@ -49,10 +49,7 @@ namespace deepseestars
 
 		void Render();
 
-		void Release()
-		{
-			m_rGameBaseMaker.ReleaseAllTex();
-		}
+		void Release(){}
 
 		void ObjectCollision();
 		void JudgePlayerMove();

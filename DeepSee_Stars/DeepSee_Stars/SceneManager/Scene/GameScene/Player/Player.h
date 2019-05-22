@@ -6,7 +6,9 @@
 #include "../Player/Action/Avatar/AvatarObject.h"
 #include "../../GameBaseMaker/TextureUV/TextureUV.h"
 #include "../Player/UI/PlayerLife.h"
+#include "../Player/UI/SafetyLevel.h"
 #include "GameObject.h"
+#include "DirectionID.h"
 
 namespace deepseestars
 {
@@ -121,9 +123,8 @@ namespace deepseestars
 		const float& m_cellSize;
 		const D3DXVECTOR2& m_distanceToOrigin;
 		std::vector<BaseActionObject*> m_paction;
-		AutotomyAction* m_pautotomyAction;
-		AvatarAction* m_pavatarAction;
 		PlayerLife* m_pplayerLife;
+		SafetyLevel* m_psafetyLevel;
 
 		const float m_textureSizeX = 50.f;
 		const float m_textureSizeY = 50.f;
@@ -131,6 +132,7 @@ namespace deepseestars
 	
 
 		int m_life;
+		int m_safetyLevel;
 
 		Movements m_movements;
 		Action m_action;
@@ -151,7 +153,7 @@ namespace deepseestars
 		//
 
 		void UpdateAction();
-		void StatusManagement();
+		void StatusManagement();l
 		void Action();
 		void Hide();
 		void Autotomy();

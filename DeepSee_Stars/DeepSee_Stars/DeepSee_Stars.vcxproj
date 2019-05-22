@@ -158,6 +158,7 @@
     <ClCompile Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\StraightLine\StraightLine.cpp" />
     <ClCompile Include="SceneManager\Scene\GameScene\Enemies\Enemy\Enemy.cpp" />
     <ClCompile Include="SceneManager\Scene\GameScene\Player\UI\PlayerLife.cpp" />
+    <ClCompile Include="SceneManager\Scene\GameScene\Player\UI\SafetyLevel.cpp" />
     <ClCompile Include="SceneManager\Scene\TitleScene\Bubbles\Bubbles.cpp" />
     <ClCompile Include="SceneManager\Scene\GameScene\Camera\Camera.cpp" />
     <ClCompile Include="SceneManager\Scene\GameScene\Cell\BaseCell.cpp" />
@@ -206,6 +207,7 @@
     <ClInclude Include="SceneManager\Scene\GameScene\Enemies\Enemy\Enemy.h" />
     <ClInclude Include="SceneManager\Scene\GameScene\Enum\Direction.h" />
     <ClInclude Include="SceneManager\Scene\GameScene\Player\UI\PlayerLife.h" />
+    <ClInclude Include="SceneManager\Scene\GameScene\Player\UI\SafetyLevel.h" />
     <ClInclude Include="SceneManager\Scene\TitleScene\Bubbles\Bubbles.h" />
     <ClInclude Include="SceneManager\Scene\GameScene\Camera\Camera.h" />
     <ClInclude Include="SceneManager\Scene\GameScene\Cell\BaseCell.h" />
