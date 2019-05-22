@@ -3,7 +3,6 @@
 
 #include "GameObject.h"
 
-
 namespace deepseestars
 {
 	class BaseActionObject : public GameObject
@@ -14,7 +13,7 @@ namespace deepseestars
 			Init();
 		}
 
-		~BaseActionObject();
+		virtual ~BaseActionObject();
 
 		virtual void Init()
 		{

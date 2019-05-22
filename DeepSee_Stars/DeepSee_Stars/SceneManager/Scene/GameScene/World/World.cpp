@@ -47,6 +47,17 @@ namespace deepseestars
 		m_PlayerGirthCenter[DOWN] = { m_pPlayer->GetCenterPos().x,m_pPlayer->GetCenterPos().y + m_CellSize };
 
 		JudgePlayerMove();
+
+		for (auto& stagePos : m_pStage->GetblockCellPos())
+		{
+			if ((stagePos->Getcenter().x != playerCenterBuf.x) || (stagePos->Getcenter().y != playerCenterBuf.y)) continue;
+
+			if (stagePos->Gettype() == PlAYER_RECOVERY_OBJECT)
+			{
+				m_pPlayer->SetLife(m_pPlayer->GetLife() + 1);
+				stagePos->Settype(FLOOR);
+			}
+		}
 	}
 
 	void World::JudgePlayerMove()
@@ -57,7 +68,9 @@ namespace deepseestars
 		{
 			for (auto& stagePos : m_pStage->GetblockCellPos())
 			{
-				if (stagePos->Gettype() == 0) continue;
+				if (stagePos->Gettype() == FLOOR) continue;
+				if (stagePos->Gettype() == PlAYER_RECOVERY_OBJECT) continue;
+
 				if ((stagePos->Getcenter().x != m_PlayerGirthCenter[i].x) || (stagePos->Getcenter().y != m_PlayerGirthCenter[i].y)) continue;
 				switch (i)
 				{

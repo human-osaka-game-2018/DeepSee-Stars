@@ -10,11 +10,48 @@ namespace deepseestars
 			delete actionObject;
 			actionObject = nullptr;
 		}
+		delete m_pautotomyAction;
+		m_pautotomyAction = nullptr;
+		delete m_pavatarAction;
+		m_pavatarAction = nullptr;
+		delete m_pplayerLife;
+		m_pplayerLife = nullptr;
+	}
+
+	void Player::Init()
+	{
+		m_pautotomyAction = new AutotomyAction(m_isAutotomyState, m_isAutotomyAnimation);
+		m_pavatarAction = new AvatarAction();
+		m_pplayerLife = new PlayerLife(m_life);
+
+		gamebasemaker::TextureUV autotomy(D3DXVECTOR2(0.0f, 0.0f), D3DXVECTOR2(1024.f, 150.f), D3DXVECTOR2(150.f, 150.f));
+		m_vertices.SetTextureUV(autotomy);
+
+		for (int i = 0;i <= 8;i++)
+		{
+			m_rGameBaseMaker.CreateTex(m_playerTextureKey[i], m_playerTextureName[i]);
+		}
+
+		m_vertices.SetImageSize(D3DXVECTOR2(150.f, 150.f));
+		m_vertices.ClippingImage(D3DXVECTOR2(0.f, 0.f), D3DXVECTOR2(150.f, 150.f));
+
+		m_pTextureKey = m_playerTextureKey[2];
+		m_life = 5;
+		m_row = 14;
+		m_colunm = 8;
+
+		m_canDirectionInput = true;
+		m_isHideState = false;
+		m_isAutotomyState = true;
+		m_isAutotomyAnimation = false;
+
+		m_center = { (m_cellSize * m_row) + (m_cellSize / 2) ,(m_cellSize * m_colunm) + (m_cellSize / 2) };
 	}
 
 	void Player::Update()
 	{
 		UpdateAction();
+		StatusManagement();
 		GameOverandClearConfirmation();
 	}
 
@@ -22,13 +59,13 @@ namespace deepseestars
 	{
 		m_centerBuf = m_center + m_distanceToOrigin;
 
-		float posY = m_centerBuf.y - m_CellSize / 4;
+		float posY = m_centerBuf.y - m_cellSize / 4;
 		if (m_isHideState)
 		{
 			posY = m_centerBuf.y;
 		}
 		D3DXVECTOR2 pos ={ m_centerBuf.x ,posY };
-		D3DXVECTOR2 scale = { m_TextureSizeX/2,m_TextureSizeY/2};
+		D3DXVECTOR2 scale = { m_textureSizeX/2,m_textureSizeY/2};
 
 		m_vertices.SetPos(pos);
 		m_vertices.SetScale(scale);
@@ -39,6 +76,8 @@ namespace deepseestars
 		}
 		
 		m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_pTextureKey));
+
+		m_pplayerLife->Render();
 	}
 
 	void Player::UpdateAction()
@@ -80,7 +119,7 @@ namespace deepseestars
 
 		if (m_rGameBaseMaker.IsHoldToKeyboard(DIK_Z))
 		{
-			m_center.y = m_center.y - m_CellSize;
+			m_center.y = m_center.y - m_cellSize;
 			m_isHideState = true;
 			m_direction = STAYING;
 			m_pTextureKey = m_playerTextureKey[3];
@@ -98,31 +137,40 @@ namespace deepseestars
 	{
 		if (!m_action.CanAutotomy) return;
 
+		if (m_life <= 0) return;
+
+		//if (m_pautotomyAction->Update())
+		//{
+		//	m_paction.push_back(new AutotomyObject(m_center, m_distanceToOrigin, m_CellSize));
+		//	m_life -= 1;
+		//	m_pTextureKey = m_playerTextureKey[2];
+		//	m_vertices.SetImageSize(D3DXVECTOR2(150.f, 150.f));
+		//	m_vertices.ClippingImage(D3DXVECTOR2(0.f, 0.f), D3DXVECTOR2(150.f, 150.f));
+		//}
+	
 		if (m_rGameBaseMaker.IsPressedToKeyboard(DIK_X))
 		{
-			if (m_life <= 0) return;
-
 			if (!m_isAutotomyState) return;
-
+		
+			m_isAutotomyAnimation = true;
+		
+			m_isAutotomyState = false;
+		
+			
 			m_vertices.PossibleAnimation();
 			m_vertices.SetImageSize(D3DXVECTOR2(1024.f, 150.f));
 			m_vertices.ClippingImage(D3DXVECTOR2(0.f, 0.f), D3DXVECTOR2(150.f, 150.f));
 			m_pTextureKey = m_playerTextureKey[4];
-
-
-			m_isAutotomyAnimation = true;
-
-			m_isAutotomyState = false;
 		}
-
+		
 		if (m_isAutotomyAnimation)
 		{
 			m_vertices.Animation(4, 6);
 			if (!m_vertices.GetIsPossibleAnimation())
 			{
-				m_paction.push_back(new AutotomyObject(m_center, m_distanceToOrigin, m_CellSize));
-				m_life -= 1;
 				m_isAutotomyAnimation = false;
+				m_paction.push_back(new AutotomyObject(m_center, m_distanceToOrigin, m_cellSize));
+				m_life -= 1;
 				m_pTextureKey = m_playerTextureKey[2];
 				m_vertices.SetImageSize(D3DXVECTOR2(150.f, 150.f));
 				m_vertices.ClippingImage(D3DXVECTOR2(0.f, 0.f), D3DXVECTOR2(150.f, 150.f));
@@ -185,26 +233,34 @@ namespace deepseestars
 		switch (m_direction)
 		{
 		case LEFT:
-			m_center.x -= m_MoveSpeed;
+			m_center.x -= m_moveSpeed;
 			break;
 		case RIGHT:
-			m_center.x += m_MoveSpeed;
+			m_center.x += m_moveSpeed;
 			break;
 		case UP:
-			m_center.y -= m_MoveSpeed;
+			m_center.y -= m_moveSpeed;
 			break;
 		case DOWN:
-			m_center.y += m_MoveSpeed;
+			m_center.y += m_moveSpeed;
 			break;
 		}
 
-		m_variationValue += m_MoveSpeed;
+		m_variationValue += m_moveSpeed;
 
-		if (m_variationValue != m_CellSize) return;
+		if (m_variationValue != m_cellSize) return;
 
 		m_isAutotomyState = true;
 		m_variationValue = 0.f;
 		m_canDirectionInput = true;
+	}
+
+	void Player::StatusManagement()
+	{
+		if (m_life > 5)
+		{
+			m_life = 5;
+		}
 	}
 
 	void Player::GameOverandClearConfirmation()

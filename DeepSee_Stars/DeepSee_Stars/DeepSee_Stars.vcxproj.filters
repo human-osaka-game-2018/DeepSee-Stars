@@ -163,6 +163,9 @@
     <Filter Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\StraightLine">
       <UniqueIdentifier>{cbe4cd34-dd86-48c2-b8da-8587f809f38d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SceneManager\Scene\GameScene\Player\UI">
+      <UniqueIdentifier>{cb0bc57c-a17b-412c-8e06-78b68c74c8bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device\DirectXDevice\DirectXDevice.cpp">
@@ -252,9 +255,6 @@
     <ClCompile Include="SceneManager\Scene\GameScene\Player\Player.cpp">
       <Filter>SceneManager\Scene\GameScene\Player</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager\Scene\GameScene\Player\Action\Avatar\AvatarAction.cpp">
-      <Filter>SceneManager\Scene\GameScene\Player\Action\Avatar</Filter>
-    </ClCompile>
     <ClCompile Include="SceneManager\Scene\GameScene\Stage\Stage.cpp">
       <Filter>SceneManager\Scene\GameScene\Stage</Filter>
     </ClCompile>
@@ -281,6 +281,21 @@
     </ClCompile>
     <ClCompile Include="SceneManager\Scene\GameScene\Player\Action\BaseActionObject.cpp">
       <Filter>SceneManager\Scene\GameScene\Player\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\Scene\GameScene\Player\Action\Avatar\AvatarObject.cpp">
+      <Filter>SceneManager\Scene\GameScene\Player\Action\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\Scene\GameScene\Player\Action\BaseAction.cpp">
+      <Filter>SceneManager\Scene\GameScene\Player\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\Scene\GameScene\Player\Action\Autotomy\AutotomyAction.cpp">
+      <Filter>SceneManager\Scene\GameScene\Player\Action\Autotomy</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\Scene\GameScene\Player\Action\Avatar\AvatarAction.cpp">
+      <Filter>SceneManager\Scene\GameScene\Player\Action\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\Scene\GameScene\Player\UI\PlayerLife.cpp">
+      <Filter>SceneManager\Scene\GameScene\Player\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -398,9 +413,6 @@
     <ClInclude Include="SceneManager\Scene\GameScene\Player\Player.h">
       <Filter>SceneManager\Scene\GameScene\Player</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager\Scene\GameScene\Player\Action\Avatar\AvatarAction.h">
-      <Filter>SceneManager\Scene\GameScene\Player\Action\Avatar</Filter>
-    </ClInclude>
     <ClInclude Include="SceneManager\Scene\GameScene\Stage\Stage.h">
       <Filter>SceneManager\Scene\GameScene\Stage</Filter>
     </ClInclude>
@@ -433,6 +445,21 @@
     </ClInclude>
     <ClInclude Include="SceneManager\Scene\GameScene\Player\Action\BaseActionObject.h">
       <Filter>SceneManager\Scene\GameScene\Player\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Player\Action\Avatar\AvatarObject.h">
+      <Filter>SceneManager\Scene\GameScene\Player\Action\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Player\Action\BaseAction.h">
+      <Filter>SceneManager\Scene\GameScene\Player\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Player\Action\Autotomy\AutotomyAction.h">
+      <Filter>SceneManager\Scene\GameScene\Player\Action\Autotomy</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Player\Action\Avatar\AvatarAction.h">
+      <Filter>SceneManager\Scene\GameScene\Player\Action\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Player\UI\PlayerLife.h">
+      <Filter>SceneManager\Scene\GameScene\Player\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
