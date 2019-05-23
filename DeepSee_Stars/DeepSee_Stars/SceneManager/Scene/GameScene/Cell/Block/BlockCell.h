@@ -13,6 +13,7 @@ namespace deepseestars
 		BLACK_BLOCK,
 		HIDE_BLOCK,
 		PLAYER_RECOVERY_OBJECT,
+		SEAWEED,
 	};
 
 

@@ -9,8 +9,8 @@ namespace deepseestars
 	class SafetyLevel : public GameObject
 	{
 	public:
-		SafetyLevel(int& safetyLevel,const Direction& playerDirection, const bool& isPlayerHideState) :
-			GameObject(), m_safetyLevel(safetyLevel), m_playerDirection(playerDirection), m_isPlayerHideState(isPlayerHideState)
+		SafetyLevel(int& safetyLevel,const Direction& playerDirection, const bool& isPlayerHideState, const bool& isPlayerInTheSeaWeed) :
+			GameObject(), m_safetyLevel(safetyLevel), m_playerDirection(playerDirection), m_isPlayerHideState(isPlayerHideState), m_isPlayerInTheSeaWeed(isPlayerInTheSeaWeed)
 		{
 			Init();
 		}
@@ -68,6 +68,10 @@ namespace deepseestars
 		int& m_safetyLevel;
 		const Direction& m_playerDirection;
 		const bool& m_isPlayerHideState;
+		const bool& m_isPlayerInTheSeaWeed;
+
+		void NaturalRise();
+		void OverflowGuard();
 	};
 }
 

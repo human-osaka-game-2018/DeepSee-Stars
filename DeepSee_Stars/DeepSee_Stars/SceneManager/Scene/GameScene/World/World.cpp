@@ -9,7 +9,7 @@ namespace deepseestars
 		m_distanceToOrigin = m_pCamera->GetDistanceToOrigin();
 		m_playerCenterPos = m_pPlayer->GetCenterPos();
 		m_pCamera->SetIsPlayerHide(m_pPlayer->GetIsHideState());
-		
+
 		m_pCamera->Update();
 
 		ObjectCollision();
@@ -25,11 +25,11 @@ namespace deepseestars
 		m_pStage->Render();
 		m_pPlayer->Render();
 		m_pEnemies->Render();
+		RenderingPriority();
 	}
 
 	void World::ObjectCollision()
 	{
-		D3DXVECTOR2 playerCenterBuf;
 		playerCenterBuf = m_pPlayer->GetCenterPos();
 		if (m_pPlayer->GetIsHideState())
 		{
@@ -48,16 +48,7 @@ namespace deepseestars
 
 		JudgePlayerMove();
 
-		for (auto& stagePos : m_pStage->GetblockCellPos())
-		{
-			if ((stagePos->Getcenter().x != playerCenterBuf.x) || (stagePos->Getcenter().y != playerCenterBuf.y)) continue;
-
-			if (stagePos->Gettype() == PLAYER_RECOVERY_OBJECT)
-			{
-				m_pPlayer->SetLife(m_pPlayer->GetLife() + 1);
-				stagePos->Settype(FLOOR);
-			}
-		}
+		GimmickCollision();
 	}
 
 	void World::JudgePlayerMove()
@@ -70,8 +61,10 @@ namespace deepseestars
 			{
 				if (stagePos->Gettype() == FLOOR) continue;
 				if (stagePos->Gettype() == PLAYER_RECOVERY_OBJECT) continue;
+				if (stagePos->Gettype() == SEAWEED) continue;
 
 				if ((stagePos->Getcenter().x != m_PlayerGirthCenter[i].x) || (stagePos->Getcenter().y != m_PlayerGirthCenter[i].y)) continue;
+
 				switch (i)
 				{
 				case LEFT:
@@ -197,10 +190,47 @@ namespace deepseestars
 			for (auto& blockCell : m_pStage->GetblockCellPos())
 			{
 				if (blockCell->Gettype() == FLOOR) continue;
-				
+
 				bool canMove = blockCell->Getcenter() == m_enemyAroundCellPos;
 				enemy->SetCanMove(canMove);
 			}
+		}
+	}
+
+	void World::GimmickCollision()
+	{
+		for (auto& stagePos : m_pStage->GetblockCellPos())
+		{
+			if ((stagePos->Getcenter().x != playerCenterBuf.x) || (stagePos->Getcenter().y != playerCenterBuf.y)) continue;
+
+			switch (stagePos->Gettype())
+			{
+			case PLAYER_RECOVERY_OBJECT:
+				m_pPlayer->SetLife(m_pPlayer->GetLife() + 1);
+				stagePos->Settype(FLOOR);
+				break;
+			case SEAWEED:
+				m_pPlayer->SetInTheSeaWeed(true);
+				break;
+			}
+			if (stagePos->Gettype() != SEAWEED)
+			{
+				m_pPlayer->SetInTheSeaWeed(false);
+			}
+		}
+	}
+
+	void World::RenderingPriority()
+	{
+		for (auto& stagePos : m_pStage->GetblockCellPos())
+		{
+			if (stagePos->Gettype() != SEAWEED) continue;
+			D3DXVECTOR2 pos = { stagePos->Getcenter().x + m_distanceToOrigin.x , stagePos->Getcenter().y + m_distanceToOrigin.y - m_CellSize / 4 };
+			D3DXVECTOR2 scale = { m_CellSize / 2 ,m_CellSize / 2 };
+
+			m_vertices.SetPos(pos);
+			m_vertices.SetScale(scale);
+			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("SeaWeed")));
 		}
 	}
 }
