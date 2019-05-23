@@ -47,7 +47,16 @@ namespace deepseestars
 			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("HideBlock")));
 			break;
 		case PLAYER_RECOVERY_OBJECT:
+			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("FloorBlock")));
+			pos = { centerBuf.x ,centerBuf.y - m_blockSize / 4};
+			m_vertices.SetPos(pos);
 			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("PlayerRecoveryObject")));
+			break;
+		case SEAWEED:
+			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("FloorBlock")));
+			pos = { centerBuf.x ,centerBuf.y - m_blockSize / 4 };
+			m_vertices.SetPos(pos);
+			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("SeaWeed")));
 			break;
 		}
 	}

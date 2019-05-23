@@ -29,7 +29,7 @@ namespace deepseestars
 		m_row = 14;
 		m_colunm = 8;
 		m_pplayerLife = new PlayerLife(m_life);
-		m_psafetyLevel = new SafetyLevel(m_safetyLevel, m_direction, m_isHideState);
+		m_psafetyLevel = new SafetyLevel(m_safetyLevel, m_direction, m_isHideState, m_inTheSeaWeed);
 
 		gamebasemaker::TextureUV autotomy(D3DXVECTOR2(0.0f, 0.0f), D3DXVECTOR2(1024.f, 150.f), D3DXVECTOR2(150.f, 150.f));
 		m_vertices.SetTextureUV(autotomy);
@@ -46,6 +46,7 @@ namespace deepseestars
 
 		m_canDirectionInput = true;
 		m_isHideState = false;
+		m_inTheSeaWeed = false;
 		m_isAutotomyState = true;
 		m_isAutotomyAnimation = false;
 

@@ -48,6 +48,9 @@ namespace deepseestars
 		case PLAYER_RECOVERY_OBJECT:
 			m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin, buf, PLAYER_RECOVERY_OBJECT, m_CellSize));
 			break;
+		case SEAWEED:
+			m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin, buf, SEAWEED, m_CellSize));
+			break;
 		}
 	}
 

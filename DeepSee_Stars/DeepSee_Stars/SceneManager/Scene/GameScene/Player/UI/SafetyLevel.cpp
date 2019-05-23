@@ -5,30 +5,48 @@ namespace deepseestars
 
 	void SafetyLevel::Update()
 	{
-		static int stopTime = 0;
+		if (m_isPlayerInTheSeaWeed)
+		{
+			m_safetyLevel = 80;
+		}
+		else
+		{
+			NaturalRise();
+			OverflowGuard();
+		}
+	}
+
+	void SafetyLevel::NaturalRise()
+	{
+		static int playerStopTime = 0;
 		if (m_playerDirection != STAYING)
 		{
-			stopTime = 0;
+			playerStopTime = 0;
 		}
 		if (m_playerDirection != STAYING) return;
 		if (m_safetyLevel > 40 && !m_isPlayerHideState) return;
-		stopTime++;
-		if (stopTime != 60)return;
-		stopTime = 0;
+		playerStopTime++;
+		if (playerStopTime != 60)return;
+		playerStopTime = 0;
 		m_safetyLevel += 3;
-		if (m_safetyLevel < 40 || m_isPlayerHideState)return;
-		m_safetyLevel = 40;
+	}
 
+	void SafetyLevel::OverflowGuard()
+	{
+		if (m_safetyLevel > 40 && !m_isPlayerHideState)
+		{
+			m_safetyLevel = 40;
+		}
 		if (m_safetyLevel > 80)
 		{
 			m_safetyLevel = 80;
 		}
-		if (m_safetyLevel < 0)
+		if (m_safetyLevel <= 0)
 		{
 			m_safetyLevel = 0;
 		}
 	}
-
+	
 	void SafetyLevel::Render()
 	{
 		D3DXVECTOR2 pos = { 210.f ,70.f };

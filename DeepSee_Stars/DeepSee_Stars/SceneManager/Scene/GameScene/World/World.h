@@ -51,10 +51,6 @@ namespace deepseestars
 
 		void Release(){}
 
-		void ObjectCollision();
-		void JudgePlayerMove();
-		void JudgePlayerAction();
-
 	private:
 		void JudgeMoveEnemy();
 		void IsPlayerTarget();
@@ -67,15 +63,24 @@ namespace deepseestars
 		Stage*   m_pStage ;
 		Enemies* m_pEnemies;
 
+		D3DXVECTOR2 playerCenterBuf;
 		D3DXVECTOR2 m_PlayerGirthCenter[4];
 		D3DXVECTOR2 m_enemyAroundCellPos;
+
+		const float m_CellSize = 50.f;
 
 		Action m_PlayerAction;
 		float m_WorldScrollX = 0.f;
 		float m_WorldScrollY = 0.f;
-		
+
 		const float m_viewAngleMax = 90.f;
 		const float m_CellSize = 50.f;
+
+		void ObjectCollision();
+		void JudgePlayerMove();
+		void JudgePlayerAction();
+		void RenderingPriority();
+		void GimmickCollision();
 	};
 }
 

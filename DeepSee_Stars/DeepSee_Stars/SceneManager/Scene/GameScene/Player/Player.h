@@ -88,12 +88,15 @@ namespace deepseestars
 		{
 			return m_life;
 		}
-
 		void SetLife(int life)
 		{
 			m_life = life;
 		}
 
+		void SetInTheSeaWeed(bool inTheSeaWeed)
+		{
+			m_inTheSeaWeed = inTheSeaWeed;
+		}
 	private:
 		const TCHAR* m_playerTextureKey[9] =
 		{
@@ -129,17 +132,16 @@ namespace deepseestars
 		const float m_textureSizeX = 50.f;
 		const float m_textureSizeY = 50.f;
 		const float m_moveSpeed = 10.f;
-	
 
 		int m_life;
 		int m_safetyLevel;
+		bool m_inTheSeaWeed;
 
 		Movements m_movements;
 		Action m_action;
 		bool m_isAutotomyState;
 		bool m_isAutotomyAnimation;
 
-	
 		D3DXVECTOR2 m_center;
 		D3DXVECTOR2 m_centerBuf;
 		float m_variationValue = 0.f;
@@ -153,7 +155,7 @@ namespace deepseestars
 		//
 
 		void UpdateAction();
-		void StatusManagement();l
+		void StatusManagement();
 		void Action();
 		void Hide();
 		void Autotomy();
