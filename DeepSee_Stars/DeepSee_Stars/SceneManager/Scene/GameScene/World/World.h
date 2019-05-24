@@ -18,9 +18,11 @@ namespace deepseestars
 			Init();
 			m_pCamera = new Camera(m_playerCenterPos, m_CellSize);
 			m_distanceToOrigin = m_pCamera->GetDistanceToOrigin();
-			m_pPlayer = new Player(m_distanceToOrigin, m_CellSize);
 			m_pStage = new Stage(m_distanceToOrigin, m_CellSize);
 			m_pEnemies = new Enemies(m_distanceToOrigin, m_playerCenterPos, m_CellSize);
+			m_playerStartPosRow = m_pStage->GetPlayerStartPosRow();
+			m_playerStartPosColunm = m_pStage->GetPlayerStartPosColunm();
+			m_pPlayer = new Player(m_distanceToOrigin, m_CellSize, m_playerStartPosRow, m_playerStartPosColunm);
 		}
 
 		~World()
@@ -72,6 +74,8 @@ namespace deepseestars
 		Action m_PlayerAction;
 		float m_WorldScrollX = 0.f;
 		float m_WorldScrollY = 0.f;
+		int m_playerStartPosRow;
+		int m_playerStartPosColunm;
 
 		const float m_viewAngleMax = 90.f;
 		const float m_CellSize = 50.f;

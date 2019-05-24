@@ -33,6 +33,11 @@ namespace deepseestars
 		D3DXVECTOR2 buf = { blockCenterPosX,blockCenterPosY };
 		switch (typeSelected)
 		{
+		case PLAYERINITPOS:
+			m_playerStartPosRow = row;
+			m_playerStartPosColunm = colunm;
+			m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin, buf, FLOOR, m_CellSize));
+			break;
 		case FLOOR:
 			m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin, buf, FLOOR, m_CellSize));
 			break;

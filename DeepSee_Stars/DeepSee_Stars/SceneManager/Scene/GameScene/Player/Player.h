@@ -38,8 +38,8 @@ namespace deepseestars
 	class Player : public GameObject
 	{
 	public:
-		Player(const D3DXVECTOR2& distanceToOrigin, const float& squaresSize):
-			GameObject(), m_distanceToOrigin(distanceToOrigin), m_cellSize(squaresSize)
+		Player(const D3DXVECTOR2& distanceToOrigin, const float& squaresSize, const int& startPosRow, const int& startPosColunm):
+			GameObject(), m_distanceToOrigin(distanceToOrigin), m_cellSize(squaresSize), m_startPosRow(startPosRow), m_startPosColunm(startPosColunm)
 		{
 			Init();
 		}
@@ -150,9 +150,8 @@ namespace deepseestars
 		bool m_isHideState;
 
 		//キャラのスタート位置Stage読み込みの際スタート位置の番号の数字を渡す
-		int m_row = 14;
-		int m_colunm = 8;
-		//
+		const int m_startPosRow;
+		const int m_startPosColunm;
 
 		void UpdateAction();
 		void StatusManagement();

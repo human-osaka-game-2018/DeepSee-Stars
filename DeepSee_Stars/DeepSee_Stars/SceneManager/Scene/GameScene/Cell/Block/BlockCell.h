@@ -8,12 +8,17 @@ namespace deepseestars
 {
 	enum TYPE
 	{
-		FLOOR,
-		WHITE_BLOCK,
+		PLAYERINITPOS,//ヒトデの初期位置
+		FLOOR,//床
+		WHITE_BLOCK,//壁
+		HIDE_BLOCK,//張り付き壁
+		MISSIONITEM,//ミッションで集めてクリアするアイテム
+		PLAYER_RECOVERY_OBJECT,//サンゴ
+		NONE6,//6番はなし
+		NONE7,//7番はなし
 		BLACK_BLOCK,
-		HIDE_BLOCK,
-		PLAYER_RECOVERY_OBJECT,
-		SEAWEED,
+		NONE9,//9番はなし
+		SEAWEED,//海藻
 	};
 
 
