@@ -1,6 +1,8 @@
 ﻿#ifndef BASE_ENEMY_ACTION_H_
 #define BASE_ENEMY_ACTION_H_
 
+#include <deque>
+
 #include <d3dx9.h>
 
 #include "../../../Enum/Direction.h"
@@ -45,23 +47,83 @@ namespace deepseestars
 			Direction     m_direction;			
 		};
 
+		/// <summary>
+		/// 巡回するためのデータを詰めるコンストラクタ
+		/// </summary>
+		/// <param name="translationData">敵クラスにある移動に関するデータの参照</param>
+		/// <param name="initPos">動き始める視点座標</param>
+		/// <param name="dest">目的地の絶対座標</param>
 		BaseEnemyAction(TranslationData& translationData,
-			const D3DXVECTOR2& initPos, const D3DXVECTOR2& movingRange) :
+			const D3DXVECTOR2& initPos, const D3DXVECTOR2& dest) :
 			m_translationData(translationData),
-			m_initPos(initPos), m_movingRange(movingRange)
+			m_initPos(initPos), m_movingRange(dest)
 		{}
 		
 		~BaseEnemyAction() {}
 
+		/// <summary>
+		/// プレイヤーの更新処理
+		/// </summary>
 		virtual void Update() = 0;
 
 	protected:
+		/// <summary>
+		/// 座標の更新をする
+		/// </summary>
+		void UpdatePos()
+		{
+			m_translationData.m_speed = m_distance / m_MOVE_SPEED_FRAME;
+			m_translationData.m_movement = m_translationData.m_speed;
+
+			m_translationData.m_pos += m_translationData.m_movement;
+		}
+
+		/// <summary>
+		/// 目的地に着いたときの処理
+		/// </summary>
+		void ArriveAtDestination(D3DXVECTOR2* pDest)
+		{
+			int currentDest = m_destQueue.front();
+
+			//目的地の範囲内に入っていたら
+			if (pDest[currentDest] - m_translationData.m_speed < m_translationData.m_pos &&
+				pDest[currentDest] + m_translationData.m_speed > m_translationData.m_pos)
+			{
+				m_translationData.m_pos = pDest[currentDest];
+
+				//入れ替え処理
+				m_destQueue.pop_front();
+				m_destQueue.push_back(currentDest);
+
+				//次の目的地の距離を算出する
+				m_distance = pDest[m_destQueue.front()] - pDest[m_destQueue.back()];
+			}
+		}
+
+		template<typename T>
+		/// <summary>
+		/// lhs,rhsの値を反転させる
+		/// </summary>
+		/// <param name="lhs">左辺値</param>
+		/// <param name="rhs">右辺値</param>
+		/// <param name="currentValue">現在がどちらの辺の値か</param>
+		/// <returns>反転させた値</returns>
+		inline T ReverseValue(T lhs, T rhs, T currentValue)
+		{
+			return (lhs + rhs) - currentValue;
+		}
+
 		TranslationData& m_translationData;
 
 		D3DXVECTOR2 m_movingRange;
 		const D3DXVECTOR2 m_initPos;
 
-		bool m_isMoving;
+		//どれだけのフレームで動くか
+		const float m_MOVE_SPEED_FRAME = 120.f;
+
+		D3DXVECTOR2 m_distance;		//距離(向きと大きさ)
+
+		std::deque<int> m_destQueue;	//ルート探索のためのキュー
 	};
 }
 
