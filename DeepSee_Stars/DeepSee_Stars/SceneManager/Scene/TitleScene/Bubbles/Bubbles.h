@@ -66,7 +66,7 @@ namespace deepseestars
 
 		private:
 			D3DXVECTOR2 m_pos;
-			float m_scaleSize;
+			float m_scaleSize;			
 			float m_rad;
 			float m_vibrationSpeed;
 			float m_buoyancy;
