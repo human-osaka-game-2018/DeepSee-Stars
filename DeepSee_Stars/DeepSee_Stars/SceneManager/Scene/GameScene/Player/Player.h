@@ -1,21 +1,13 @@
 ﻿#ifndef PLAYER_H
 #define PLAYER_H
 
+#include "../Enum/Direction.h"
 #include "../Player/Action/Autotomy/AutotomyAction.h"
 #include "../Player/Action/Avatar/AvatarAction.h"
 #include "GameObject.h"
 
 namespace deepseestars
 {
-	enum Direction
-	{
-		LEFT,
-		RIGHT,
-		UP,
-		DOWN,
-		STAYING,
-	};
-
 	struct Movements
 	{
 		bool CanMoveLeft = true;
