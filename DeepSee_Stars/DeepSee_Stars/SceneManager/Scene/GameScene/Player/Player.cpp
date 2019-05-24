@@ -10,10 +10,6 @@ namespace deepseestars
 			delete actionObject;
 			actionObject = nullptr;
 		}
-		//delete m_pautotomyAction;
-		//m_pautotomyAction = nullptr;
-		//delete m_pavatarAction;
-		//m_pavatarAction = nullptr;
 		delete m_pplayerLife;
 		m_pplayerLife = nullptr;
 		delete m_psafetyLevel;
@@ -22,12 +18,8 @@ namespace deepseestars
 
 	void Player::Init()
 	{
-		//m_pautotomyAction = new AutotomyAction(m_isAutotomyState, m_isAutotomyAnimation);
-		//m_pavatarAction = new AvatarAction();
 		m_life = 5;
 		m_safetyLevel = 40;
-		m_row = 14;
-		m_colunm = 8;
 		m_pplayerLife = new PlayerLife(m_life);
 		m_psafetyLevel = new SafetyLevel(m_safetyLevel, m_direction, m_isHideState, m_inTheSeaWeed);
 
@@ -50,7 +42,7 @@ namespace deepseestars
 		m_isAutotomyState = true;
 		m_isAutotomyAnimation = false;
 
-		m_center = { (m_cellSize * m_row) + (m_cellSize / 2) ,(m_cellSize * m_colunm) + (m_cellSize / 2) };
+		m_center = { (m_cellSize * m_startPosRow) + (m_cellSize / 2) ,(m_cellSize * m_startPosColunm) + (m_cellSize / 2) };
 	}
 
 	void Player::Update()
@@ -176,7 +168,7 @@ namespace deepseestars
 		
 		if (m_isAutotomyAnimation)
 		{
-			m_vertices.Animation(4, 6);
+			m_vertices.Animation(6, 6);
 			if (!m_vertices.GetIsPossibleAnimation())
 			{
 				m_isAutotomyAnimation = false;

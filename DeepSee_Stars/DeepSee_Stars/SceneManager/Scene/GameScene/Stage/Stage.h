@@ -56,6 +56,15 @@ namespace deepseestars
 		{
 			return m_blockCellPos;
 		}
+
+		int GetPlayerStartPosRow()
+		{
+			return m_playerStartPosRow;
+		}
+		int GetPlayerStartPosColunm()
+		{
+			return m_playerStartPosColunm;
+		}
 	private:
 		const float& m_CellSize;
 		const D3DXVECTOR2& m_distanceToOrigin;
@@ -81,6 +90,9 @@ namespace deepseestars
 
 		int m_row;
 		int m_colunm;
+
+		int m_playerStartPosRow;
+		int m_playerStartPosColunm;
 
 		std::vector<BlockCell*> m_blockCellPos;
 		std::vector< std::vector<int> > m_stageSize;
