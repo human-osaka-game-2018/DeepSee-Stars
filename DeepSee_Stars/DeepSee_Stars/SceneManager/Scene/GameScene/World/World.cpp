@@ -1,8 +1,9 @@
 ﻿#include "World.h"
 
+#include <math.h>
+
 namespace deepseestars
 {
-
 	void World::Update()
 	{
 		m_distanceToOrigin = m_pCamera->GetDistanceToOrigin();
@@ -94,5 +95,97 @@ namespace deepseestars
 		m_PlayerAction.CanAvatar = true;
 		m_PlayerAction.CanAutotomy = true;
 		m_pPlayer->SetCanAction(m_PlayerAction);
+	}
+
+	void World::IsPlayerTarget()
+	{
+		D3DXVECTOR2 distance;
+		float length;
+		const float visibilityLength[Visibility::DANGER + 1] =
+		{
+			m_CellSize * 5.f,
+			m_CellSize * 3.f,
+			m_CellSize
+		};
+		
+		for (auto& enemy : m_pEnemies->GetEnemies())
+		{
+			distance = m_pPlayer->GetCenterPos() - enemy->GetTranslationData().m_pos;
+			length = D3DXVec2Length(&distance);
+
+			if (length > visibilityLength[enemy->GetVisibility()]) continue;
+			
+			D3DXVECTOR2 unitVec;
+			
+			switch(enemy->GetDirection())
+			{
+			case LEFT:	unitVec.x += 1.0f; break;
+			case RIGHT: unitVec.x -= 1.0f; break;
+			case UP:    unitVec.y -= 1.0f; break;
+			case DOWN:  unitVec.y += 1.0f; break;
+			}
+			
+			//視野角(degree)
+			float viewAngle = 0;
+			viewAngle = D3DXToDegree(acos(D3DXVec2Dot(&distance, &unitVec) / length));
+							
+							//軸からの角度
+			if (viewAngle > (m_viewAngleMax * 0.5f)) continue;
+
+			auto CanFind = [&]()->bool
+			{
+				//確率(％)
+				int probability = 0;
+
+				//見つかる確率の処理を書く
+				//後日変更する予定
+
+				bool canFind = probability > rand() % 100;
+
+				return canFind;
+			};
+			
+			enemy->SetExistsPlayer(CanFind());
+		}
+	}
+
+	void World::JudgeMoveEnemy()
+	{
+		D3DXVECTOR2 enemyPos;
+		D3DXVECTOR2 cameraUpperLeftPos = m_pCamera->GetUpperLeftPos();
+		D3DXVECTOR2 cameraLowerRight = m_pCamera->GetLowerRightPos();
+
+		auto ExistsInCamera = [&]()->bool
+		{
+			bool ExistsCameraRangeX = (cameraUpperLeftPos.x < enemyPos.x) && (enemyPos.x < cameraLowerRight.x);
+			bool ExistsCameraRangeY = (cameraUpperLeftPos.y < enemyPos.y) && (enemyPos.y < cameraLowerRight.y);
+
+			if (ExistsCameraRangeX && ExistsCameraRangeY) return true;
+
+			return false;
+		};
+
+		for (auto& enemy : m_pEnemies->GetEnemies())
+		{
+			enemyPos = enemy->GetTranslationData().m_pos;
+
+			if (!ExistsInCamera()) continue;
+
+			switch (enemy->GetDirection())
+			{
+			case LEFT:	m_enemyAroundCellPos.x = enemyPos.x - m_CellSize; break;
+			case RIGHT: m_enemyAroundCellPos.x = enemyPos.x + m_CellSize; break;
+			case UP:    m_enemyAroundCellPos.y = enemyPos.y - m_CellSize; break;
+			case DOWN:  m_enemyAroundCellPos.y = enemyPos.y + m_CellSize; break;
+			}
+
+			for (auto& blockCell : m_pStage->GetblockCellPos())
+			{
+				if (blockCell->Gettype() == FLOOR) continue;
+				
+				bool canMove = blockCell->Getcenter() == m_enemyAroundCellPos;
+				enemy->SetCanMove(canMove);
+			}
+		}
 	}
 }
