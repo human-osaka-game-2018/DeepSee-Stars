@@ -14,14 +14,19 @@ namespace deepseestars
 
 		ObjectCollision();
 		JudgePlayerAction();
+		IsPlayerTarget();
+		JudgeMoveEnemy();
+
 		m_pStage->Update();
 		m_pPlayer->Update();
+		m_pEnemies->Update();
 	}
 
 	void World::Render()
 	{
 		m_pStage->Render();
 		m_pPlayer->Render();
+		m_pEnemies->Render();
 	}
 
 	void World::ObjectCollision()
@@ -126,8 +131,7 @@ namespace deepseestars
 			}
 			
 			//視野角(degree)
-			float viewAngle = 0;
-			viewAngle = D3DXToDegree(acos(D3DXVec2Dot(&distance, &unitVec) / length));
+			float viewAngle = D3DXToDegree(acos(D3DXVec2Dot(&distance, &unitVec) / length));			
 							
 							//軸からの角度
 			if (viewAngle > (m_viewAngleMax * 0.5f)) continue;
@@ -135,7 +139,7 @@ namespace deepseestars
 			auto CanFind = [&]()->bool
 			{
 				//確率(％)
-				int probability = 0;
+				int probability = 100;
 
 				//見つかる確率の処理を書く
 				//後日変更する予定
