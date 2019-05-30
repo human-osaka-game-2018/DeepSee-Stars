@@ -17,7 +17,10 @@ namespace deepseestars
 			Init();
 		}
 
-		~Stage() {}
+		~Stage() 
+		{
+			Release();
+		}
 
 		void Init()
 		{
@@ -35,6 +38,15 @@ namespace deepseestars
 
 		void Release() 
 		{
+			for (auto& block : m_blockCellPos)
+			{
+				delete block;
+				block = nullptr;
+			}
+
+			m_blockCellPos.clear();
+			m_blockCellPos.shrink_to_fit();
+
 			m_rGameBaseMaker.ReleaseAllTex();
 		}
 
