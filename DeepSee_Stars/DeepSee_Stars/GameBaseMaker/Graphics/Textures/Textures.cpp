@@ -21,9 +21,9 @@ namespace graphics
 	{
 		if (!m_textures.size()) return;
 
-		for(auto texture : m_textures)
+		for(auto& texture : m_textures)
 		{
-			(texture.second).Release();
+			texture.second.Release();
 		}
 
 		m_textures.clear();
