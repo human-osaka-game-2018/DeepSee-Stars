@@ -90,6 +90,7 @@ namespace deepseestars
 		void JudgeMissionStart();
 		void FinishMission();
 		void JudgeGameClear();
+		TYPE GetCurrentPosBlock();
 	};
 }
 
