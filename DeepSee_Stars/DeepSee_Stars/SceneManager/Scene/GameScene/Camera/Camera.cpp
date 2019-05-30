@@ -11,7 +11,6 @@ namespace deepseestars
 		m_center -= m_operationValue;
 
 		m_upperLeftPos = { m_center.x - m_vertices.GetDisplaySize().x / 2 , m_center.y - m_vertices.GetDisplaySize().y / 2 };
-		m_lowerRightPos = { m_center.x + m_vertices.GetDisplaySize().x / 2 , m_center.y + m_vertices.GetDisplaySize().y / 2 };
 		m_distanceToOrigin = m_worldOrigin - m_upperLeftPos;
 	}
 

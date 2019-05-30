@@ -204,7 +204,7 @@ namespace deepseestars
 
 		const float m_textureSizeX = 50.f;
 		const float m_textureSizeY = 50.f;
-		const float m_moveSpeed = 10.f;
+		const float m_moveSpeed = 5.f;
 
 		int m_safetyLevel;
 		int m_retentionMissionItem;
@@ -216,7 +216,7 @@ namespace deepseestars
 
 		D3DXVECTOR2 m_center;
 		D3DXVECTOR2 m_centerBuf;
-		float m_variationValue = 0.f;
+		float m_variationValue;
 		Direction m_direction;
 		Direction m_prevDirection;
 		Direction m_missionDirection;
