@@ -71,8 +71,6 @@ namespace deepseestars
 		D3DXVECTOR2 m_PlayerGirthCenter[4];
 		D3DXVECTOR2 m_enemyAroundCellPos;
 
-		const float m_CellSize = 50.f;
-
 		Action m_PlayerAction;
 		float m_WorldScrollX = 0.f;
 		float m_WorldScrollY = 0.f;

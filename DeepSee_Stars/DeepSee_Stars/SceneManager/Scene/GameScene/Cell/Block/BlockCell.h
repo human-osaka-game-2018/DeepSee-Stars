@@ -8,6 +8,7 @@ namespace deepseestars
 {
 	enum TYPE
 	{
+		ERRORTYPE = -1,
 		PLAYERINITPOS,//ヒトデの初期位置
 		FLOOR,//床
 		WHITE_BLOCK,//壁
