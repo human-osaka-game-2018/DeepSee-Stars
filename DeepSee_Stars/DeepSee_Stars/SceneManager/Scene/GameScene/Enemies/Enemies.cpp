@@ -9,6 +9,11 @@ namespace deepseestars
 {
 	void Enemies::Init()
 	{
+		for (int i = 0; i < STAYING; ++i)
+		{
+			m_rGameBaseMaker.CreateTex(m_pTextureKeys[i], m_pFileNames[i]);
+		}
+
 		for (auto enemy : m_enemies)
 		{
 			enemy->Init();
@@ -48,9 +53,11 @@ namespace deepseestars
 			movingData.m_movingPos = 
 			{ enemyMovementPos[0] * m_cellSize,enemyMovementPos[1] * m_cellSize };
 
+			movingData.m_actionPattern = static_cast<ActionPattern>(actionPattern);
+
 			//敵の生成
-			m_enemies.push_back(new Enemy(m_pTextureKey, m_playerPos,
-				static_cast<Visibility>(visibility), movingData));
+			m_enemies.push_back(new Enemy(m_playerPos, m_pTextureKeys,m_distanceToOrigin,
+				static_cast<Visibility>(visibility), movingData, m_cellSize));
 		}
 	}
 
