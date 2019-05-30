@@ -23,11 +23,13 @@ namespace deepseestars
 	class Enemy :public GameObject
 	{
 	public:
-		Enemy(const TCHAR* pTextureKey, const D3DXVECTOR2& playerPos,
-			Visibility visibility, EnemyMovingData movingData);
+		Enemy(const D3DXVECTOR2& playerPos,const TCHAR** ppTextureKeys, const D3DXVECTOR2& DistanceToOrigin,
+			Visibility visibility, EnemyMovingData movingData,const float& cellSize);
 
 		~Enemy()
-		{}
+		{
+			Release();
+		}
 
 		void Init();
 		void Update();
@@ -53,12 +55,23 @@ namespace deepseestars
 		/// </summary>
 		void DecideDirection();
 
+		/// <summary>
+		/// 巡回パターンを決める
+		/// </summary>
+		/// <param name="movingData">敵の動きを決めるデータが入っている構造体</param>
+		/// <remarks>コンストラクタでしか使わない</remarks>
+		void DecideActionPattern(const EnemyMovingData& movingData);
+
 		const D3DXVECTOR2& m_playerPos;
+		const D3DXVECTOR2& m_distanceToOrigin;
+		const float& m_cellSize;
 
 		Visibility m_visibility;
 		BaseEnemyAction::TranslationData m_translationData;
 
 		BaseEnemyAction* m_pEnemyAction;
+
+		const TCHAR** m_pTextureKeys;
 
 		bool m_existsPlayer;
 		bool m_canMove;
