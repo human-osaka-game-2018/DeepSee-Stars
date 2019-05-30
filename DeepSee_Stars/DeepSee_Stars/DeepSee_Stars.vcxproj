@@ -152,6 +152,11 @@
     <ClCompile Include="GameObjects\GameObjects.cpp" />
     <ClCompile Include="main\main.cpp" />
     <ClCompile Include="SceneManager\SceneManager.cpp" />
+    <ClCompile Include="SceneManager\Scene\GameScene\Enemies\Enemies.cpp" />
+    <ClCompile Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\L_Shaped\L_Shaped.cpp" />
+    <ClCompile Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\Patorl\Patrol.cpp" />
+    <ClCompile Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\StraightLine\StraightLine.cpp" />
+    <ClCompile Include="SceneManager\Scene\GameScene\Enemies\Enemy\Enemy.cpp" />
     <ClCompile Include="SceneManager\Scene\TitleScene\Bubbles\Bubbles.cpp" />
     <ClCompile Include="SceneManager\Scene\GameScene\Camera\Camera.cpp" />
     <ClCompile Include="SceneManager\Scene\GameScene\Cell\BaseCell.cpp" />
@@ -192,6 +197,13 @@
     <ClInclude Include="GameObjects\GameObjects.h" />
     <ClInclude Include="GameObjects\GameObject\GameObject.h" />
     <ClInclude Include="SceneManager\SceneManager.h" />
+    <ClInclude Include="SceneManager\Scene\GameScene\Enemies\Enemies.h" />
+    <ClInclude Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\BaseEnemyAction.h" />
+    <ClInclude Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\L_Shaped\L_Shaped.h" />
+    <ClInclude Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\Patorl\Patrol.h" />
+    <ClInclude Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\StraightLine\StraightLine.h" />
+    <ClInclude Include="SceneManager\Scene\GameScene\Enemies\Enemy\Enemy.h" />
+    <ClInclude Include="SceneManager\Scene\GameScene\Enum\Direction.h" />
     <ClInclude Include="SceneManager\Scene\TitleScene\Bubbles\Bubbles.h" />
     <ClInclude Include="SceneManager\Scene\GameScene\Camera\Camera.h" />
     <ClInclude Include="SceneManager\Scene\GameScene\Cell\BaseCell.h" />

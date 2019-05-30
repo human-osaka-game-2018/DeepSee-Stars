@@ -142,6 +142,27 @@
     <Filter Include="SceneManager\Scene\GameScene\Cell\Block">
       <UniqueIdentifier>{9392c829-7d3a-4f4f-8cc4-cc5bbc7b4014}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SceneManager\Scene\GameScene\Enemies">
+      <UniqueIdentifier>{5ca200bd-b48b-46c1-ac4a-fc1118b1e3ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneManager\Scene\GameScene\Enemies\Enemy">
+      <UniqueIdentifier>{b8387e6a-ac53-412e-8487-6de6b01143b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneManager\Scene\GameScene\Enum">
+      <UniqueIdentifier>{6d0ac90e-23c2-418d-b32a-d749b0bf573f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction">
+      <UniqueIdentifier>{f0f1ea33-8c61-4f1d-8274-f15f5113f639}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\Patrol">
+      <UniqueIdentifier>{27c83321-4597-4609-b53f-5005439bf0a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\L_Shaped">
+      <UniqueIdentifier>{60ec070e-ffbc-4d5b-9469-2cd8f1dab548}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\StraightLine">
+      <UniqueIdentifier>{cbe4cd34-dd86-48c2-b8da-8587f809f38d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device\DirectXDevice\DirectXDevice.cpp">
@@ -245,6 +266,21 @@
     </ClCompile>
     <ClCompile Include="SceneManager\Scene\GameScene\World\World.cpp">
       <Filter>SceneManager\Scene\GameScene\World</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\Scene\GameScene\Enemies\Enemies.cpp">
+      <Filter>SceneManager\Scene\GameScene\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\Scene\GameScene\Enemies\Enemy\Enemy.cpp">
+      <Filter>SceneManager\Scene\GameScene\Enemies\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\Patorl\Patrol.cpp">
+      <Filter>SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\Patrol</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\L_Shaped\L_Shaped.cpp">
+      <Filter>SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\L_Shaped</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\StraightLine\StraightLine.cpp">
+      <Filter>SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\StraightLine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -376,6 +412,27 @@
     </ClInclude>
     <ClInclude Include="SceneManager\Scene\GameScene\World\World.h">
       <Filter>SceneManager\Scene\GameScene\World</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Enemies\Enemies.h">
+      <Filter>SceneManager\Scene\GameScene\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Enemies\Enemy\Enemy.h">
+      <Filter>SceneManager\Scene\GameScene\Enemies\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Enum\Direction.h">
+      <Filter>SceneManager\Scene\GameScene\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\BaseEnemyAction.h">
+      <Filter>SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\Patorl\Patrol.h">
+      <Filter>SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\Patrol</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\L_Shaped\L_Shaped.h">
+      <Filter>SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\L_Shaped</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\StraightLine\StraightLine.h">
+      <Filter>SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\StraightLine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
