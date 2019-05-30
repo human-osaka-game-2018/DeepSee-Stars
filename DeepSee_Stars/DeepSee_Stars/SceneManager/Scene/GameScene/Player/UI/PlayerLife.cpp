@@ -5,15 +5,7 @@ namespace deepseestars
 
 	void PlayerLife::Update()
 	{
-		if (m_life > 5)
-		{
-			m_life = 5;
-		}
-
-		if (m_life < 0)
-		{
-			m_life = 0;
-		}
+		m_life = min(max(m_life, 0), 5);
 	}
 
 	void PlayerLife::Render()

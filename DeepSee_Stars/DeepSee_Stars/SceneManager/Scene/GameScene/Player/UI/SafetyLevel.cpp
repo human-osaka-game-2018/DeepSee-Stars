@@ -37,14 +37,7 @@ namespace deepseestars
 		{
 			m_safetyLevel = 40;
 		}
-		if (m_safetyLevel > 80)
-		{
-			m_safetyLevel = 80;
-		}
-		if (m_safetyLevel <= 0)
-		{
-			m_safetyLevel = 0;
-		}
+		m_safetyLevel = min(max(m_safetyLevel, 0), 80);
 	}
 	
 	void SafetyLevel::Render()
