@@ -52,8 +52,8 @@ namespace deepseestars
 			m_pEnemyAction = new Patrol(m_translationData, movingData);
 			break;
 
-		case L_SHAPED:
-			m_pEnemyAction = new L_Shaped(m_translationData, movingData);
+		case L_SHAPE:
+			m_pEnemyAction = new L_Shape(m_translationData, movingData);
 			break;
 
 		case STRAIGHTLINE:
@@ -69,8 +69,10 @@ namespace deepseestars
 	{
 		if (m_translationData.m_movement == 0) return;
 
-		m_translationData.m_direction = (m_translationData.m_movement.x > 0) ? RIGHT : LEFT;
-		m_translationData.m_direction = (m_translationData.m_movement.y > 0) ? DOWN  : UP;
+		if (m_translationData.m_movement.x > 0) m_translationData.m_direction = RIGHT;
+		if (m_translationData.m_movement.x < 0) m_translationData.m_direction = LEFT;
+		if (m_translationData.m_movement.y > 0) m_translationData.m_direction = DOWN;
+		if (m_translationData.m_movement.y < 0) m_translationData.m_direction = UP;
 	}
 
 	void Enemy::ChasePlayer()

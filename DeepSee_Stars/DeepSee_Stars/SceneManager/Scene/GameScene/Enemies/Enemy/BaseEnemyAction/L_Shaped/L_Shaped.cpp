@@ -2,7 +2,7 @@
 
 namespace deepseestars
 {
-	void L_Shaped::Init()
+	void L_Shape::Init()
 	{
 		//0,2だけの乱数
 		int randam = 2 * (rand() % 2);
@@ -22,7 +22,7 @@ namespace deepseestars
 		m_translationData.m_pos = m_initPos;
 	}
 
-	void L_Shaped::Update()
+	void L_Shape::Update()
 	{
 		UpdatePos();
 		ArriveAtDestination(m_dest);

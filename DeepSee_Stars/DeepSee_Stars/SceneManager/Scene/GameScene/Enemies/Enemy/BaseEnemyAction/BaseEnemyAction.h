@@ -12,7 +12,7 @@ namespace deepseestars
 	enum ActionPattern
 	{
 		PATROL,
-		L_SHAPED,
+		L_SHAPE,
 		STRAIGHTLINE,
 		DONTMOVE
 	};

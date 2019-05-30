@@ -1,5 +1,5 @@
-﻿#ifndef L_SHAPED_H_
-#define L_SHAPED_H_
+﻿#ifndef L_SHAPE_H_
+#define L_SHAPE_H_
 
 #include "../BaseEnemyAction.h"
 
@@ -8,7 +8,7 @@ namespace deepseestars
 	/// <summary>
 	/// L字の点を巡回するクラス
 	/// </summary>
-	class L_Shaped :public BaseEnemyAction
+	class L_Shape :public BaseEnemyAction
 	{
 	public:
 		/// <summary>
@@ -16,13 +16,13 @@ namespace deepseestars
 		/// </summary>
 		/// <param name="translationData">敵の動きのデータ構造体</param>
 		/// <param name="movingData">初期位置や目的地のデータ構造体</param>
-		L_Shaped(TranslationData& translationData, const EnemyMovingData& movingData) :
+		L_Shape(TranslationData& translationData, const EnemyMovingData& movingData) :
 			BaseEnemyAction(translationData, movingData.m_initPos, movingData.m_movingPos)
 		{
 			Init();
 		}
 
-		~L_Shaped() {}
+		~L_Shape() {}
 
 		/// <summary>
 		/// デキューの初期化
@@ -45,4 +45,4 @@ namespace deepseestars
 	};
 }
 
-#endif // !L_SHAPED_H_
+#endif // !L_SHAPE_H_
