@@ -84,10 +84,14 @@ namespace deepseestars
 		void ArriveAtDestination(D3DXVECTOR2* pDest)
 		{
 			int currentDest = m_destQueue.front();
+			D3DXVECTOR2 absSpeed = { fabsf(m_translationData.m_speed.x),fabsf(m_translationData.m_speed.y) };
+
+			D3DXVECTOR2 topLeft = { pDest[currentDest].x - absSpeed.x,pDest[currentDest].y - absSpeed.y };
+			D3DXVECTOR2 bottomRight = { pDest[currentDest].x + absSpeed.x,pDest[currentDest].y + absSpeed.y };
 
 			//目的地の範囲内に入っていたら
-			if (pDest[currentDest] - m_translationData.m_speed < m_translationData.m_pos &&
-				pDest[currentDest] + m_translationData.m_speed > m_translationData.m_pos)
+			if (((topLeft.x <= m_translationData.m_pos.x) && (bottomRight.x >= m_translationData.m_pos.x)) &&
+				((topLeft.y <= m_translationData.m_pos.y) && (bottomRight.y >= m_translationData.m_pos.y)))
 			{
 				m_translationData.m_pos = pDest[currentDest];
 
@@ -102,7 +106,7 @@ namespace deepseestars
 
 		template<typename T>
 		/// <summary>
-		/// lhs,rhsの値を反転させる
+		/// 2つの値をもらい、現在の値じゃないほうに反転させる
 		/// </summary>
 		/// <param name="lhs">左辺値</param>
 		/// <param name="rhs">右辺値</param>

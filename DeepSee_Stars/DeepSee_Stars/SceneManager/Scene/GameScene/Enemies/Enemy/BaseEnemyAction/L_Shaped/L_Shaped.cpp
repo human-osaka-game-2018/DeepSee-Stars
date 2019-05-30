@@ -14,11 +14,17 @@ namespace deepseestars
 		m_destQueue.push_back(randam);
 		m_destQueue.push_back(1);
 		m_destQueue.push_back(ReverseValue(0, 2, randam));	//選ばれなかったほうの値を詰める
+		m_destQueue.push_back(1);
+
+		//初期の移動する道のりを計算する
+		m_distance = m_dest[randam] - m_dest[1];
+
+		m_translationData.m_pos = m_initPos;
 	}
 
 	void L_Shaped::Update()
 	{
-		ArriveAtDestination(m_dest);
 		UpdatePos();
+		ArriveAtDestination(m_dest);
 	}
 }
