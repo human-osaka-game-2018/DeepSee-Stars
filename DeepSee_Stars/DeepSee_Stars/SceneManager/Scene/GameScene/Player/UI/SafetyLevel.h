@@ -2,7 +2,7 @@
 #define SAFETYLIFE_H
 
 #include "GameObject.h"
-#include "../DirectionID.h"
+#include "../../Enum/Direction.h"
 
 namespace deepseestars
 {

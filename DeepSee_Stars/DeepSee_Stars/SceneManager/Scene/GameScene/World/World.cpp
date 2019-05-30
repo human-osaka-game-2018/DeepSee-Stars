@@ -169,24 +169,10 @@ namespace deepseestars
 	void World::JudgeMoveEnemy()
 	{
 		D3DXVECTOR2 enemyPos;
-		D3DXVECTOR2 cameraUpperLeftPos = m_pCamera->GetUpperLeftPos();
-		D3DXVECTOR2 cameraLowerRight = m_pCamera->GetLowerRightPos();
-
-		auto ExistsInCamera = [&]()->bool
-		{
-			bool ExistsCameraRangeX = (cameraUpperLeftPos.x < enemyPos.x) && (enemyPos.x < cameraLowerRight.x);
-			bool ExistsCameraRangeY = (cameraUpperLeftPos.y < enemyPos.y) && (enemyPos.y < cameraLowerRight.y);
-
-			if (ExistsCameraRangeX && ExistsCameraRangeY) return true;
-
-			return false;
-		};
-
+	
 		for (auto& enemy : m_pEnemies->GetEnemies())
 		{
 			enemyPos = enemy->GetTranslationData().m_pos;
-
-			if (!ExistsInCamera()) continue;
 
 			switch (enemy->GetDirection())
 			{
@@ -289,5 +275,6 @@ namespace deepseestars
 
 			return stagePos->Gettype();
 		}
+		return ERRORTYPE;
 	}
 }

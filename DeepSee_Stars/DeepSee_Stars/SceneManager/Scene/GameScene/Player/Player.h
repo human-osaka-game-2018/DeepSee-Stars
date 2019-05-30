@@ -10,7 +10,7 @@
 #include "../Player/UI/RetentionMissionItem.h"
 #include "Mission\Mission.h"
 #include "GameObject.h"
-#include "DirectionID.h"
+#include "../Enum/Direction.h"
 
 namespace deepseestars
 {
