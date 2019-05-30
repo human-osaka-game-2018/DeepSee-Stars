@@ -67,6 +67,7 @@ namespace deepseestars
 				if (stagePos->Gettype() == SEAWEED) continue;
 				if (stagePos->Gettype() == MISSION_ITEM) continue;
 				if (stagePos->Gettype() == GAMECLEARZONE) continue;
+				
 				if (!m_pPlayer->GetStartMissionGet4Items())
 				{
 					if (stagePos->Gettype() == MISSIONSTART_GET4ITEMS) continue;
