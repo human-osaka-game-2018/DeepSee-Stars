@@ -30,7 +30,10 @@ namespace graphics
 		/// </summary>
 		void Release()
 		{
+			if (m_texture == nullptr) return;
+
 			m_texture->Release();
+			m_texture = nullptr;
 		}
 
 		inline LPDIRECT3DTEXTURE9 GetTex()
