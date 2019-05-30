@@ -14,8 +14,6 @@ namespace deepseestars
 
 		ObjectCollision();
 		JudgePlayerAction();
-		IsPlayerTarget();
-		JudgeMoveEnemy();
 
 		m_pStage->Update();
 		m_pPlayer->Update();

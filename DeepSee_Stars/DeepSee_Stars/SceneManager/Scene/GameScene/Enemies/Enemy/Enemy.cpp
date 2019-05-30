@@ -21,13 +21,8 @@ namespace deepseestars
 	}
 
 	void Enemy::Update()
-	{
-		if (!m_existsPlayer)
-		{
-			m_pEnemyAction->Update();	
-		}
-
-		ChasePlayer();
+	{	
+		m_pEnemyAction->Update();	
 		DecideDirection();
 	}
 
@@ -84,11 +79,10 @@ namespace deepseestars
 		if (!m_existsPlayer) return;
 
 		D3DXVECTOR2 chaseVec = m_playerPos - m_translationData.m_pos;
-		D3DXVec2Length(&chaseVec);
+		D3DXVec2Normalize(&chaseVec,&chaseVec);
 
-		m_translationData.m_speed = { D3DXVec2Length(&chaseVec) / 120.f, D3DXVec2Length(&chaseVec) / 120.f };
-
-		m_translationData.m_movement = m_translationData.m_speed;
+		m_translationData.m_movement = 
+		{ chaseVec.x * m_translationData.m_speed.x,chaseVec.y * m_translationData.m_speed.y };
 
 		m_translationData.m_pos += m_translationData.m_movement;
 	}
