@@ -166,6 +166,9 @@
     <Filter Include="SceneManager\Scene\GameScene\Player\UI">
       <UniqueIdentifier>{cb0bc57c-a17b-412c-8e06-78b68c74c8bf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SceneManager\Scene\GameScene\Player\Mission">
+      <UniqueIdentifier>{c31ba6d2-8551-4c27-87ae-a65c585176aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Device\DirectXDevice\DirectXDevice.cpp">
@@ -290,6 +293,12 @@
     </ClCompile>
     <ClCompile Include="SceneManager\Scene\GameScene\Player\UI\SafetyLevel.cpp">
       <Filter>SceneManager\Scene\GameScene\Player\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\Scene\GameScene\Player\UI\RetentionMissionItem.cpp">
+      <Filter>SceneManager\Scene\GameScene\Player\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager\Scene\GameScene\Player\Mission\Mission.cpp">
+      <Filter>SceneManager\Scene\GameScene\Player\Mission</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -443,14 +452,20 @@
     <ClInclude Include="SceneManager\Scene\GameScene\Player\Action\Avatar\AvatarObject.h">
       <Filter>SceneManager\Scene\GameScene\Player\Action\Avatar</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager\Scene\GameScene\Player\UI\PlayerLife.h">
-      <Filter>SceneManager\Scene\GameScene\Player\UI</Filter>
+    <ClInclude Include="SceneManager\Scene\GameScene\Player\DirectionID.h">
+      <Filter>SceneManager\Scene\GameScene\Player</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager\Scene\GameScene\Player\UI\SafetyLevel.h">
       <Filter>SceneManager\Scene\GameScene\Player\UI</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager\Scene\GameScene\Player\DirectionID.h">
-      <Filter>SceneManager\Scene\GameScene\Player</Filter>
+    <ClInclude Include="SceneManager\Scene\GameScene\Player\UI\PlayerLife.h">
+      <Filter>SceneManager\Scene\GameScene\Player\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Player\UI\RetentionMissionItem.h">
+      <Filter>SceneManager\Scene\GameScene\Player\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Player\Mission\Mission.h">
+      <Filter>SceneManager\Scene\GameScene\Player\Mission</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

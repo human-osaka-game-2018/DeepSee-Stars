@@ -13,12 +13,13 @@ namespace deepseestars
 		{
 			Init();
 		}
-		~Camera() {};
+		~Camera() 
+		{
+			Release();
+		}
 
 		void Init()
 		{
-			m_center = { (m_CellSize * 14) + (m_CellSize / 2) ,(m_CellSize * 8) + (m_CellSize / 2) };
-
 			m_upperLeftPos = { m_center.x - m_vertices.GetDisplaySize().x / 2 , m_center.y - m_vertices.GetDisplaySize().y / 2 };
 			m_lowerRightPos = { m_center.x + m_vertices.GetDisplaySize().x / 2 , m_center.y + m_vertices.GetDisplaySize().y / 2 };
 

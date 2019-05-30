@@ -15,7 +15,7 @@ namespace graphics
 	{
 	public:
 		Textures() {}
-		~Textures() {}
+		~Textures(){}
 
 		/// <summary>
 		/// テクスチャの生成

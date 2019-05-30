@@ -6,6 +6,7 @@
 #include "../Camera/Camera.h"
 #include "../Enemies/Enemies.h"
 #include "GameObject.h"
+#include "../../SceneManager/SceneManager.h"
 
 namespace deepseestars
 {
@@ -23,10 +24,11 @@ namespace deepseestars
 			m_playerStartPosRow = m_pStage->GetPlayerStartPosRow();
 			m_playerStartPosColunm = m_pStage->GetPlayerStartPosColunm();
 			m_pPlayer = new Player(m_distanceToOrigin, m_CellSize, m_playerStartPosRow, m_playerStartPosColunm);
-		}
+			}
 
 		~World()
 		{
+			Release();
 			delete m_pStage;
 			m_pStage = nullptr;
 
@@ -85,6 +87,9 @@ namespace deepseestars
 		void JudgePlayerAction();
 		void RenderingPriority();
 		void GimmickCollision();
+		void JudgeMissionStart();
+		void FinishMission();
+		void JudgeGameClear();
 	};
 }
 

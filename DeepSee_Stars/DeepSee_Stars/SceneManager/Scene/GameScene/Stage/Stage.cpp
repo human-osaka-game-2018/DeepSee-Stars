@@ -56,6 +56,15 @@ namespace deepseestars
 		case SEAWEED:
 			m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin, buf, SEAWEED, m_CellSize));
 			break;
+		case MISSION_ITEM:
+			m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin, buf, MISSION_ITEM, m_CellSize));
+			break;
+		case GAMECLEARZONE:
+			m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin, buf, GAMECLEARZONE, m_CellSize));
+			break;
+		case MISSIONSTART_GET4ITEMS:
+			m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin, buf, MISSIONSTART_GET4ITEMS, m_CellSize));
+			break;
 		}
 	}
 

@@ -5,14 +5,14 @@ namespace deepseestars
 
 	void PlayerLife::Update()
 	{
-		if (m_playerLife > 5)
+		if (m_life > 5)
 		{
-			m_playerLife = 5;
+			m_life = 5;
 		}
 
-		if (m_playerLife < 0)
+		if (m_life < 0)
 		{
-			m_playerLife = 0;
+			m_life = 0;
 		}
 	}
 
@@ -25,7 +25,8 @@ namespace deepseestars
 		m_vertices.SetScale(scale);
 
 		m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_LifeUITextureKey[0]));
-		switch (m_playerLife)
+
+		switch (m_life)
 		{
 		case 0:
 			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_LifeUITextureKey[1]));

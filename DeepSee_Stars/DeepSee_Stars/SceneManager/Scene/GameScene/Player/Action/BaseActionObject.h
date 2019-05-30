@@ -13,7 +13,10 @@ namespace deepseestars
 			Init();
 		}
 
-		virtual ~BaseActionObject();
+		virtual ~BaseActionObject()
+		{
+			Release();
+		}
 
 		virtual void Init()
 		{

@@ -15,7 +15,10 @@ namespace deepseestars
 			Init();
 		}
 
-		~SafetyLevel() {};
+		~SafetyLevel() 
+		{
+			Release();
+		}
 
 		void Init()
 		{

@@ -157,7 +157,9 @@
     <ClCompile Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\Patorl\Patrol.cpp" />
     <ClCompile Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\StraightLine\StraightLine.cpp" />
     <ClCompile Include="SceneManager\Scene\GameScene\Enemies\Enemy\Enemy.cpp" />
+    <ClCompile Include="SceneManager\Scene\GameScene\Player\Mission\Mission.cpp" />
     <ClCompile Include="SceneManager\Scene\GameScene\Player\UI\PlayerLife.cpp" />
+    <ClCompile Include="SceneManager\Scene\GameScene\Player\UI\RetentionMissionItem.cpp" />
     <ClCompile Include="SceneManager\Scene\GameScene\Player\UI\SafetyLevel.cpp" />
     <ClCompile Include="SceneManager\Scene\TitleScene\Bubbles\Bubbles.cpp" />
     <ClCompile Include="SceneManager\Scene\GameScene\Camera\Camera.cpp" />
@@ -206,7 +208,9 @@
     <ClInclude Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\StraightLine\StraightLine.h" />
     <ClInclude Include="SceneManager\Scene\GameScene\Enemies\Enemy\Enemy.h" />
     <ClInclude Include="SceneManager\Scene\GameScene\Enum\Direction.h" />
+       <ClInclude Include="SceneManager\Scene\GameScene\Player\Mission\Mission.h" />
     <ClInclude Include="SceneManager\Scene\GameScene\Player\UI\PlayerLife.h" />
+    <ClInclude Include="SceneManager\Scene\GameScene\Player\UI\RetentionMissionItem.h" />
     <ClInclude Include="SceneManager\Scene\GameScene\Player\UI\SafetyLevel.h" />
     <ClInclude Include="SceneManager\Scene\TitleScene\Bubbles\Bubbles.h" />
     <ClInclude Include="SceneManager\Scene\GameScene\Camera\Camera.h" />

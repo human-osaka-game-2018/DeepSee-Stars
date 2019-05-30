@@ -16,7 +16,10 @@ namespace deepseestars
 			Init();
 		}
 
-		~AutotomyObject() {};
+		~AutotomyObject()
+		{
+			Release();
+		}
 
 		void Init() 
 		{

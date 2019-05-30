@@ -24,7 +24,7 @@ namespace deepseestars
 
 		void Init()
 		{
-			for (int i = 0;i <= SEAWEED;i++)
+			for (int i = 0;i <= 8;i++)
 			{
 				m_rGameBaseMaker.CreateTex(m_blockTextureKey[i], m_blockTextureName[i]);
 			}
@@ -68,7 +68,8 @@ namespace deepseestars
 	private:
 		const float& m_CellSize;
 		const D3DXVECTOR2& m_distanceToOrigin;
-		const TCHAR* m_blockTextureKey[SEAWEED + 1]=
+
+		const TCHAR* m_blockTextureKey[8]=
 		{
 			_T("FloorBlock"),
 			_T("WhiteBlock"),
@@ -76,9 +77,11 @@ namespace deepseestars
 			_T("HideBlock"),
 			_T("PlayerRecoveryObject"),
 			_T("SeaWeed"),
+			_T("MissionItem"),
+			_T("MissionStartLine"),
 		};
 
-		const TCHAR* m_blockTextureName[SEAWEED + 1]=
+		const TCHAR* m_blockTextureName[8]=
 		{
 			_T("2DTexture/Game/Floor.png"),
 			_T("2DTexture/Game/WhiteBlock.png"),
@@ -86,6 +89,8 @@ namespace deepseestars
 			_T("2DTexture/Game/HideBlock.png"),
 			_T("2DTexture/Game/PlayerRecoveryObject.png"),
 			_T("2DTexture/Game/SeaWeed.png"),
+			_T("2DTexture/Game/MissionItem.png"),
+			_T("2DTexture/Game/MissionStart.png"),
 		};
 
 		int m_row;

@@ -8,8 +8,8 @@ namespace deepseestars
 	class BaseCell
 	{
 	public:
-		BaseCell();
-		virtual ~BaseCell();
+		BaseCell(){}
+		virtual ~BaseCell(){}
 		virtual void Update() = 0;
 		virtual void Render() = 0;
 
