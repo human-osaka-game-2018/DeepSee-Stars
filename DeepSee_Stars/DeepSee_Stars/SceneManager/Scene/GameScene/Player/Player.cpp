@@ -7,6 +7,14 @@ namespace deepseestars
 	{
 		m_safetyLevel = 40;
 		m_retentionMissionItem = 0;
+		m_variationValue = 0.f;
+
+		m_canDirectionInput = true;
+		m_isHideState = false;
+		m_inTheSeaWeed = false;
+		m_isAutotomyState = true;
+		m_isAutotomyAnimation = false;
+		m_missionDirection = STAYING;
 
 		gamebasemaker::TextureUV autotomy(D3DXVECTOR2(0.0f, 0.0f), D3DXVECTOR2(1024.f, 150.f), D3DXVECTOR2(150.f, 150.f));
 		m_vertices.SetTextureUV(autotomy);
@@ -20,13 +28,6 @@ namespace deepseestars
 		m_vertices.ClippingImage(D3DXVECTOR2(0.f, 0.f), D3DXVECTOR2(150.f, 150.f));
 
 		m_pTextureKey = m_playerTextureKey[3];
-
-		m_canDirectionInput = true;
-		m_isHideState = false;
-		m_inTheSeaWeed = false;
-		m_isAutotomyState = true;
-		m_isAutotomyAnimation = false;
-		m_missionDirection = STAYING;
 
 		m_center = { (m_cellSize * m_startPosRow) + (m_cellSize / 2) ,(m_cellSize * m_startPosColunm) + (m_cellSize / 2) };
 	}
@@ -44,6 +45,7 @@ namespace deepseestars
 	{
 		m_centerBuf = m_center + m_distanceToOrigin;
 	
+		//m_cellSize / 4はキャラの描画位置を上げるだけの値
 		float posY = m_centerBuf.y - m_cellSize / 4;
 		if (m_isHideState)
 		{

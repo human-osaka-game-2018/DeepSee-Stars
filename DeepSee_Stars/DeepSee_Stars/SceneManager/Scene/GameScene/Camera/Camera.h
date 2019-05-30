@@ -21,7 +21,6 @@ namespace deepseestars
 		void Init()
 		{
 			m_upperLeftPos = { m_center.x - m_vertices.GetDisplaySize().x / 2 , m_center.y - m_vertices.GetDisplaySize().y / 2 };
-			m_lowerRightPos = { m_center.x + m_vertices.GetDisplaySize().x / 2 , m_center.y + m_vertices.GetDisplaySize().y / 2 };
 
 			m_distanceToOrigin = m_worldOrigin - m_upperLeftPos;
 		}
@@ -60,10 +59,7 @@ namespace deepseestars
 		{
 			return m_upperLeftPos;
 		}
-		D3DXVECTOR2 GetLowerRightPos()
-		{
-			return m_lowerRightPos;
-		}
+
 		D3DXVECTOR2 GetDistanceToOrigin()
 		{
 			return m_distanceToOrigin;
@@ -87,7 +83,6 @@ namespace deepseestars
 		D3DXVECTOR2 m_operationValue = { 0.f,0.f };
 		D3DXVECTOR2 m_worldOrigin = { 0.f,0.f };
 		D3DXVECTOR2 m_upperLeftPos;
-		D3DXVECTOR2 m_lowerRightPos;
 		D3DXVECTOR2 m_distanceToOrigin;
 
 		bool m_isPlayerHide = false;
