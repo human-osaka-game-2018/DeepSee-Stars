@@ -62,7 +62,7 @@ namespace deepseestars
 		~BaseEnemyAction() {}
 
 		/// <summary>
-		/// プレイヤーの更新処理
+		/// 敵の更新処理
 		/// </summary>
 		virtual void Update() = 0;
 
