@@ -22,7 +22,7 @@ namespace deepseestars
 
 		void Init()
 		{
-			for (int i = 0;i <= 11;i++)
+			for (int i = 0;i < 11;i++)
 			{
 				m_rGameBaseMaker.CreateTex(m_SafetyLevelUITextureKey[i], m_SafetyLevelUITextureName[i]);
 			}

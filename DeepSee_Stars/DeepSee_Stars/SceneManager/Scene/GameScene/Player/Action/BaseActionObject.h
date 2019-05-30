@@ -20,7 +20,7 @@ namespace deepseestars
 
 		virtual void Init()
 		{
-			for (int i = 0;i <= 1;i++)
+			for (int i = 0;i < 1;i++)
 			{
 				m_rGameBaseMaker.CreateTex(m_actionTextureKey[i], m_actionTextureName[i]);
 			}
