@@ -47,8 +47,8 @@ namespace deepseestars
 			m_rGameBaseMaker.CreateTex(m_pTextureKey, m_pFileName);
 
 			m_Life = 5;
-			m_row = 14;
-			m_colunm = 8;
+			m_row = 20;
+			m_colunm = 60;
 
 			m_canDirectionInput = true;
 			m_isHideState = false;
