@@ -21,9 +21,11 @@ namespace deepseestars
 		void Init()
 		{
 			m_life = 5;
-			for (int i = 0;i < 7;i++)
+			for (auto& number : m_LifeUITextureKey)
 			{
-				m_rGameBaseMaker.CreateTex(m_LifeUITextureKey[i], m_LifeUITextureName[i]);
+				int index = &number - m_LifeUITextureKey;
+
+				m_rGameBaseMaker.CreateTex(m_LifeUITextureKey[index], m_LifeUITextureName[index]);
 			}
 		}
 

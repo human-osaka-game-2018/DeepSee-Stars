@@ -19,9 +19,11 @@ namespace deepseestars
 		gamebasemaker::TextureUV autotomy(D3DXVECTOR2(0.0f, 0.0f), D3DXVECTOR2(1024.f, 150.f), D3DXVECTOR2(150.f, 150.f));
 		m_vertices.SetTextureUV(autotomy);
 
-		for (int i = 0;i < 10;i++)
+		for (auto& number:m_playerTextureKey)
 		{
-			m_rGameBaseMaker.CreateTex(m_playerTextureKey[i], m_playerTextureName[i]);
+			int index = &number - m_playerTextureKey;
+
+			m_rGameBaseMaker.CreateTex(m_playerTextureKey[index], m_playerTextureName[index]);
 		}
 
 		m_vertices.SetImageSize(D3DXVECTOR2(150.f, 150.f));

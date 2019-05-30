@@ -24,9 +24,11 @@ namespace deepseestars
 
 		void Init()
 		{
-			for (int i = 0;i <= 8;i++)
+			for (auto& number : m_blockTextureKey)
 			{
-				m_rGameBaseMaker.CreateTex(m_blockTextureKey[i], m_blockTextureName[i]);
+				int index = &number - m_blockTextureKey;
+
+				m_rGameBaseMaker.CreateTex(m_blockTextureKey[index], m_blockTextureName[index]);
 			}
 			LoadStageData("csv/Stage1.csv");
 		}

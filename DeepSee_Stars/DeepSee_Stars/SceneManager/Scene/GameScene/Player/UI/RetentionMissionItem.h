@@ -20,9 +20,11 @@ namespace deepseestars
 
 		void Init()
 		{
-			for (int i = 0;i <= 6;i++)
+			for (auto& number : m_MissionItemUITextureKey)
 			{
-				m_rGameBaseMaker.CreateTex(m_MissionItemUITextureKey[i], m_MissionItemUITextureName[i]);
+				int index = &number - m_MissionItemUITextureKey;
+
+				m_rGameBaseMaker.CreateTex(m_MissionItemUITextureKey[index], m_MissionItemUITextureName[index]);
 			}
 		}
 
