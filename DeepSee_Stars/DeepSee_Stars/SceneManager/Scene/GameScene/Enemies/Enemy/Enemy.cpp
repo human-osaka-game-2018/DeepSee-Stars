@@ -6,10 +6,11 @@
 
 namespace deepseestars
 {
-	Enemy::Enemy(const D3DXVECTOR2& playerPos, const TCHAR** ppTextureKeys, const D3DXVECTOR2& DistanceToOrigin,
-		Visibility visibility, EnemyMovingData movingData, const float& cellSize) :
-		GameObject(), m_playerPos(playerPos), m_visibility(visibility),m_distanceToOrigin(DistanceToOrigin),
-		m_cellSize(cellSize), m_pTextureKeys(ppTextureKeys)
+	Enemy::Enemy(const D3DXVECTOR2& playerPos, const std::vector<const TCHAR*>& textureKeys,
+		const D3DXVECTOR2& DistanceToOrigin, Visibility visibility,
+		EnemyMovingData movingData, const float& cellSize) :
+		GameObject(), m_playerPos(playerPos), m_visibility(visibility), m_distanceToOrigin(DistanceToOrigin),
+		m_cellSize(cellSize), m_rTextureKeys(textureKeys)
 	{
 		DecideActionPattern(movingData);
 		Init();
@@ -33,8 +34,8 @@ namespace deepseestars
 		m_vertices.SetPos(buff);
 		m_vertices.SetScale(D3DXVECTOR2(m_cellSize * 0.5f, m_cellSize * 0.5f));
 
-		m_rGameBaseMaker.Render(m_vertices,
-			m_rGameBaseMaker.GetTex(m_pTextureKeys[m_translationData.m_direction]));
+		m_rGameBaseMaker.Render(m_vertices, 
+			m_rGameBaseMaker.GetTex(m_rTextureKeys[m_translationData.m_direction]));
 	}
 
 	void Enemy::Release()
@@ -68,10 +69,8 @@ namespace deepseestars
 	{
 		if (m_translationData.m_movement == 0) return;
 
-		if (m_translationData.m_movement.x > 0) m_translationData.m_direction = RIGHT;
-		if (m_translationData.m_movement.x < 0) m_translationData.m_direction = LEFT;
-		if (m_translationData.m_movement.y < 0) m_translationData.m_direction = UP;
-		if (m_translationData.m_movement.y > 0) m_translationData.m_direction = DOWN;
+		m_translationData.m_direction = (m_translationData.m_movement.x > 0) ? RIGHT : LEFT;
+		m_translationData.m_direction = (m_translationData.m_movement.y > 0) ? DOWN  : UP;
 	}
 
 	void Enemy::ChasePlayer()
@@ -79,7 +78,7 @@ namespace deepseestars
 		if (!m_existsPlayer) return;
 
 		D3DXVECTOR2 chaseVec = m_playerPos - m_translationData.m_pos;
-		D3DXVec2Normalize(&chaseVec,&chaseVec);
+		D3DXVec2Normalize(&chaseVec, &chaseVec);
 
 		m_translationData.m_movement = 
 		{ chaseVec.x * m_translationData.m_speed.x,chaseVec.y * m_translationData.m_speed.y };

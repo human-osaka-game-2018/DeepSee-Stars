@@ -16,7 +16,7 @@ namespace deepseestars
 		/// </summary>
 		/// <param name="translationData">敵の動きのデータ構造体</param>
 		/// <param name="movingData">初期位置や目的地のデータ構造体</param>
-		Patrol(TranslationData& translationData,const EnemyMovingData& movingData) :
+		Patrol(TranslationData& translationData, const EnemyMovingData& movingData) :
 			BaseEnemyAction(translationData, movingData.m_initPos, movingData.m_movingPos)
 		{
 			Init(movingData.m_isClockWise);

@@ -9,12 +9,20 @@ namespace deepseestars
 {
 	void Enemies::Init()
 	{
-		for (int i = 0; i < STAYING; ++i)
+		const int DIRECTIONS_NUM = 4;
+		m_textureKeys.resize(DIRECTIONS_NUM);
+
+		m_textureKeys[Direction::LEFT] = (_T("2DTexture/Game/Enemies/enemyLeft.png"));
+		m_textureKeys[Direction::RIGHT] = (_T("2DTexture/Game/Enemies/enemyRight.png"));
+		m_textureKeys[Direction::UP] = (_T("2DTexture/Game/Enemies/enemyUp.png"));
+		m_textureKeys[Direction::DOWN] = (_T("2DTexture/Game/Enemies/enemyDown.png"));
+
+		for (auto& texturePath : m_textureKeys)
 		{
-			m_rGameBaseMaker.CreateTex(m_pTextureKeys[i], m_pFileNames[i]);
+			m_rGameBaseMaker.CreateTex(texturePath, texturePath);
 		}
 
-		for (auto enemy : m_enemies)
+		for (auto& enemy : m_enemies)
 		{
 			enemy->Init();
 		}
@@ -56,14 +64,14 @@ namespace deepseestars
 			movingData.m_actionPattern = static_cast<ActionPattern>(actionPattern);
 
 			//敵の生成
-			m_enemies.push_back(new Enemy(m_playerPos, m_pTextureKeys,m_distanceToOrigin,
+			m_enemies.push_back(new Enemy(m_playerPos, m_textureKeys, m_distanceToOrigin,
 				static_cast<Visibility>(visibility), movingData, m_cellSize));
 		}
 	}
 
 	void Enemies::Update()
 	{
-		for (auto enemy : m_enemies)
+		for (auto& enemy : m_enemies)
 		{
 			enemy->Update();
 		}
@@ -71,7 +79,7 @@ namespace deepseestars
 
 	void Enemies::Render()
 	{
-		for (auto enemy : m_enemies)
+		for (auto& enemy : m_enemies)
 		{
 			enemy->Render();
 		}
@@ -79,7 +87,7 @@ namespace deepseestars
 
 	void Enemies::Release()
 	{
-		for (auto enemy : m_enemies)
+		for (auto& enemy : m_enemies)
 		{
 			enemy->Release();
 

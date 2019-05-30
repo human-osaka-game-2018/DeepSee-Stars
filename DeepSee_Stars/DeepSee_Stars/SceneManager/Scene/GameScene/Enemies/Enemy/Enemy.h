@@ -23,8 +23,9 @@ namespace deepseestars
 	class Enemy :public GameObject
 	{
 	public:
-		Enemy(const D3DXVECTOR2& playerPos,const TCHAR** ppTextureKeys, const D3DXVECTOR2& DistanceToOrigin,
-			Visibility visibility, EnemyMovingData movingData,const float& cellSize);
+		Enemy(const D3DXVECTOR2& playerPos, const std::vector<const TCHAR*>& textureKeys,
+			  const D3DXVECTOR2& DistanceToOrigin,Visibility visibility,
+			  EnemyMovingData movingData, const float& cellSize);
 
 		~Enemy()
 		{
@@ -71,7 +72,7 @@ namespace deepseestars
 
 		BaseEnemyAction* m_pEnemyAction;
 
-		const TCHAR** m_pTextureKeys;
+		const std::vector<const TCHAR*>& m_rTextureKeys;
 
 		bool m_existsPlayer;
 		bool m_canMove;
