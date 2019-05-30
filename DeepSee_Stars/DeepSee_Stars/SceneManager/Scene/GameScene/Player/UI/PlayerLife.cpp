@@ -26,26 +26,6 @@ namespace deepseestars
 
 		m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_LifeUITextureKey[0]));
 
-		switch (m_life)
-		{
-		case 0:
-			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_LifeUITextureKey[1]));
-			break;
-		case 1:
-			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_LifeUITextureKey[2]));
-			break;
-		case 2:
-			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_LifeUITextureKey[3]));
-			break;
-		case 3:
-			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_LifeUITextureKey[4]));
-			break;
-		case 4:
-			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_LifeUITextureKey[5]));
-			break;
-		case 5:
-			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_LifeUITextureKey[6]));
-			break;
-		}
+		m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_LifeUITextureKey[m_life + 1]));
 	}
 }

@@ -249,17 +249,12 @@ namespace deepseestars
 
 	void World::JudgeMissionStart()
 	{
-		for (auto& stagePos : m_pStage->GetblockCellPos())
+		switch (GetCurrentPosBlock())
 		{
-			if ((stagePos->Getcenter().x != playerCenterBuf.x) || (stagePos->Getcenter().y != playerCenterBuf.y)) continue;
-
-			switch (stagePos->Gettype())
-			{
-			case MISSIONSTART_GET4ITEMS:
-				m_pPlayer->SetMissionDirection(m_pPlayer->GetPrevDirection());
-				m_pPlayer->SetStartMissionGet4Items(true);
-				break;
-			}
+		case MISSIONSTART_GET4ITEMS:
+			m_pPlayer->SetMissionDirection(m_pPlayer->GetPrevDirection());
+			m_pPlayer->SetStartMissionGet4Items(true);
+			break;
 		}
 		FinishMission();
 	}
@@ -277,17 +272,22 @@ namespace deepseestars
 
 	void World::JudgeGameClear()
 	{
+		switch (GetCurrentPosBlock())
+		{
+		case GAMECLEARZONE:
+			SceneManager & rSceneManager = SceneManager::GetInstance();
+			rSceneManager.SetNextScene(SceneManager::SCENE_ID::RESULT);
+			break;
+		}
+	}
+
+	TYPE World::GetCurrentPosBlock()
+	{
 		for (auto& stagePos : m_pStage->GetblockCellPos())
 		{
 			if ((stagePos->Getcenter().x != playerCenterBuf.x) || (stagePos->Getcenter().y != playerCenterBuf.y)) continue;
 
-			switch (stagePos->Gettype())
-			{
-			case GAMECLEARZONE:
-				SceneManager & rSceneManager = SceneManager::GetInstance();
-				rSceneManager.SetNextScene(SceneManager::SCENE_ID::RESULT);
-				break;
-			}
+			return stagePos->Gettype();
 		}
 	}
 }
