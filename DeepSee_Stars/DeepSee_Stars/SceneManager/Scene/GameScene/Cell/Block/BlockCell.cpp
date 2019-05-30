@@ -35,41 +35,42 @@ namespace deepseestars
 		switch (m_type)
 		{
 		case FLOOR:
-			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("FloorBlock")));
+			m_pTextureKey = _T("FloorBlock");
 			break;
 		case WHITE_BLOCK:
-			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("WhiteBlock")));
+			m_pTextureKey = _T("WhiteBlock");
 			break;
 		case BLACK_BLOCK:
-			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("BlackBlock")));
+			m_pTextureKey = _T("BlackBlock");
 			break;
 		case HIDE_BLOCK:
-			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("HideBlock")));
+			m_pTextureKey = _T("HideBlock");
 			break;
 		case PLAYER_RECOVERY_OBJECT:
 			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("FloorBlock")));
 			pos = { centerBuf.x ,centerBuf.y - m_blockSize / 4};
 			m_vertices.SetPos(pos);
-			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("PlayerRecoveryObject")));
+			m_pTextureKey = _T("PlayerRecoveryObject");
 			break;
 		case SEAWEED:
 			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("FloorBlock")));
 			pos = { centerBuf.x ,centerBuf.y - m_blockSize / 4 };
 			m_vertices.SetPos(pos);
-			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("SeaWeed")));
+			m_pTextureKey = _T("SeaWeed");
 			break;
 		case MISSION_ITEM:
 			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("FloorBlock")));
 			pos = { centerBuf.x ,centerBuf.y - m_blockSize / 4 };
 			m_vertices.SetPos(pos);
-			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("MissionItem")));
+			m_pTextureKey = _T("MissionItem");
 			break;
 		case GAMECLEARZONE:
-			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("MissionItem")));
+			m_pTextureKey = _T("MissionItem");
 			break;
 		case MISSIONSTART_GET4ITEMS:
-			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("MissionStartLine")));
+			m_pTextureKey = _T("MissionStartLine");
 			break;
 		}
+		m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_pTextureKey));
 	}
 }

@@ -31,41 +31,46 @@ namespace deepseestars
 		float blockCenterPosY = (colunm * m_CellSize) + m_CellSize / 2;
 		float blockCenterPosX = (row * m_CellSize) + m_CellSize / 2;
 		D3DXVECTOR2 buf = { blockCenterPosX,blockCenterPosY };
+		TYPE BlockType;
 		switch (typeSelected)
 		{
 		case PLAYERINITPOS:
 			m_playerStartPosRow = row;
 			m_playerStartPosColunm = colunm;
-			m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin, buf, FLOOR, m_CellSize));
+			BlockType = FLOOR;
 			break;
 		case FLOOR:
-			m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin, buf, FLOOR, m_CellSize));
+			BlockType = FLOOR;
 			break;
 		case WHITE_BLOCK:
-			m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin, buf, WHITE_BLOCK, m_CellSize));
+			BlockType = WHITE_BLOCK;
 			break;
 		case BLACK_BLOCK:
-			m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin, buf, BLACK_BLOCK, m_CellSize));
+			BlockType = BLACK_BLOCK;
 			break;
 		case HIDE_BLOCK:
-			m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin, buf, HIDE_BLOCK, m_CellSize));
+			BlockType = HIDE_BLOCK;
 			break;
 		case PLAYER_RECOVERY_OBJECT:
-			m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin, buf, PLAYER_RECOVERY_OBJECT, m_CellSize));
+			BlockType = PLAYER_RECOVERY_OBJECT;
 			break;
 		case SEAWEED:
-			m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin, buf, SEAWEED, m_CellSize));
+			BlockType = SEAWEED;
 			break;
 		case MISSION_ITEM:
-			m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin, buf, MISSION_ITEM, m_CellSize));
+			BlockType = MISSION_ITEM;
 			break;
 		case GAMECLEARZONE:
-			m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin, buf, GAMECLEARZONE, m_CellSize));
+			BlockType = GAMECLEARZONE;
 			break;
 		case MISSIONSTART_GET4ITEMS:
-			m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin, buf, MISSIONSTART_GET4ITEMS, m_CellSize));
+			BlockType = MISSIONSTART_GET4ITEMS;
+			break;
+		default:
+			return;
 			break;
 		}
+		m_blockCellPos.push_back(new BlockCell(m_distanceToOrigin, buf, BlockType, m_CellSize));
 	}
 
 
