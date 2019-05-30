@@ -20,15 +20,22 @@ namespace deepseestars
 			m_distanceToOrigin = m_pCamera->GetDistanceToOrigin();
 			m_pPlayer = new Player(m_distanceToOrigin, m_CellSize);
 			m_pStage = new Stage(m_distanceToOrigin, m_CellSize);
-			m_pEnemies = new Enemies(m_playerCenterPos, m_CellSize);
+			m_pEnemies = new Enemies(m_distanceToOrigin, m_playerCenterPos, m_CellSize);
 		}
 
 		~World()
 		{
 			delete m_pStage;
+			m_pStage = nullptr;
+
 			delete m_pPlayer;
+			m_pPlayer = nullptr;
+
 			delete m_pCamera;
+			m_pCamera = nullptr;
+
 			delete m_pEnemies;
+			m_pEnemies = nullptr;
 		}
 
 		void Init()
