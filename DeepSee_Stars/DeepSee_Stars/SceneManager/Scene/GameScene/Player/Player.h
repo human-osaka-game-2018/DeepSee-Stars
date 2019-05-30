@@ -58,6 +58,7 @@ namespace deepseestars
 				delete actionObject;
 				actionObject = nullptr;
 			}
+			
 			delete m_pplayerLife;
 			m_pplayerLife = nullptr;
 			delete m_psafetyLevel;

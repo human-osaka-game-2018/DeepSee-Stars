@@ -12,6 +12,9 @@
 
 #include "../SceneManager/SceneManager.h"
 
+#define _CRTDBG_MAP_ALLOC
+#define new ::new(_NORMAL_BLOCK, __FILE__, __LINE__)
+
 using namespace window;
 using namespace device;
 using namespace gamebasemaker;
