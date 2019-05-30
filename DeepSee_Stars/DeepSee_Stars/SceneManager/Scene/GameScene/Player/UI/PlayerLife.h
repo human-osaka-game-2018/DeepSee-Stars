@@ -8,20 +8,23 @@ namespace deepseestars
 	class PlayerLife : public GameObject
 	{
 	public:
-		PlayerLife(int& playerLife) : GameObject(), m_playerLife(playerLife)
+		PlayerLife() : GameObject()
 		{
 			Init();
 		}
 
-		~PlayerLife() {};
+		~PlayerLife() 
+		{
+			Release();
+		}
 
 		void Init()
 		{
-			for (int i = 0;i <= 7;i++)
+			m_life = 5;
+			for (int i = 0;i < 7;i++)
 			{
 				m_rGameBaseMaker.CreateTex(m_LifeUITextureKey[i], m_LifeUITextureName[i]);
 			}
-
 		}
 
 		void Update();
@@ -31,6 +34,15 @@ namespace deepseestars
 		void Release()
 		{
 			m_rGameBaseMaker.ReleaseAllTex();
+		}
+
+		int GetLife()
+		{
+			return m_life;
+		}
+		void SetLife(int life)
+		{
+			m_life = life;
 		}
 
 	private:
@@ -55,7 +67,7 @@ namespace deepseestars
 			_T("2DTexture/Game/UI/Number5.png"),
 		};
 
-		int& m_playerLife;
+		int m_life;
 	};
 }
 

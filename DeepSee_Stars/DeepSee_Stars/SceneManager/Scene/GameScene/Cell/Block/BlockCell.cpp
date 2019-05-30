@@ -58,6 +58,18 @@ namespace deepseestars
 			m_vertices.SetPos(pos);
 			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("SeaWeed")));
 			break;
+		case MISSION_ITEM:
+			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("FloorBlock")));
+			pos = { centerBuf.x ,centerBuf.y - m_blockSize / 4 };
+			m_vertices.SetPos(pos);
+			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("MissionItem")));
+			break;
+		case GAMECLEARZONE:
+			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("MissionItem")));
+			break;
+		case MISSIONSTART_GET4ITEMS:
+			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("MissionStartLine")));
+			break;
 		}
 	}
 }

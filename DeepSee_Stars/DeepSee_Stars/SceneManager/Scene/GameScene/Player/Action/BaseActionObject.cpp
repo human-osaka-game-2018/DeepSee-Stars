@@ -2,10 +2,6 @@
 
 namespace deepseestars
 {
-	BaseActionObject::~BaseActionObject()
-	{
-
-	}
 
 	void BaseActionObject::Update()
 	{

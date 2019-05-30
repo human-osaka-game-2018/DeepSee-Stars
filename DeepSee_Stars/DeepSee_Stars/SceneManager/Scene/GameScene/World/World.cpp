@@ -15,6 +15,9 @@ namespace deepseestars
 		ObjectCollision();
 		JudgePlayerAction();
 
+		JudgeMissionStart();
+		JudgeGameClear();
+
 		m_pStage->Update();
 		m_pPlayer->Update();
 		m_pEnemies->Update();
@@ -62,6 +65,12 @@ namespace deepseestars
 				if (stagePos->Gettype() == FLOOR) continue;
 				if (stagePos->Gettype() == PLAYER_RECOVERY_OBJECT) continue;
 				if (stagePos->Gettype() == SEAWEED) continue;
+				if (stagePos->Gettype() == MISSION_ITEM) continue;
+				if (stagePos->Gettype() == GAMECLEARZONE) continue;
+				if (!m_pPlayer->GetStartMissionGet4Items())
+				{
+					if (stagePos->Gettype() == MISSIONSTART_GET4ITEMS) continue;
+				}
 
 				if ((stagePos->Getcenter().x != m_PlayerGirthCenter[i].x) || (stagePos->Getcenter().y != m_PlayerGirthCenter[i].y)) continue;
 
@@ -212,6 +221,10 @@ namespace deepseestars
 			case SEAWEED:
 				m_pPlayer->SetInTheSeaWeed(true);
 				break;
+			case MISSION_ITEM:
+				m_pPlayer->SetRetentionMissionItem(m_pPlayer->GetRetentionMissionItem() + 1);
+				stagePos->Settype(FLOOR);
+				break;
 			}
 			if (stagePos->Gettype() != SEAWEED)
 			{
@@ -231,6 +244,50 @@ namespace deepseestars
 			m_vertices.SetPos(pos);
 			m_vertices.SetScale(scale);
 			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("SeaWeed")));
+		}
+	}
+
+	void World::JudgeMissionStart()
+	{
+		for (auto& stagePos : m_pStage->GetblockCellPos())
+		{
+			if ((stagePos->Getcenter().x != playerCenterBuf.x) || (stagePos->Getcenter().y != playerCenterBuf.y)) continue;
+
+			switch (stagePos->Gettype())
+			{
+			case MISSIONSTART_GET4ITEMS:
+				m_pPlayer->SetMissionDirection(m_pPlayer->GetPrevDirection());
+				m_pPlayer->SetStartMissionGet4Items(true);
+				break;
+			}
+		}
+		FinishMission();
+	}
+
+	void World::FinishMission()
+	{
+		if (m_pPlayer->GetStartMissionGet4Items())
+		{
+			if (m_pPlayer->GetRetentionMissionItem() == 4)
+			{
+				m_pPlayer->SetStartMissionGet4Items(false);
+			}
+		}
+	}
+
+	void World::JudgeGameClear()
+	{
+		for (auto& stagePos : m_pStage->GetblockCellPos())
+		{
+			if ((stagePos->Getcenter().x != playerCenterBuf.x) || (stagePos->Getcenter().y != playerCenterBuf.y)) continue;
+
+			switch (stagePos->Gettype())
+			{
+			case GAMECLEARZONE:
+				SceneManager & rSceneManager = SceneManager::GetInstance();
+				rSceneManager.SetNextScene(SceneManager::SCENE_ID::RESULT);
+				break;
+			}
 		}
 	}
 }

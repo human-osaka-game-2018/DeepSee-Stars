@@ -12,13 +12,20 @@ namespace deepseestars
 		FLOOR,//床
 		WHITE_BLOCK,//壁
 		HIDE_BLOCK,//張り付き壁
-		MISSIONITEM,//ミッションで集めてクリアするアイテム
+		MISSION_ITEM,//ミッションで集めてクリアするアイテム
 		PLAYER_RECOVERY_OBJECT,//サンゴ
 		NONE6,//6番はなし
 		NONE7,//7番はなし
 		BLACK_BLOCK,
 		NONE9,//9番はなし
 		SEAWEED,//海藻
+		GAMECLEARZONE = 50,//到達でゲームクリア
+		MISSIONSTART_DESTINATIONS = 100,//通るとミッション開始してクリアするまで通れない
+		MISSIONCLEARZONE_DESTINATIONS,//位置到達ミッションのクリア位置
+		MISSIONSTART_GET3ITEMS,//3つアイテム入手ミッションのスタートライン
+		MISSIONSTART_GET4ITEMS,//4つアイテム入手ミッションのスタートライン
+		MISSIONSTART_SURVIVE2MINUTES,//2分間生存ミッションのスタートライン
+		MISSIONSTART_SURVIVE3MINUTES,//2分間生存ミッションのスタートライン
 	};
 
 
@@ -31,7 +38,10 @@ namespace deepseestars
 			Init();
 		}
 
-		~BlockCell(){}
+		~BlockCell()
+		{
+			Release();
+		}
 
 		void Init()
 		{
