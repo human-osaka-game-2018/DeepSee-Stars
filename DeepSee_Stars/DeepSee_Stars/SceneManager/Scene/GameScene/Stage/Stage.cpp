@@ -25,6 +25,16 @@ namespace deepseestars
 		}
 	}
 
+	TYPE Stage::ConvertIntoType(const D3DXVECTOR2& pos)
+	{
+		int row = 0, column = 0;
+		
+		row =    static_cast<int>(pos.x / m_CellSize);
+		column = static_cast<int>(pos.y / m_CellSize);
+
+		return static_cast<TYPE>(m_stageSize[column][row]);
+	}
+
 	void Stage::CreateBlock(int colunm,int row)
 	{
 		int typeSelected = m_stageSize[colunm][row];
