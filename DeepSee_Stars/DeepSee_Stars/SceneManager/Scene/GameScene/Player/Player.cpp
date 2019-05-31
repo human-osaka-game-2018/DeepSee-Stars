@@ -13,13 +13,19 @@ namespace deepseestars
 		m_isHideState = false;
 		m_inTheSeaWeed = false;
 		m_isAutotomyState = true;
+		m_isAvatarState = true;
 		m_isAutotomyAnimation = false;
+		m_isAvatarAnimation = false;
+		m_isAvatarCreated = false;
+		m_isMoving = false;
 		m_missionDirection = STAYING;
+		m_prevDirection = STAYING;
+		m_avatarDirection = STAYING;
 
 		gamebasemaker::TextureUV autotomy(D3DXVECTOR2(0.0f, 0.0f), D3DXVECTOR2(1024.f, 150.f), D3DXVECTOR2(150.f, 150.f));
 		m_vertices.SetTextureUV(autotomy);
 
-		for (int i = 0;i < 10;i++)
+		for (int i = 0;i < 7;i++)
 		{
 			m_rGameBaseMaker.CreateTex(m_playerTextureKey[i], m_playerTextureName[i]);
 		}
@@ -77,6 +83,7 @@ namespace deepseestars
 		if (m_canDirectionInput)
 		{
 			if (m_isAutotomyAnimation)return;
+			if (m_isAvatarAnimation)return;
 			CheckDirectionStatus();
 		}
 
@@ -87,11 +94,18 @@ namespace deepseestars
 
 	void Player::Action()
 	{
-		if (!m_isAutotomyAnimation)
+		if (!m_isAutotomyAnimation && !m_isAvatarAnimation)
 		{
 			Hide();
 		}
-		if (!m_isHideState)
+		if (!m_isAutotomyAnimation)
+		{
+			if (m_direction == STAYING)
+			{
+				Avatar();
+			}
+		}
+		if (!m_isHideState && !m_isAvatarAnimation)
 		{
 			Autotomy();
 		}
@@ -133,15 +147,6 @@ namespace deepseestars
 		if (!m_action.CanAutotomy) return;
 
 		if (m_pplayerLife->GetLife() <= 0) return;
-
-		//if (m_pautotomyAction->Update())
-		//{
-		//	m_paction.push_back(new AutotomyObject(m_center, m_distanceToOrigin, m_CellSize));
-		//	m_life -= 1;
-		//	m_pTextureKey = m_playerTextureKey[2];
-		//	m_vertices.SetImageSize(D3DXVECTOR2(150.f, 150.f));
-		//	m_vertices.ClippingImage(D3DXVECTOR2(0.f, 0.f), D3DXVECTOR2(150.f, 150.f));
-		//}
 	
 		if (m_rGameBaseMaker.IsPressedToKeyboard(DIK_X))
 		{
@@ -151,7 +156,6 @@ namespace deepseestars
 		
 			m_isAutotomyState = false;
 		
-			
 			m_vertices.PossibleAnimation();
 			m_vertices.SetImageSize(D3DXVECTOR2(1024.f, 150.f));
 			m_vertices.ClippingImage(D3DXVECTOR2(0.f, 0.f), D3DXVECTOR2(150.f, 150.f));
@@ -175,9 +179,59 @@ namespace deepseestars
 
 	void Player::Avatar()
 	{
-		if (m_action.CanAvatar)
+		if (!m_action.CanAvatar) return;
+
+		if (m_pplayerLife->GetLife() < 3) return;
+
+		if (m_isAvatarCreated) return;
+
+		if (m_rGameBaseMaker.IsPressedToKeyboard(DIK_C))
 		{
-			
+			if (!m_isAvatarState) return;
+
+			m_isAvatarAnimation = true;
+
+			m_isAvatarState = false;
+
+			m_vertices.PossibleAnimation();
+			m_vertices.SetImageSize(D3DXVECTOR2(1024.f, 150.f));
+			m_vertices.ClippingImage(D3DXVECTOR2(0.f, 0.f), D3DXVECTOR2(150.f, 150.f));
+			m_pTextureKey = m_playerTextureKey[6];
+		}
+
+		if (m_isAvatarAnimation)
+		{
+			m_vertices.Animation(6, 4);
+			if (!m_vertices.GetIsPossibleAnimation())
+			{
+				m_isAvatarAnimation = false;
+				m_avatarCenter = m_center;
+
+				if (m_directionAvatarCreate.CanMoveRight)
+				{
+					m_avatarCenter.x += m_cellSize;
+				}
+				else if (m_directionAvatarCreate.CanMoveLeft)
+				{
+					m_avatarCenter.x -= m_cellSize;
+				}
+				else if (m_directionAvatarCreate.CanMoveUp)
+				{
+					m_avatarCenter.y -= m_cellSize;
+				}
+				else if (m_directionAvatarCreate.CanMoveDown)
+				{
+					m_avatarCenter.y += m_cellSize;
+				}
+	
+				m_avatarDirection = STAYING;
+				m_paction.push_back(new AvatarObject(m_avatarCenter, m_distanceToOrigin, m_cellSize, m_avatarDirection));
+				m_pplayerLife->SetLife(m_pplayerLife->GetLife() - 3);
+				m_pTextureKey = m_playerTextureKey[3];
+				m_vertices.SetImageSize(D3DXVECTOR2(150.f, 150.f));
+				m_vertices.ClippingImage(D3DXVECTOR2(0.f, 0.f), D3DXVECTOR2(150.f, 150.f));
+				m_isAvatarCreated = true;
+			}
 		}
 	}
 
@@ -189,7 +243,7 @@ namespace deepseestars
 			{
 				m_direction = LEFT;
 				m_canDirectionInput = false;
-				m_pTextureKey = m_playerTextureKey[1];
+				m_pTextureKey = m_playerTextureKey[0];
 				return;
 			}
 		}
@@ -199,7 +253,7 @@ namespace deepseestars
 			{
 				m_direction = RIGHT;
 				m_canDirectionInput = false;
-				m_pTextureKey = m_playerTextureKey[0];
+				m_pTextureKey = m_playerTextureKey[1];
 				return;
 			}
 		}
@@ -230,6 +284,7 @@ namespace deepseestars
 	{
 		if (m_missionDirection != STAYING)
 		{
+			m_prevCenter = m_center;
 			switch (m_missionDirection)
 			{
 			case LEFT:
@@ -249,6 +304,12 @@ namespace deepseestars
 		else
 		{
 			if (m_direction == STAYING) return;
+			if (!m_isMoving)
+			{
+				m_prevCenter = m_center;
+				m_avatarCenterBuf = m_prevCenter - m_avatarCenter;
+				m_isMoving = true;
+			}
 			switch (m_direction)
 			{
 			case LEFT:
@@ -268,11 +329,47 @@ namespace deepseestars
 				m_prevDirection = DOWN;
 				break;
 			}
+			D3DXVECTOR2 avatarMoveBuf = m_avatarCenterBuf / (m_cellSize / m_moveSpeed);
+			if (avatarMoveBuf.x < 0)
+			{
+				m_avatarDirection = LEFT;
+			}
+			if (avatarMoveBuf.x > 0)
+			{
+				m_avatarDirection = RIGHT;
+			}
+			if (avatarMoveBuf.y < 0)
+			{
+				m_avatarDirection = UP;
+			}
+			if (avatarMoveBuf.y > 0)
+			{
+				m_avatarDirection = DOWN;
+			}
+			m_avatarCenter += avatarMoveBuf;
 		}
 
 		m_variationValue += m_moveSpeed;
 
 		if (m_variationValue != m_cellSize) return;
+
+		switch (m_direction)
+		{
+		case LEFT:
+			m_avatarDirection = LEFT;
+			break;
+		case RIGHT:
+			m_avatarDirection = RIGHT;
+			break;
+		case UP:
+			m_avatarDirection = UP;
+			break;
+		case DOWN:
+			m_avatarDirection = DOWN;
+			break;
+		}
+
+		m_isMoving = false;
 		m_missionDirection = STAYING;
 		m_isAutotomyState = true;
 		m_variationValue = 0.f;

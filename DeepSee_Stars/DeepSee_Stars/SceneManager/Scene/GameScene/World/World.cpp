@@ -53,6 +53,8 @@ namespace deepseestars
 
 		JudgePlayerMove();
 
+		JudgeDirectionAvatarCreate();
+
 		GimmickCollision();
 	}
 
@@ -99,6 +101,44 @@ namespace deepseestars
 			playerDirection.Freeze();
 		}
 		m_pPlayer->SetCanMoveDirection(playerDirection);
+	}
+
+
+	void World::JudgeDirectionAvatarCreate()
+	{
+		Movements DirectionAvatarCreate;
+
+		for (int i = 0;i < 4;i++)
+		{
+			for (auto& stagePos : m_pStage->GetblockCellPos())
+			{
+				if (stagePos->Gettype() == FLOOR) continue;
+				if (stagePos->Gettype() == PLAYER_RECOVERY_OBJECT) continue;
+				if (stagePos->Gettype() == SEAWEED) continue;
+				if (stagePos->Gettype() == MISSION_ITEM) continue;
+				if (stagePos->Gettype() == GAMECLEARZONE) continue;
+				if (stagePos->Gettype() == MISSIONSTART_GET4ITEMS) continue;
+
+				if ((stagePos->Getcenter().x != m_PlayerGirthCenter[i].x) || (stagePos->Getcenter().y != m_PlayerGirthCenter[i].y)) continue;
+
+				switch (i)
+				{
+				case LEFT:
+					DirectionAvatarCreate.CanMoveLeft = false;
+					break;
+				case RIGHT:
+					DirectionAvatarCreate.CanMoveRight = false;
+					break;
+				case UP:
+					DirectionAvatarCreate.CanMoveUp = false;
+					break;
+				case DOWN:
+					DirectionAvatarCreate.CanMoveDown = false;
+					break;
+				}
+			}
+		}
+		m_pPlayer->SetDirectionAvatarCreate(DirectionAvatarCreate);
 	}
 
 	void World::JudgePlayerAction()
