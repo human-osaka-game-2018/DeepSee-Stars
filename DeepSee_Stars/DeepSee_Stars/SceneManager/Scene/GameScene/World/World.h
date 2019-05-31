@@ -69,8 +69,7 @@ namespace deepseestars
 
 		D3DXVECTOR2 playerCenterBuf;
 		D3DXVECTOR2 m_PlayerGirthCenter[4];
-		D3DXVECTOR2 m_enemyAroundCellPos;
-
+		
 		Action m_PlayerAction;
 		float m_WorldScrollX = 0.f;
 		float m_WorldScrollY = 0.f;

@@ -14,6 +14,8 @@ namespace deepseestars
 
 		ObjectCollision();
 		JudgePlayerAction();
+		JudgeMoveEnemy();
+		IsPlayerTarget();
 
 		JudgeMissionStart();
 		JudgeGameClear();
@@ -133,15 +135,15 @@ namespace deepseestars
 			length = D3DXVec2Length(&distance);
 
 			if (length > visibilityLength[enemy->GetVisibility()]) continue;
-			
-			D3DXVECTOR2 unitVec;
+
+			D3DXVECTOR2 unitVec(0.f, 0.f);
 			
 			switch(enemy->GetDirection())
 			{
-			case LEFT:	unitVec.x += 1.0f; break;
-			case RIGHT: unitVec.x -= 1.0f; break;
-			case UP:    unitVec.y -= 1.0f; break;
-			case DOWN:  unitVec.y += 1.0f; break;
+			case LEFT:	unitVec.x = -1.0f; break;
+			case RIGHT: unitVec.x =  1.0f; break;
+			case UP:    unitVec.y = -1.0f; break;
+			case DOWN:  unitVec.y =  1.0f; break;
 			}
 			
 			//視野角(degree)
@@ -169,27 +171,41 @@ namespace deepseestars
 
 	void World::JudgeMoveEnemy()
 	{
-		D3DXVECTOR2 enemyPos;
-	
 		for (auto& enemy : m_pEnemies->GetEnemies())
 		{
-			enemyPos = enemy->GetTranslationData().m_pos;
+			D3DXVECTOR2 predictedDest = enemy->GetDestination();
+		
+			D3DXVECTOR2 sizeDIff = D3DXVECTOR2(0.0f, 0.0f);
 
-			switch (enemy->GetDirection())
+			auto GetSign = [](float val)->int
 			{
-			case LEFT:	m_enemyAroundCellPos.x = enemyPos.x - m_CellSize; break;
-			case RIGHT: m_enemyAroundCellPos.x = enemyPos.x + m_CellSize; break;
-			case UP:    m_enemyAroundCellPos.y = enemyPos.y - m_CellSize; break;
-			case DOWN:  m_enemyAroundCellPos.y = enemyPos.y + m_CellSize; break;
+				return (val >= 0) ? +1 : -1;
+			};
+
+			if (enemy->GetTranslationData().m_movement.x != 0.0f)
+			{
+				sizeDIff.x = -GetSign(enemy->GetTranslationData().m_movement.x) * 0.5f * m_CellSize;
 			}
 
-			for (auto& blockCell : m_pStage->GetblockCellPos())
+			if (enemy->GetTranslationData().m_movement.y != 0.0f)
 			{
-				if (blockCell->Gettype() == FLOOR) continue;
-
-				bool canMove = blockCell->Getcenter() == m_enemyAroundCellPos;
-				enemy->SetCanMove(canMove);
+				sizeDIff.y = -GetSign(enemy->GetTranslationData().m_movement.y) * 0.5f * m_CellSize;
 			}
+
+			switch (m_pStage->ConvertIntoType(predictedDest - sizeDIff))
+			{
+			case WHITE_BLOCK:
+			case BLACK_BLOCK:
+			case HIDE_BLOCK:
+			case SEAWEED:
+				enemy->SetCanMove(false);
+				break;
+
+			default:
+				enemy->SetCanMove(true);
+			}
+
+			enemy->MoveDestIfCanMove();
 		}
 	}
 
