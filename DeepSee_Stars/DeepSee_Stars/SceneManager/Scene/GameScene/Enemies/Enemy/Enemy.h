@@ -37,13 +37,18 @@ namespace deepseestars
 		void Render();
 		void Release();
 
+		void MoveDestIfCanMove();
+
 		inline void SetExistsPlayer(bool existsPlayer) { m_existsPlayer = existsPlayer; }
 		inline void SetDirection(Direction direction)  { m_translationData.m_direction = direction; }
-		inline void SetCanMove(bool canMove)			{ m_canMove = canMove; }
+		inline void SetCanMove(bool canMove) { m_canMove = canMove; }
+		inline void SetPos(D3DXVECTOR2 pos) { m_translationData.m_pos = pos; }
 
-		inline Direction   GetDirection() { return m_translationData.m_direction; }
+		inline Direction   GetDirection()  { return m_translationData.m_direction; }
 		inline Visibility  GetVisibility() { return m_visibility; }
-		inline BaseEnemyAction::TranslationData GetTranslationData()	    { return m_translationData; }
+		inline D3DXVECTOR2 GetChaseVec()   { return m_chaseVec; }
+		inline D3DXVECTOR2 GetDestination() { return m_translationData.m_pos + m_translationData.m_movement; }
+		inline BaseEnemyAction::TranslationData GetTranslationData() { return m_translationData; }
 
 	private:
 		/// <summary>
@@ -71,8 +76,9 @@ namespace deepseestars
 		BaseEnemyAction::TranslationData m_translationData;
 
 		BaseEnemyAction* m_pEnemyAction;
-
 		const std::vector<const TCHAR*>& m_rTextureKeys;
+
+		D3DXVECTOR2 m_chaseVec;
 
 		bool m_existsPlayer;
 		bool m_canMove;
