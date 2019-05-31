@@ -23,8 +23,16 @@ namespace deepseestars
 
 	void Enemy::Update()
 	{	
-		m_pEnemyAction->Update();	
 		DecideDirection();
+		
+		if (m_existsPlayer)
+		{
+			ChasePlayer();
+		}
+		else 
+		{
+			m_pEnemyAction->Update();
+		}
 	}
 
 	void Enemy::Render()
@@ -42,6 +50,13 @@ namespace deepseestars
 	{
 		delete m_pEnemyAction;
 		m_pEnemyAction = nullptr;
+	}
+
+	void Enemy::MoveDestIfCanMove()
+	{
+		if (!m_canMove || !m_existsPlayer) return;
+
+		m_translationData.m_pos += m_translationData.m_movement;
 	}
 
 	void Enemy::DecideActionPattern(const EnemyMovingData& movingData)
@@ -77,14 +92,21 @@ namespace deepseestars
 
 	void Enemy::ChasePlayer()
 	{
-		if (!m_existsPlayer) return;
+		m_chaseVec = m_playerPos - m_translationData.m_pos;
 
-		D3DXVECTOR2 chaseVec = m_playerPos - m_translationData.m_pos;
-		D3DXVec2Normalize(&chaseVec, &chaseVec);
+		m_translationData.m_movement = D3DXVECTOR2(0.0f, 0.0f);
 
-		m_translationData.m_movement = 
-		{ chaseVec.x * m_translationData.m_speed.x,chaseVec.y * m_translationData.m_speed.y };
+		if (m_chaseVec == 0) return;
 
-		m_translationData.m_pos += m_translationData.m_movement;
+		D3DXVec2Normalize(&m_chaseVec, &m_chaseVec);
+
+		if (fabs(m_chaseVec.x) >= fabs(m_chaseVec.y))
+		{
+			m_translationData.m_movement.x = ((m_chaseVec.x > 0) ? +1 : -1) * 3.0f;
+
+			return;
+		}
+
+		m_translationData.m_movement.y = ((m_chaseVec.y > 0) ? +1 : -1) * 3.0f;
 	}
 }
