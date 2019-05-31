@@ -81,6 +81,7 @@ namespace deepseestars
 
 		void ObjectCollision();
 		void JudgePlayerMove();
+		void JudgeDirectionAvatarCreate();
 		void JudgePlayerAction();
 		void RenderingPriority();
 		void GimmickCollision();

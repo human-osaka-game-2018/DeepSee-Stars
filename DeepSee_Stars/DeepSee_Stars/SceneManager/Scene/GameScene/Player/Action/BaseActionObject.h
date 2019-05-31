@@ -20,7 +20,7 @@ namespace deepseestars
 
 		virtual void Init()
 		{
-			for (int i = 0;i < 1;i++)
+			for (int i = 0;i < 5;i++)
 			{
 				m_rGameBaseMaker.CreateTex(m_actionTextureKey[i], m_actionTextureName[i]);
 			}
@@ -40,13 +40,21 @@ namespace deepseestars
 			return m_actionTextureKey;
 		}
 	private :
-		const TCHAR* m_actionTextureKey[1] =
+		const TCHAR* m_actionTextureKey[5] =
 		{
 			_T("AutotomyObject"),
+			_T("AvatarObject"),
+			_T("PlayerLeft"),
+			_T("PlayerRight"),
+			_T("PlayerUp"),
 		};
-		const TCHAR* m_actionTextureName[1] =
+		const TCHAR* m_actionTextureName[5] =
 		{
 			_T("2DTexture/Game/Autotomy.png"),
+			_T("2DTexture/Game/Player/PlayerReadyAction.png"),
+			_T("2DTexture/Game/Player/PlayerLeft.png"),
+			_T("2DTexture/Game/Player/PlayerRight.png"),
+			_T("2DTexture/Game/Player/PlayerUp.png"),
 		};
 
 	};

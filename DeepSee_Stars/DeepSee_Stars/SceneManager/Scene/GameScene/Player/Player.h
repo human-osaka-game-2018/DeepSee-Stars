@@ -93,6 +93,11 @@ namespace deepseestars
 			m_movements = canMove;
 		}
 
+		void SetDirectionAvatarCreate(Movements directionAvatarCreate)
+		{
+			m_directionAvatarCreate = directionAvatarCreate;
+		}
+
 		void SetCanAction(Action canAction)
 		{
 			m_action = canAction;
@@ -167,31 +172,25 @@ namespace deepseestars
 			m_pmission->SetStartMissionGet4Items(startMissionGet4Items);
 		}
 	private:
-		const TCHAR* m_playerTextureKey[10] =
+		const TCHAR* m_playerTextureKey[7] =
 		{
 			_T("PlayerLeft"),
 			_T("PlayerRight"),
-			_T("PlayerDown"),
+			_T("PlayerUp"),
 			_T("ReadyAction"),
 			_T("Hide"),
 			_T("Autotomy"),
-			_T("Avatar1"),
-			_T("Avatar2"),
-			_T("Avatar3"),
-			_T("Avatar4"),
+			_T("Avatar"),
 		};
-		const TCHAR* m_playerTextureName[10] =
+		const TCHAR* m_playerTextureName[7] =
 		{
 			_T("2DTexture/Game/Player/PlayerLeft.png"),
 			_T("2DTexture/Game/Player/PlayerRight.png"),
-			_T("2DTexture/Game/Player/PlayerDown.png"),
+			_T("2DTexture/Game/Player/PlayerUp.png"),
 			_T("2DTexture/Game/Player/PlayerReadyAction.png"),
 			_T("2DTexture/Game/Player/PlayerHide.png"),
 			_T("2DTexture/Game/Player/PlayerAutotomy.png"),
-			_T("2DTexture/Game/Player/PlayerAvatar1.png"),
-			_T("2DTexture/Game/Player/PlayerAvatar2.png"),
-			_T("2DTexture/Game/Player/PlayerAvatar3.png"),
-			_T("2DTexture/Game/Player/PlayerAvatar4.png"),
+			_T("2DTexture/Game/Player/PlayerAvatar.png"),
 		};
 
 		PlayerLife * m_pplayerLife;
@@ -214,16 +213,25 @@ namespace deepseestars
 		Action m_action;
 		bool m_isAutotomyState;
 		bool m_isAutotomyAnimation;
+		bool m_isAvatarCreated;
+		bool m_isAvatarState;
+		bool m_isAvatarAnimation;
 
 		D3DXVECTOR2 m_center;
 		D3DXVECTOR2 m_centerBuf;
+		D3DXVECTOR2 m_prevCenter;
+		D3DXVECTOR2 m_avatarCenter;
+		D3DXVECTOR2 m_avatarCenterBuf;
 		float m_variationValue;
 		Direction m_direction;
 		Direction m_prevDirection;
 		Direction m_missionDirection;
+		Direction m_avatarDirection;
+		Movements m_directionAvatarCreate;
 		bool m_canDirectionInput;
 		bool m_isHideState;
 		bool m_inTheSeaWeed;
+		bool m_isMoving;
 
 		//キャラのスタート位置Stage読み込みの際スタート位置の番号の数字を渡す
 		const int m_startPosRow;
