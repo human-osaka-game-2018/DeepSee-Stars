@@ -50,6 +50,13 @@ namespace deepseestars
 			m_blockCellPos.shrink_to_fit();
 		}
 
+		/// <summary>
+		/// 座標を入れるとその位置のステージブロックのタイプに変換する
+		/// </summary>
+		/// <param name="pos">座標</param>
+		/// <returns>ステージブロックのタイプ</returns>
+		TYPE ConvertIntoType(const D3DXVECTOR2& pos);
+
 		void LoadStageData(const char* fileName);
 		void CreateBlock(int colunm, int row);
 
