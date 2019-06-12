@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "../Cell/Block/BlockCell.h"
+#include "../Cell/Block/MissionCell.h"
 #include "GameObject.h"
 
 namespace deepseestars
@@ -12,12 +13,12 @@ namespace deepseestars
 	{
 	public:
 		Stage(const D3DXVECTOR2& distanceToOrigin, const float& squaresSize) :
-			GameObject(),m_distanceToOrigin(distanceToOrigin), m_CellSize(squaresSize)
+			GameObject(), m_distanceToOrigin(distanceToOrigin), m_CellSize(squaresSize)
 		{
 			Init();
 		}
 
-		~Stage() 
+		~Stage()
 		{
 			Release();
 		}
@@ -32,15 +33,21 @@ namespace deepseestars
 			}
 
 			LoadStageData("csv/Stage1.csv");
+			CreateMissionArea("csv/Mission_Stage1.csv");
 		}
 
 		void Update();
 
 		void Render();
 
-		void Release() 
+		void Release()
 		{
 			for (auto& block : m_blockCellPos)
+			{
+				delete block;
+				block = nullptr;
+			}
+			for (auto& block : m_missionBlockPos)
 			{
 				delete block;
 				block = nullptr;
@@ -48,6 +55,8 @@ namespace deepseestars
 
 			m_blockCellPos.clear();
 			m_blockCellPos.shrink_to_fit();
+			m_missionBlockPos.clear();
+			m_missionBlockPos.shrink_to_fit();
 		}
 
 		/// <summary>
@@ -59,10 +68,17 @@ namespace deepseestars
 
 		void LoadStageData(const char* fileName);
 		void CreateBlock(int colunm, int row);
+		void MissionCreateBlock(int colunm, int row, const char typeSelected);
+		void CreateMissionArea(const char* fileName);
 
 		std::vector<BlockCell*> GetblockCellPos()
 		{
 			return m_blockCellPos;
+		}
+
+		std::vector<MissionCell*> GetmissionBlockPos()
+		{
+			return m_missionBlockPos;
 		}
 
 		int GetPlayerStartPosRow()
@@ -77,7 +93,7 @@ namespace deepseestars
 		const float& m_CellSize;
 		const D3DXVECTOR2& m_distanceToOrigin;
 
-		const TCHAR* m_blockTextureKey[8]=
+		const TCHAR* m_blockTextureKey[8] =
 		{
 			_T("FloorBlock"),
 			_T("WhiteBlock"),
@@ -89,7 +105,7 @@ namespace deepseestars
 			_T("MissionStartLine"),
 		};
 
-		const TCHAR* m_blockTextureName[8]=
+		const TCHAR* m_blockTextureName[8] =
 		{
 			_T("2DTexture/Game/Floor.png"),
 			_T("2DTexture/Game/WhiteBlock.png"),
@@ -108,7 +124,9 @@ namespace deepseestars
 		int m_playerStartPosColunm;
 
 		std::vector<BlockCell*> m_blockCellPos;
+		std::vector<MissionCell*> m_missionBlockPos;
 		std::vector< std::vector<int> > m_stageSize;
+		std::vector< std::vector<char> > m_missionStageSize;
 
 	};
 

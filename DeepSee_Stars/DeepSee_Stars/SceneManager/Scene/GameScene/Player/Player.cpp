@@ -25,7 +25,7 @@ namespace deepseestars
 		gamebasemaker::TextureUV autotomy(D3DXVECTOR2(0.0f, 0.0f), D3DXVECTOR2(1024.f, 150.f), D3DXVECTOR2(150.f, 150.f));
 		m_vertices.SetTextureUV(autotomy);
 
-		for (int i = 0;i < 7;i++)
+		for (int i = 0; i < 7; i++)
 		{
 			m_rGameBaseMaker.CreateTex(m_playerTextureKey[i], m_playerTextureName[i]);
 		}
@@ -50,29 +50,29 @@ namespace deepseestars
 	void Player::Render()
 	{
 		m_centerBuf = m_center + m_distanceToOrigin;
-	
+
 		//m_cellSize / 4はキャラの描画位置を上げるだけの値
 		float posY = m_centerBuf.y - m_cellSize / 4;
 		if (m_isHideState)
 		{
 			posY = m_centerBuf.y;
 		}
-		D3DXVECTOR2 pos ={ m_centerBuf.x ,posY };
-		D3DXVECTOR2 scale = { m_textureSizeX/2,m_textureSizeY/2};
-	
+		D3DXVECTOR2 pos = { m_centerBuf.x ,posY };
+		D3DXVECTOR2 scale = { m_textureSizeX / 2,m_textureSizeY / 2 };
+
 		m_vertices.SetPos(pos);
 		m_vertices.SetScale(scale);
-	
+
 		for (auto& actionObject : m_paction)
 		{
 			actionObject->Render();
 		}
-		
+
 		m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(m_pTextureKey));
 		m_pplayerLife->Render();
 		m_psafetyLevel->Render();
 
-		if (!m_pmission->GetStartMissionGet4Items()) return;
+		if (!m_pmission->GetStartMissionGet4Items() && !m_pmission->GetStartMissionGet3Items()) return;
 		m_pretentionMissionItem->Render();
 	}
 
@@ -147,21 +147,21 @@ namespace deepseestars
 		if (!m_action.CanAutotomy) return;
 
 		if (m_pplayerLife->GetLife() <= 0) return;
-	
+
 		if (m_rGameBaseMaker.IsPressedToKeyboard(DIK_X))
 		{
 			if (!m_isAutotomyState) return;
-		
+
 			m_isAutotomyAnimation = true;
-		
+
 			m_isAutotomyState = false;
-		
+
 			m_vertices.PossibleAnimation();
 			m_vertices.SetImageSize(D3DXVECTOR2(1024.f, 150.f));
 			m_vertices.ClippingImage(D3DXVECTOR2(0.f, 0.f), D3DXVECTOR2(150.f, 150.f));
 			m_pTextureKey = m_playerTextureKey[5];
 		}
-		
+
 		if (m_isAutotomyAnimation)
 		{
 			m_vertices.Animation(6, 6);
@@ -207,23 +207,23 @@ namespace deepseestars
 				m_isAvatarAnimation = false;
 				m_avatarCenter = m_center;
 
-				if (m_directionAvatarCreate.CanMoveRight)
+				if (m_directionAvatarCreate.CanCreateRight)
 				{
 					m_avatarCenter.x += m_cellSize;
 				}
-				else if (m_directionAvatarCreate.CanMoveLeft)
+				else if (m_directionAvatarCreate.CanCreateLeft)
 				{
 					m_avatarCenter.x -= m_cellSize;
 				}
-				else if (m_directionAvatarCreate.CanMoveUp)
+				else if (m_directionAvatarCreate.CanCreateUp)
 				{
 					m_avatarCenter.y -= m_cellSize;
 				}
-				else if (m_directionAvatarCreate.CanMoveDown)
+				else if (m_directionAvatarCreate.CanCreateDown)
 				{
 					m_avatarCenter.y += m_cellSize;
 				}
-	
+
 				m_avatarDirection = STAYING;
 				m_paction.push_back(new AvatarObject(m_avatarCenter, m_distanceToOrigin, m_cellSize, m_avatarDirection));
 				m_pplayerLife->SetLife(m_pplayerLife->GetLife() - 3);

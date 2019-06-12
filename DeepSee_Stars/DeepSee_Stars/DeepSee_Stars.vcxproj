@@ -152,6 +152,7 @@
     <ClCompile Include="GameObjects\GameObjects.cpp" />
     <ClCompile Include="main\main.cpp" />
     <ClCompile Include="SceneManager\SceneManager.cpp" />
+    <ClCompile Include="SceneManager\Scene\GameScene\Cell\Block\MissionCell.cpp" />
     <ClCompile Include="SceneManager\Scene\GameScene\Enemies\Enemies.cpp" />
     <ClCompile Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\L_Shaped\L_Shaped.cpp" />
     <ClCompile Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\Patorl\Patrol.cpp" />
@@ -201,6 +202,7 @@
     <ClInclude Include="GameObjects\GameObjects.h" />
     <ClInclude Include="GameObjects\GameObject\GameObject.h" />
     <ClInclude Include="SceneManager\SceneManager.h" />
+    <ClInclude Include="SceneManager\Scene\GameScene\Cell\Block\MissionCell.h" />
     <ClInclude Include="SceneManager\Scene\GameScene\Enemies\Enemies.h" />
     <ClInclude Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\BaseEnemyAction.h" />
     <ClInclude Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\L_Shaped\L_Shaped.h" />
@@ -208,7 +210,7 @@
     <ClInclude Include="SceneManager\Scene\GameScene\Enemies\Enemy\BaseEnemyAction\StraightLine\StraightLine.h" />
     <ClInclude Include="SceneManager\Scene\GameScene\Enemies\Enemy\Enemy.h" />
     <ClInclude Include="SceneManager\Scene\GameScene\Enum\Direction.h" />
-       <ClInclude Include="SceneManager\Scene\GameScene\Player\Mission\Mission.h" />
+    <ClInclude Include="SceneManager\Scene\GameScene\Player\Mission\Mission.h" />
     <ClInclude Include="SceneManager\Scene\GameScene\Player\UI\PlayerLife.h" />
     <ClInclude Include="SceneManager\Scene\GameScene\Player\UI\RetentionMissionItem.h" />
     <ClInclude Include="SceneManager\Scene\GameScene\Player\UI\SafetyLevel.h" />
