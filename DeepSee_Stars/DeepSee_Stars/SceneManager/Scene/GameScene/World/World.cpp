@@ -62,7 +62,7 @@ namespace deepseestars
 	{
 		Movements playerDirection;
 
-		for (int i = 0;i < 4;i++)
+		for (int i = 0; i < 4; i++)
 		{
 			for (auto& stagePos : m_pStage->GetblockCellPos())
 			{
@@ -71,28 +71,29 @@ namespace deepseestars
 				if (stagePos->Gettype() == SEAWEED) continue;
 				if (stagePos->Gettype() == MISSION_ITEM) continue;
 				if (stagePos->Gettype() == GAMECLEARZONE) continue;
-				
-				if (!m_pPlayer->GetStartMissionGet4Items())
-				{
-					if (stagePos->Gettype() == MISSIONSTART_GET4ITEMS) continue;
-				}
 
 				if ((stagePos->Getcenter().x != m_PlayerGirthCenter[i].x) || (stagePos->Getcenter().y != m_PlayerGirthCenter[i].y)) continue;
 
-				switch (i)
+				for (auto& missionPos : m_pStage->GetmissionBlockPos())
 				{
-				case LEFT:
-					playerDirection.CanMoveLeft = false;
-					break;
-				case RIGHT:
-					playerDirection.CanMoveRight = false;
-					break;
-				case UP:
-					playerDirection.CanMoveUp = false;
-					break;
-				case DOWN:
-					playerDirection.CanMoveDown = false;
-					break;
+					if ((missionPos->Getcenter().x != m_PlayerGirthCenter[i].x) && (missionPos->Getcenter().y != m_PlayerGirthCenter[i].y)) continue;
+					if (missionPos->Gettype() != m_anticipationDeletemissionLine) continue;
+
+					switch (i)
+					{
+					case LEFT:
+						playerDirection.CanMoveLeft = false;
+						break;
+					case RIGHT:
+						playerDirection.CanMoveRight = false;
+						break;
+					case UP:
+						playerDirection.CanMoveUp = false;
+						break;
+					case DOWN:
+						playerDirection.CanMoveDown = false;
+						break;
+					}
 				}
 			}
 		}
@@ -106,9 +107,9 @@ namespace deepseestars
 
 	void World::JudgeDirectionAvatarCreate()
 	{
-		Movements DirectionAvatarCreate;
+		AvatarCreateDirection DirectionAvatarCreate;
 
-		for (int i = 0;i < 4;i++)
+		for (int i = 0; i < 4; i++)
 		{
 			for (auto& stagePos : m_pStage->GetblockCellPos())
 			{
@@ -117,6 +118,7 @@ namespace deepseestars
 				if (stagePos->Gettype() == SEAWEED) continue;
 				if (stagePos->Gettype() == MISSION_ITEM) continue;
 				if (stagePos->Gettype() == GAMECLEARZONE) continue;
+				if (stagePos->Gettype() == MISSIONSTART_GET3ITEMS) continue;
 				if (stagePos->Gettype() == MISSIONSTART_GET4ITEMS) continue;
 
 				if ((stagePos->Getcenter().x != m_PlayerGirthCenter[i].x) || (stagePos->Getcenter().y != m_PlayerGirthCenter[i].y)) continue;
@@ -124,16 +126,16 @@ namespace deepseestars
 				switch (i)
 				{
 				case LEFT:
-					DirectionAvatarCreate.CanMoveLeft = false;
+					DirectionAvatarCreate.CanCreateLeft = false;
 					break;
 				case RIGHT:
-					DirectionAvatarCreate.CanMoveRight = false;
+					DirectionAvatarCreate.CanCreateRight = false;
 					break;
 				case UP:
-					DirectionAvatarCreate.CanMoveUp = false;
+					DirectionAvatarCreate.CanCreateUp = false;
 					break;
 				case DOWN:
-					DirectionAvatarCreate.CanMoveDown = false;
+					DirectionAvatarCreate.CanCreateDown = false;
 					break;
 				}
 			}
@@ -168,7 +170,7 @@ namespace deepseestars
 			m_CellSize * 3.f,
 			m_CellSize
 		};
-		
+
 		for (auto& enemy : m_pEnemies->GetEnemies())
 		{
 			distance = m_pPlayer->GetCenterPos() - enemy->GetTranslationData().m_pos;
@@ -177,19 +179,19 @@ namespace deepseestars
 			if (length > visibilityLength[enemy->GetVisibility()]) continue;
 
 			D3DXVECTOR2 unitVec(0.f, 0.f);
-			
-			switch(enemy->GetDirection())
+
+			switch (enemy->GetDirection())
 			{
 			case LEFT:	unitVec.x = -1.0f; break;
-			case RIGHT: unitVec.x =  1.0f; break;
+			case RIGHT: unitVec.x = 1.0f; break;
 			case UP:    unitVec.y = -1.0f; break;
-			case DOWN:  unitVec.y =  1.0f; break;
+			case DOWN:  unitVec.y = 1.0f; break;
 			}
-			
+
 			//視野角(degree)
-			float viewAngle = D3DXToDegree(acos(D3DXVec2Dot(&distance, &unitVec) / length));			
-							
-							//軸からの角度
+			float viewAngle = D3DXToDegree(acos(D3DXVec2Dot(&distance, &unitVec) / length));
+
+			//軸からの角度
 			if (viewAngle > (m_viewAngleMax * 0.5f)) continue;
 
 			auto CanFind = [&]()->bool
@@ -204,7 +206,7 @@ namespace deepseestars
 
 				return canFind;
 			};
-			
+
 			enemy->SetExistsPlayer(CanFind());
 		}
 	}
@@ -214,7 +216,7 @@ namespace deepseestars
 		for (auto& enemy : m_pEnemies->GetEnemies())
 		{
 			D3DXVECTOR2 predictedDest = enemy->GetDestination();
-		
+
 			D3DXVECTOR2 sizeDIff = D3DXVECTOR2(0.0f, 0.0f);
 
 			auto GetSign = [](float val)->int
@@ -292,11 +294,17 @@ namespace deepseestars
 
 	void World::JudgeMissionStart()
 	{
-		switch (GetCurrentPosBlock())
+		switch (GetCurrentPlayerPosBlock())
 		{
+		case MISSIONSTART_GET3ITEMS:
+			m_pPlayer->SetMissionDirection(m_pPlayer->GetPrevDirection());
+			m_pPlayer->SetStartMissionGet3Items(true);
+			JudegMissionAlphabet();
+			break;
 		case MISSIONSTART_GET4ITEMS:
 			m_pPlayer->SetMissionDirection(m_pPlayer->GetPrevDirection());
 			m_pPlayer->SetStartMissionGet4Items(true);
+			JudegMissionAlphabet();
 			break;
 		}
 		FinishMission();
@@ -304,18 +312,60 @@ namespace deepseestars
 
 	void World::FinishMission()
 	{
+		if (m_pPlayer->GetStartMissionGet3Items())
+		{
+			if (m_pPlayer->GetRetentionMissionItem() == 3)
+			{
+				m_pPlayer->SetStartMissionGet3Items(false);
+				m_pPlayer->SetRetentionMissionItem(0);
+				DeleteMissionLine();
+				m_anticipationDeletemissionLine = NULL;
+			}
+		}
 		if (m_pPlayer->GetStartMissionGet4Items())
 		{
 			if (m_pPlayer->GetRetentionMissionItem() == 4)
 			{
 				m_pPlayer->SetStartMissionGet4Items(false);
+				m_pPlayer->SetRetentionMissionItem(0);
+				DeleteMissionLine();
+				m_anticipationDeletemissionLine = NULL;
 			}
 		}
 	}
 
+	void World::JudegMissionAlphabet()
+	{
+		for (auto& missionPos : m_pStage->GetmissionBlockPos())
+		{
+			if ((missionPos->Getcenter().x != playerCenterBuf.x) || (missionPos->Getcenter().y != playerCenterBuf.y)) continue;
+
+			m_anticipationDeletemissionLine = missionPos->Gettype();
+		}
+	}
+
+	void World::DeleteMissionLine()
+	{
+		for (auto& stagePos : m_pStage->GetblockCellPos())
+		{
+
+		}
+
+		for (auto& missionPos : m_pStage->GetmissionBlockPos())
+		{
+			if (m_anticipationDeletemissionLine != missionPos->Gettype()) continue;
+			for (auto& stagePos : m_pStage->GetblockCellPos())
+			{
+				if ((stagePos->Getcenter().x != missionPos->Getcenter().x) || (stagePos->Getcenter().y != missionPos->Getcenter().y)) continue;
+				stagePos->Settype(FLOOR);
+			}
+		}
+	}
+
+
 	void World::JudgeGameClear()
 	{
-		switch (GetCurrentPosBlock())
+		switch (GetCurrentPlayerPosBlock())
 		{
 		case GAMECLEARZONE:
 			SceneManager & rSceneManager = SceneManager::GetInstance();
@@ -324,7 +374,7 @@ namespace deepseestars
 		}
 	}
 
-	TYPE World::GetCurrentPosBlock()
+	TYPE World::GetCurrentPlayerPosBlock()
 	{
 		for (auto& stagePos : m_pStage->GetblockCellPos())
 		{

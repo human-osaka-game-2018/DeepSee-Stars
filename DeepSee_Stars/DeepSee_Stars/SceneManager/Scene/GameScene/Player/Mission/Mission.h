@@ -8,12 +8,12 @@ namespace deepseestars
 	class Mission : public GameObject
 	{
 	public:
-		Mission() :  GameObject()
+		Mission() : GameObject()
 		{
 			Init();
 		}
 
-		~Mission() 
+		~Mission()
 		{
 			Release();
 		}
@@ -27,8 +27,15 @@ namespace deepseestars
 
 		void Render();
 
-		void Release(){}
-
+		void Release() {}
+		bool GetStartMissionGet3Items()
+		{
+			return m_startMissionGet3Items;
+		}
+		void SetStartMissionGet3Items(bool startMissionGet3Items)
+		{
+			m_startMissionGet3Items = startMissionGet3Items;
+		}
 
 		bool GetStartMissionGet4Items()
 		{
@@ -39,6 +46,7 @@ namespace deepseestars
 			m_startMissionGet4Items = startMissionGet4Items;
 		}
 	private:
+		bool m_startMissionGet3Items;
 		bool m_startMissionGet4Items;
 
 	};

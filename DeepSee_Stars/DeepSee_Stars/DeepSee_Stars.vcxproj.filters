@@ -300,6 +300,9 @@
     <ClCompile Include="SceneManager\Scene\GameScene\Player\Mission\Mission.cpp">
       <Filter>SceneManager\Scene\GameScene\Player\Mission</Filter>
     </ClCompile>
+    <ClCompile Include="SceneManager\Scene\GameScene\Cell\Block\MissionCell.cpp">
+      <Filter>SceneManager\Scene\GameScene\Cell\Block</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Device\DirectXDevice\DirectXDevice.h">
@@ -452,9 +455,6 @@
     <ClInclude Include="SceneManager\Scene\GameScene\Player\Action\Avatar\AvatarObject.h">
       <Filter>SceneManager\Scene\GameScene\Player\Action\Avatar</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager\Scene\GameScene\Player\DirectionID.h">
-      <Filter>SceneManager\Scene\GameScene\Player</Filter>
-    </ClInclude>
     <ClInclude Include="SceneManager\Scene\GameScene\Player\UI\SafetyLevel.h">
       <Filter>SceneManager\Scene\GameScene\Player\UI</Filter>
     </ClInclude>
@@ -466,6 +466,9 @@
     </ClInclude>
     <ClInclude Include="SceneManager\Scene\GameScene\Player\Mission\Mission.h">
       <Filter>SceneManager\Scene\GameScene\Player\Mission</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager\Scene\GameScene\Cell\Block\MissionCell.h">
+      <Filter>SceneManager\Scene\GameScene\Cell\Block</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

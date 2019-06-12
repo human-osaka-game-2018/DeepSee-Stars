@@ -24,7 +24,7 @@ namespace deepseestars
 			m_playerStartPosRow = m_pStage->GetPlayerStartPosRow();
 			m_playerStartPosColunm = m_pStage->GetPlayerStartPosColunm();
 			m_pPlayer = new Player(m_distanceToOrigin, m_CellSize, m_playerStartPosRow, m_playerStartPosColunm);
-			}
+		}
 
 		~World()
 		{
@@ -53,7 +53,7 @@ namespace deepseestars
 
 		void Render();
 
-		void Release(){}
+		void Release() {}
 
 	private:
 		void JudgeMoveEnemy();
@@ -64,17 +64,18 @@ namespace deepseestars
 
 		Camera*  m_pCamera;
 		Player*  m_pPlayer;
-		Stage*   m_pStage ;
+		Stage*   m_pStage;
 		Enemies* m_pEnemies;
 
 		D3DXVECTOR2 playerCenterBuf;
 		D3DXVECTOR2 m_PlayerGirthCenter[4];
-		
+
 		Action m_PlayerAction;
 		float m_WorldScrollX = 0.f;
 		float m_WorldScrollY = 0.f;
 		int m_playerStartPosRow;
 		int m_playerStartPosColunm;
+		char m_anticipationDeletemissionLine;
 
 		const float m_viewAngleMax = 90.f;
 		const float m_CellSize = 50.f;
@@ -87,8 +88,10 @@ namespace deepseestars
 		void GimmickCollision();
 		void JudgeMissionStart();
 		void FinishMission();
+		void JudegMissionAlphabet();
+		void DeleteMissionLine();
 		void JudgeGameClear();
-		TYPE GetCurrentPosBlock();
+		TYPE GetCurrentPlayerPosBlock();
 	};
 }
 

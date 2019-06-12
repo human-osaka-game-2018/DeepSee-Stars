@@ -30,6 +30,14 @@ namespace deepseestars
 		}
 	};
 
+	struct AvatarCreateDirection
+	{
+		bool CanCreateLeft = true;
+		bool CanCreateRight = true;
+		bool CanCreateUp = true;
+		bool CanCreateDown = true;
+	};
+
 	struct Action
 	{
 		bool CanHide;
@@ -40,7 +48,7 @@ namespace deepseestars
 	class Player : public GameObject
 	{
 	public:
-		Player(const D3DXVECTOR2& distanceToOrigin, const float& squaresSize, const int& startPosRow, const int& startPosColunm):
+		Player(const D3DXVECTOR2& distanceToOrigin, const float& squaresSize, const int& startPosRow, const int& startPosColunm) :
 			GameObject(), m_distanceToOrigin(distanceToOrigin), m_cellSize(squaresSize), m_startPosRow(startPosRow), m_startPosColunm(startPosColunm)
 		{
 			Init();
@@ -49,7 +57,7 @@ namespace deepseestars
 			m_pretentionMissionItem = new RetentionMissionItem(m_retentionMissionItem);
 			m_pmission = new Mission();
 		}
-		
+
 		~Player()
 		{
 			Release();
@@ -58,7 +66,7 @@ namespace deepseestars
 				delete actionObject;
 				actionObject = nullptr;
 			}
-			
+
 			delete m_pplayerLife;
 			m_pplayerLife = nullptr;
 			delete m_psafetyLevel;
@@ -71,7 +79,7 @@ namespace deepseestars
 
 		void Render();
 
-		void Release() 
+		void Release()
 		{
 			m_rGameBaseMaker.ReleaseAllTex();
 		}
@@ -93,7 +101,7 @@ namespace deepseestars
 			m_movements = canMove;
 		}
 
-		void SetDirectionAvatarCreate(Movements directionAvatarCreate)
+		void SetDirectionAvatarCreate(AvatarCreateDirection directionAvatarCreate)
 		{
 			m_directionAvatarCreate = directionAvatarCreate;
 		}
@@ -163,6 +171,16 @@ namespace deepseestars
 			return m_prevDirection;
 		}
 
+
+		bool GetStartMissionGet3Items()
+		{
+			return m_pmission->GetStartMissionGet3Items();
+		}
+		void SetStartMissionGet3Items(bool startMissionGet3Items)
+		{
+			m_pmission->SetStartMissionGet3Items(startMissionGet3Items);
+		}
+
 		bool GetStartMissionGet4Items()
 		{
 			return m_pmission->GetStartMissionGet4Items();
@@ -227,7 +245,7 @@ namespace deepseestars
 		Direction m_prevDirection;
 		Direction m_missionDirection;
 		Direction m_avatarDirection;
-		Movements m_directionAvatarCreate;
+		AvatarCreateDirection m_directionAvatarCreate;
 		bool m_canDirectionInput;
 		bool m_isHideState;
 		bool m_inTheSeaWeed;

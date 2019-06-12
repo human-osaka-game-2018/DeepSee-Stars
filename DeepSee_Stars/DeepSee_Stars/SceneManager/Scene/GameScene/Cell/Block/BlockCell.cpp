@@ -13,14 +13,14 @@ namespace deepseestars
 		D3DXVECTOR2 centerBuf = m_center + m_distanceToOrigin;
 
 		D3DXVECTOR2 pos = { centerBuf.x ,centerBuf.y };
-		D3DXVECTOR2 scale = { m_blockSize/2 ,m_blockSize/2 };
+		D3DXVECTOR2 scale = { m_blockSize / 2 ,m_blockSize / 2 };
 
 		m_vertices.SetPos(pos);
 		m_vertices.SetScale(scale);
 
 		bool InRangeX = -m_blockSize <= centerBuf.x && centerBuf.x <= m_vertices.GetDisplaySize().x + m_blockSize;
 		bool InRangeY = -m_blockSize <= centerBuf.y && centerBuf.y <= m_vertices.GetDisplaySize().y + m_blockSize;
-		
+
 		if (InRangeX && InRangeY)
 		{
 			m_isWithinRenderArea = true;
@@ -48,7 +48,7 @@ namespace deepseestars
 			break;
 		case PLAYER_RECOVERY_OBJECT:
 			m_rGameBaseMaker.Render(m_vertices, m_rGameBaseMaker.GetTex(_T("FloorBlock")));
-			pos = { centerBuf.x ,centerBuf.y - m_blockSize / 4};
+			pos = { centerBuf.x ,centerBuf.y - m_blockSize / 4 };
 			m_vertices.SetPos(pos);
 			m_pTextureKey = _T("PlayerRecoveryObject");
 			break;
@@ -66,6 +66,9 @@ namespace deepseestars
 			break;
 		case GAMECLEARZONE:
 			m_pTextureKey = _T("MissionItem");
+			break;
+		case MISSIONSTART_GET3ITEMS:
+			m_pTextureKey = _T("MissionStartLine");
 			break;
 		case MISSIONSTART_GET4ITEMS:
 			m_pTextureKey = _T("MissionStartLine");
